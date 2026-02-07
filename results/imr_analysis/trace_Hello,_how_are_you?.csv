@@ -1,0 +1,27 @@
+iteration,tokens,newly_revealed,mean_confidence,num_masked
+0,[MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],,0.0000,10
+1,[MASK] i [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],1,0.1839,9
+2,am i [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],0,0.3063,8
+3,am i doing [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],2,0.2788,7
+4,am i doing [MASK] [MASK] just [MASK] [MASK] [MASK] [MASK],5,0.4429,6
+5,am i doing [MASK] [MASK] just got [MASK] [MASK] [MASK],6,0.6091,5
+6,am i doing [MASK] [MASK] just got [MASK] from [MASK],8,0.7310,4
+7,am i doing [MASK] [MASK] just got back from [MASK],7,0.8069,3
+8,am i doing well [MASK] just got back from [MASK],3,0.8107,2
+9,"am i doing well , just got back from [MASK]",4,0.8530,1
+10,"am i doing well , just got back from fishing",9,0.9152,0
+11,"am i doing well , just got back from fishing",,0.9949,0
+12,"am i doing well , just got back from fishing",,0.9960,0
+13,"am i doing well , just got back from fishing",,0.9969,0
+14,"am i doing well , just got back from fishing",,0.9977,0
+15,"am i doing well , just got back from fishing",,0.9984,0
+16,"am i doing well , just got back from fishing",,0.9989,0
+17,"am i doing well , just got back from fishing",,0.9993,0
+18,"am i doing well , just got back from fishing",,0.9996,0
+19,"am i doing well , just got back from fishing",,0.9998,0
+20,"am i doing well , just got back from fishing",,0.9999,0
+21,"am i doing well , just got back from fishing",,1.0000,0
+22,"am i doing well , just got back from fishing",,1.0000,0
+23,"am i doing well , just got back from fishing",,1.0000,0
+24,"am i doing well , just got back from fishing",,1.0000,0
+25,"am i doing well , just got back from fishing",,1.0000,0

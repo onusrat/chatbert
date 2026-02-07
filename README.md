@@ -193,19 +193,19 @@ Both models were trained on a single **NVIDIA A100 GPU** provisioned through **[
 
 Evaluated on test splits of DailyDialog + PersonaChat (500 samples).
 
-| Metric | ChatBERT-ED | ChatBERT-IMR |
-|--------|------------|-------------|
-| BLEU | 0.0021 | 0.0017 |
-| ROUGE-1 | 0.1577 | 0.1193 |
-| ROUGE-2 | 0.0269 | 0.0134 |
-| ROUGE-L | 0.1419 | 0.1082 |
-| BERTScore F1 | 0.8535 | 0.8459 |
-| Distinct-1 | 0.1701 | 0.2498 |
-| Distinct-2 | 0.4809 | 0.6719 |
-| Perplexity | 30.7 | 4.0 |
-| Avg Length | 9.8 | 8.8 |
+| Metric | ChatBERT-ED | ChatBERT-IMR | GPT-2 (baseline) |
+|--------|------------|-------------|------------------|
+| BLEU | 0.0021 | 0.0017 | 0.0042 |
+| ROUGE-1 | 0.1577 | 0.1193 | 0.0677 |
+| ROUGE-2 | 0.0269 | 0.0134 | 0.0094 |
+| ROUGE-L | 0.1419 | 0.1082 | 0.0608 |
+| BERTScore F1 | 0.8535 | 0.8459 | 0.8382 |
+| Distinct-1 | 0.1701 | 0.2498 | 0.1986 |
+| Distinct-2 | 0.4809 | 0.6719 | 0.6521 |
+| Perplexity | 30.7 | 4.0 | — |
+| Avg Length | 9.8 | 8.8 | 8.5 |
 
-IMR achieves higher lexical diversity (Distinct-1/2) and much lower perplexity, while ED produces slightly more n-gram overlap with references (ROUGE). Both models achieve comparable BERTScore, suggesting semantic similarity is similar despite different generation strategies.
+Both ChatBERT variants outperform the GPT-2 baseline on ROUGE and BERTScore despite having fewer parameters (66–100M vs 124M). IMR achieves the highest lexical diversity (Distinct-1/2) and lowest perplexity, while ED produces the most n-gram overlap with references. GPT-2 shows competitive diversity but weaker reference overlap, suggesting the BERT-based encoder provides stronger contextual grounding.
 
 To evaluate locally:
 
@@ -216,29 +216,55 @@ python scripts/evaluate.py --model_path checkpoints/chatbert-imr-small/final --m
 
 ### Baseline Comparison
 
-A GPT-2 (124M) model fine-tuned on the same data provides a standard autoregressive baseline. Train it with:
+A GPT-2 (124M) model fine-tuned on the same data provides a standard autoregressive baseline:
 
 ```bash
 python scripts/train_gpt2_baseline.py --config configs/gpt2_baseline.yaml
+python scripts/evaluate.py --model_path checkpoints/gpt2-baseline/final --model_type gpt2_baseline
 ```
 
 ### Ablation Studies
 
-Six ablation configs explore key design decisions:
+Six ablation configs explore key design decisions. All ablations use the ChatBERT-ED architecture with one variable changed at a time:
 
-| Ablation | Variable | Question |
-|----------|----------|----------|
-| `ed_frozen_encoder` | Freeze encoder | Does encoder fine-tuning matter? |
-| `ed_decoder_depth_2` | 2-layer decoder | Minimum viable decoder? |
-| `ed_decoder_depth_6` | 6-layer decoder | Does deeper decoder help? |
-| `ed_lr_1e4` | LR = 1e-4 | Higher learning rate effect |
-| `ed_lr_1e5` | LR = 1e-5 | Lower learning rate effect |
-| `ed_dailydialog_only` | DailyDialog only | Data mix impact |
+| Ablation | Change | ROUGE-L | BERTScore | Distinct-2 | Perplexity |
+|----------|--------|---------|-----------|------------|------------|
+| **ED (default)** | — | **0.1419** | 0.8535 | 0.4809 | 30.7 |
+| Frozen encoder | No encoder fine-tuning | 0.1478 | 0.8540 | 0.4831 | 30.2 |
+| 2-layer decoder | Shallower decoder | 0.1492 | 0.8539 | 0.4742 | 32.2 |
+| 6-layer decoder | Deeper decoder | 0.1425 | 0.8532 | 0.5036 | **29.3** |
+| LR = 1e-4 | Higher learning rate | 0.1452 | **0.8542** | **0.5315** | 24.9 |
+| LR = 1e-5 | Lower learning rate | 0.1230 | 0.8481 | 0.3397 | 55.8 |
+| DailyDialog only | No PersonaChat | 0.1195 | 0.8491 | 0.4191 | 62.8 |
+
+Key findings:
+- **Frozen encoder still works**: Surprisingly competitive — DistilBERT's pretrained representations are already strong for dialogue understanding.
+- **2-layer decoder suffices**: Minimal quality loss with half the decoder parameters, suggesting the encoder does most of the heavy lifting.
+- **Higher LR helps diversity**: LR=1e-4 produces the most diverse outputs and lowest perplexity among ablations.
+- **Data mix matters most**: Removing PersonaChat roughly doubles perplexity and significantly reduces diversity.
 
 Run all ablations:
 
 ```bash
 python scripts/run_ablations.py --all
+```
+
+### SmolTalk Data Experiment
+
+Adding [SmolTalk](https://huggingface.co/datasets/HuggingFaceTB/smoltalk) (everyday-conversations) to the training mix:
+
+| Metric | ED | ED + SmolTalk | IMR | IMR + SmolTalk |
+|--------|-----|--------------|------|---------------|
+| ROUGE-L | 0.1419 | 0.1323 | 0.1082 | 0.1020 |
+| BERTScore F1 | 0.8535 | 0.8540 | 0.8459 | 0.8456 |
+| Distinct-2 | 0.4809 | 0.4992 | 0.6719 | 0.6768 |
+| Perplexity | 30.7 | 29.6 | 4.0 | 4.5 |
+
+SmolTalk slightly improves diversity and perplexity for ED but is roughly neutral for IMR, suggesting the original DailyDialog + PersonaChat mix already provides sufficient coverage for these model sizes.
+
+```bash
+python scripts/train.py --config configs/ed_small_smoltalk.yaml
+python scripts/train.py --config configs/imr_small_smoltalk.yaml
 ```
 
 ### IMR Analysis

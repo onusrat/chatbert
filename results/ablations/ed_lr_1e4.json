@@ -1,0 +1,277 @@
+{
+  "metrics": {
+    "bleu": 0.004352880192386483,
+    "rouge1": 0.15906983384644124,
+    "rouge2": 0.03186109294495088,
+    "rougeL": 0.1452320648048054,
+    "bertscore_precision": 0.863596498966217,
+    "bertscore_recall": 0.845474362373352,
+    "bertscore_f1": 0.8542140126228333,
+    "distinct_1": 0.18820577164366373,
+    "distinct_2": 0.5315273236805231,
+    "avg_length": 9.564,
+    "min_length": 1,
+    "max_length": 43,
+    "std_length": 4.7889355811077685,
+    "perplexity": 24.8960222550944,
+    "generation_time_s": 31.47433066368103,
+    "samples": 500
+  },
+  "examples": [
+    {
+      "context": "In foreign trade , exporters have to adjust their product in a timely manner . [SEP] How to adjust ? [SEP] Exporters must ensure that their product satisfies customers ' needs , wants and likes . [SEP] Ah , some products are successful at home , but not be popular overseas .",
+      "reference": "That's because the fashion , taste and social customs and so on vary considerably .",
+      "prediction": "yes, in fact, the quality is a bit faster than most of our products are."
+    },
+    {
+      "context": "Are there any beds vacant ? [SEP] Yes , what kind of room do you want ?",
+      "reference": "I prefer one facing the sea . Besides , it should have a shower .",
+      "prediction": "i ' d like a single room, please."
+    },
+    {
+      "context": "reminds me of a time as a child my lite brite favorite toy . [SEP] nowadays it is rare to see any kids have them over here in colorado [SEP] yes i love to dance classes once a week 21 [SEP] what kind of dance is it ? [SEP] hip hop get down and hip in the times man old school real stuff",
+      "reference": "sounds like it is really fun !",
+      "prediction": "that ' s cool, i love listening to rock music"
+    },
+    {
+      "context": "Wow ! Your fruit looks really fresh ! How much are these apples ? [SEP] The apples are 30NT each . How many would you like ? [SEP] Let's see , 30NT is about ... almost a dollar US . What ? ! How about these pineapples ? [SEP] They're 250NT each , but they're not edible . They're only used for worship . [SEP] Hmm , 250NT is ... 8 dollars ? ! ! And you can't even eat them ? You're crazy !",
+      "reference": "Wait ! Don't go just yet . These bananas are pretty cheap--only 35NT for this bunch .",
+      "prediction": "i know, but i ' m just thinking of a little fat. it ' s the same thing to make them delicious!"
+    },
+    {
+      "context": "hi . i am amanda . what is your name ? [SEP] hi amanda , i want to take over the world . [SEP] o wow ! ! well my want in life is to shop shop shop . [SEP] i hate shopping . or spending money [SEP] my favorite thing to shop for is watches . shoes too i guess .",
+      "reference": "i've two pairs of jeans and one pair of shoes .",
+      "prediction": "i love to travel, especially in nature."
+    },
+    {
+      "context": "Then let's go in . [SEP] I can't . I'm waiting for Paul , but he's late . [SEP] I'll say the movie's starting in the minute . [SEP] I know . I wonder what's keeping him . [SEP] Looks like he won't show up . He's done this before , hasn't he ?",
+      "reference": "Yeah , a number of times .",
+      "prediction": "yeah, but i know it ' s the first time to go."
+    },
+    {
+      "context": "We are planning to go to Beidaihe for vacation . Do you want to go with us ?",
+      "reference": "It \u2019 s so cool !",
+      "prediction": "sure. i am going to miss the world ' s vacation and we can go somewhere in america."
+    },
+    {
+      "context": "that is great . do you eat meat ? because i do [SEP] yeah i bet you do , no i am vegan and i am proud [SEP] oh that is good for you [SEP] where do you work ? i'm currently working at a school [SEP] i do not work i am a stay at home mom and i love it",
+      "reference": "me too , well i guess i should start eating meat now",
+      "prediction": "i ' ve a son, they make fun of me"
+    },
+    {
+      "context": "ring . what will you do with a economics degree ? [SEP] which state is that in ? i attend meetings and pretend like i know a lot . [SEP] alabama . i started playing the guitar when i was 3 . i really hope to become a singer . [SEP] that is awesome . i'm sure you are very talented after starting that young . [SEP] not to pat myself on the back , but yes i am . do you enjoy economics ?",
+      "reference": "it is ok . i have thought about going back to school for another degree .",
+      "prediction": "i love it. do you?"
+    },
+    {
+      "context": "i finally hit 2k followers on twitter ! [SEP] congrats ! do you use twitter a lot ? [SEP] oh , all the time . i'm a huge internet junkie . facebook , twitter , etc . [SEP] i never got into twitter , probably because i'm a little older than 30 . [SEP] not much of an internet person ?",
+      "reference": "i can be sometimes but mostly facebook . i post a lot of picture of my dogs .",
+      "prediction": "not really, but it is fun to find my job."
+    },
+    {
+      "context": "Jenny , what's wrong with you ? Why do you keep weeping like that ?",
+      "reference": "Mary told me that she had seen you with John last night . I got to know the fact that you are playing the field .",
+      "prediction": "i just don ' t know."
+    },
+    {
+      "context": "will your music reach me in the clouds ? [SEP] yes i am sure you can hear me play my guitar [SEP] i would enjoy that , it is lonely in the clouds . [SEP] it may lonely but i'm sure it is beautiful . do you make friends with the birds ? [SEP] that's true . no , i like to freeze them in time .",
+      "reference": "how do the birds respond to you freezing them",
+      "prediction": "i don ' t like them either. they make me happy"
+    },
+    {
+      "context": "I \u2019 d like to apply for a personal loan . [SEP] How much would you like to borrow ? [SEP] A thousand dollars . [SEP] Let me check with a credit manager . A record show your credit reading is quite high . I don't think you have any problems .",
+      "reference": "What \u2019 s the current interest rate ?",
+      "prediction": "well, how much would you like to deposit?"
+    },
+    {
+      "context": "what grade are you in [SEP] i'm out of school i've a job [SEP] oh wow you are a lot older than me [SEP] yeah haha i went to vet school but i would rather work from home [SEP] i'm still only in my third year of elementary school",
+      "reference": "oh wow are you excited for high school",
+      "prediction": "i have 3 kids and a few girls"
+    },
+    {
+      "context": "Hi . I \u2019 m here to catch flight 513 to New York . [SEP] May I see your ticket please ? [SEP] Here you are . Do you need to see my passport ?",
+      "reference": "Any form of picture I . D . will do .",
+      "prediction": "no, i don \u2019 t."
+    },
+    {
+      "context": "Hi , Monica , how is everything going ? [SEP] Everything goes well , but I am thinking about quitting my current job . [SEP] Why ? You \u2019 re not satisfied anymore ?",
+      "reference": "I just sense . But I cannot grow anymore . My boss is not really supporting me . I am interested in some positions in other JV companies , but I need to do some more in-depth research before I send my application letters out .",
+      "prediction": "i \u2019 m not very sure. but my job is not getting to know what i want."
+    },
+    {
+      "context": "i just turned 18 yesterday ! it was a tough birthday though [SEP] really why ? my birthdays are great ! [SEP] my boyfriend and i just broke up a couple months ago . i miss him [SEP] that is sad . just get anew one . that is what i do when i loss a doll . [SEP] at least i still have my pet fish ! do you have any pets",
+      "reference": "yes i've a turtle . i love him .",
+      "prediction": "i do not. i ' ve a dog and his name is bob"
+    },
+    {
+      "context": "hi i'm a musician with big dream",
+      "reference": "what kind of dreams do you have ?",
+      "prediction": "cool. i ' m a pro ballerina and love to play in the piano"
+    },
+    {
+      "context": "hello , i am teaching at a school right now . how are you ? [SEP] teaching ? what grade ? i am good just getting in my daily gym session . [SEP] 9th graders . i'm a woman teacher .",
+      "reference": "well that's certainly interesting . almost lunch time , i only eat when i'm bored though .",
+      "prediction": "what are you studying? i just got a new job."
+    },
+    {
+      "context": "haha agreed ! or a lot . either way . i try to eat well though [SEP] me too . should i trade my mini van in for a sports car . [SEP] yes . who doesn't love a sports car . [SEP] sending the last of my five boys off to college . time to switch up . [SEP] wow . and you survived . kudos to you .",
+      "reference": "thank you . any kids for you ?",
+      "prediction": "my dog has a honda."
+    },
+    {
+      "context": "I am tired of doing that boring work . I just repeat doing counting everyday . It's so terrible . [SEP] Me too . But I think we can do something else for a change . [SEP] You know I work with my professional knowledge not passion . Sometimes I don't know what the meaning of working is ? [SEP] But you did a good job . You always perform the best in our company . [SEP] Yes , that's in the past . Maybe I need to go to my psychologist for help .",
+      "reference": "Perhaps you've just tired and you need a vacation .",
+      "prediction": "i think you ' ll do well."
+    },
+    {
+      "context": "Where to , ma'am ? [SEP] The Grand Hotel . [SEP] The Grand Hotel ? [SEP] Yes.Do you know where it is ?",
+      "reference": "No , Madam . I don't think I do .",
+      "prediction": "no, i don ' t. it isn ' t very much."
+    },
+    {
+      "context": "that is amazing . good luck . i do not like fashion though . [SEP] i get you , my favorite rapper is pretty stylish , travis scott . [SEP] i totally like travis . i liked doing chemistry too [SEP] awesome . my mom wanted to be a chemist , but ended up a dentist ! go figure ! [SEP] it seems to be hard to be a chemist . what do you do ?",
+      "reference": "unemployed at the moment , i really want to work at a snazzy restaurant .",
+      "prediction": "i am a writer. i ' m an avid reader, and you?"
+    },
+    {
+      "context": "Did you get a job right after graduation ? [SEP] No , I traveled for a while in Europe after college , and then I lived in France . [SEP] When was that ? [SEP] Let's see ... That was about six years ago . [SEP] I bet that was interesting . What did you do there ?",
+      "reference": "I studied French . Anyway ... that's enough about me.How about you ? Were you born in L . A . ?",
+      "prediction": "i was there a lot of people."
+    },
+    {
+      "context": "have you heard about the juggalos ? weird . [SEP] what are those ? do they juggle balls ? [SEP] no man . i like the insane clown posse and all but not so much like the juggalos [SEP] i do not like clowns . they are scary to a kid like me [SEP] dude , the band man . anyway i would rather larp than paint my face like a rocker",
+      "reference": "i'm literally four years old . i have no idea",
+      "prediction": "i ' m the youngest of 4 brothers."
+    },
+    {
+      "context": "how are you doing today [SEP] doing well hanging out in manhattan where i grew up and you ? [SEP] i am just dying my hair again [SEP] ah very cool . what color if i may ask ? [SEP] green like slime it is different",
+      "reference": "i want to die mine but my wealthy parents won't let me .",
+      "prediction": "i guess so. i am a huge fan of red as well"
+    },
+    {
+      "context": "hello i'm a art major in college , what do you do . [SEP] hi . i try all kinds of coffee as a hobby and i read poetry . [SEP] how cool , i love cooking , one of my favorites is paella . [SEP] i really love star wars and am a huge fan . do you like it ? [SEP] yes , i love star wars . i'm descendant of christopher columbus",
+      "reference": "me too ! i also like to make paella . i played for a division of football in college .",
+      "prediction": "wow! i ' ve not seen that. he was a great writer."
+    },
+    {
+      "context": "Hold it , Mike . You won't accomplish anything by hollering at him , right ? You worked it all up till now . Why not wait until you cool down a bit ? [SEP] What would you do if you were in my shoes ? [SEP] Just stay cool . You know . When you get back home tonight , tell him that you didn't mean to quarrel with him . [SEP] No way , Kate . I mean it's just not my fault . [SEP] I know . It wouldn't hurt much to say sorry first . And after that , you can casually mention the problem . I am sure he will cooperate .",
+      "reference": "I am too angry to do that .",
+      "prediction": "you ' re right."
+    },
+    {
+      "context": "How's Jimmy today ? [SEP] Better , thank you , doctor . [SEP] Can I see him please , Mrs Williams ?",
+      "reference": "Certainly , doctor . Come upstairs .",
+      "prediction": "sure."
+    },
+    {
+      "context": "Are you finished ? [SEP] Yes.May I have some more beer ?",
+      "reference": "Oh , sure . I'll be back in a minute.Thank you for waiting . Here it is.Did you enjoy your meal ?",
+      "prediction": "no, thanks. i ' ll be ready for you to get a few minutes."
+    },
+    {
+      "context": "Gary . Could you type up this report for me ? I have to take off early this afternoon .",
+      "reference": "Sure . Just leave it to me . I'll finish it .",
+      "prediction": "i \u2019 m afraid it will be a little longer."
+    },
+    {
+      "context": "Does the room have an Internet connection ? [SEP] Yes , all our rooms have complimentary wireless Internet . [SEP] Excellent . Do you serve breakfast in the hotel ? [SEP] Yes , breakfast is included in the price . Our guests have the choice of a full English breakfast or a continental breakfast . [SEP] That's great . Can I book the room ?",
+      "reference": "Certainly , Sir .",
+      "prediction": "of course. i ' ll take the book to your restaurant right away."
+    },
+    {
+      "context": "I'm interested in Chinese antiques . [SEP] We have a great variety of Chinese antiques . Besides , we have landscape painting , figure painting and flower-and-bird painting . [SEP] I'd like a flower-and-bird painting . [SEP] How about this picture of cranes with pine trees ? It was painted by a famous Chinese painter in King Dynasty . [SEP] Oh , they look just like live cranes .",
+      "reference": "And what is more , in traditional Chinese thinking , cranes and pine trees symbolize longevity .",
+      "prediction": "yes. they are both too small, but the scenery has no idea of those."
+    },
+    {
+      "context": "good day how are you today ?",
+      "reference": "doing just fine . just pulled some cookies out of the oven . smells heavenly .",
+      "prediction": "i ' m good. how are you?"
+    },
+    {
+      "context": "i'd love to but i'm old [SEP] ok . i'm with a little league . have any hobbies to keep you busy ? [SEP] yeah i like to count the freckles on my arm [SEP] that sounds different . maybe read some good books . [SEP] i do not have any books though",
+      "reference": "i could send you some , my boys have many books . where are you located ?",
+      "prediction": "i have a good book. my favorite is the one of my favorites."
+    },
+    {
+      "context": "wild colors . i like that . i am majoring in art [SEP] i am still in highschool , two years left , no idea what i am going to do [SEP] college is the place to figure that out [SEP] they tell you to have it figured out by junior year though , [SEP] you'll know when the time is right . try a semester abroad",
+      "reference": "that's awfully expensive though is it not ?",
+      "prediction": "i ' ll do that, but thank you"
+    },
+    {
+      "context": "Where's Mrs . Johnson ? [SEP] Just call her Lisa , Mary . She's cooking dinner .",
+      "reference": "I see . Can I sit down ?",
+      "prediction": "what ' s she doing?"
+    },
+    {
+      "context": "He had barely survived the third audition and finally got a chance to advance in the contest . Fortunately , in the third audition , he has won popularity among the audience . And that's when I started to notice him . [SEP] Me too . [SEP] Before he made the top three , I was so nervous . I just fear that he might be knocked out . [SEP] Yeah , there're so many excellent candidates out there . Who knows which one will make it to the final ? [SEP] Absolutely . That's why when he entered the final , I was so excited .",
+      "reference": "He really did a great job in the finale , especially in the PK round . He performed so well that the majority of the audience cast their votes for him .",
+      "prediction": "you have to be so smart."
+    },
+    {
+      "context": "my daughter has dark hair . [SEP] how old is she ? i'm 12 . does she like school ? i hate it . [SEP] she's six . i am a stay at home dad . [SEP] i wish my dad did . i get picked on because of my hair and blue eyes . [SEP] why would they pick on that ?",
+      "reference": "kids are just mean . they won't play with me .",
+      "prediction": "my mom was a dancer, she ' s just like me. i am not sure why i love her."
+    },
+    {
+      "context": "hello how are you doing today ? [SEP] i am good how are you [SEP] i am doing real good . how is the weather this morning ? [SEP] its great i love fall weather [SEP] what are you doing for work ?",
+      "reference": "i play video games for money",
+      "prediction": "i am a stay at home mom"
+    },
+    {
+      "context": "I want some cosmetics.Could you recommend some ? [SEP] I think Pond's is the best . [SEP] And they're very dear , too . [SEP] They're on special offer today .",
+      "reference": "Oh , that's ideal .",
+      "prediction": "what kind of wine do you want?"
+    },
+    {
+      "context": "Is Tim in the garden , too ? [SEP] Yes , he is . He \u2019 s climbing the tree . [SEP] I beg your pardon ? Who \u2019 s climbing the tree . [SEP] Tim is . [SEP] What about the dog ?",
+      "reference": "The dog \u2019 s in the garden , too . It \u2019 s running across the grass . It \u2019 s running after a cat .",
+      "prediction": "she \u2019 s a bit of a puppy. he is very good, and his own dogs are great."
+    },
+    {
+      "context": "my mom has facebook and it has pictures [SEP] it sure does . do you like legos ? [SEP] yes . what color do you like [SEP] i love purple , what is your favorite ? [SEP] i like red and pink and blue",
+      "reference": "those are pretty colors as well . i like yellow .",
+      "prediction": "that is a good choice."
+    },
+    {
+      "context": "Yeah , this place looks great . Wow , look at her , she can certainly get down , can't she ? [SEP] She sure can . Are you jealous , Leslie ? [SEP] A little , I wish I could do that . [SEP] You can ! With a little practice . [SEP] Look at him , he's buff .",
+      "reference": "I think he's hot too .",
+      "prediction": "yeah, he ' s the only one who wants me to do."
+    },
+    {
+      "context": "just raising my kids , i'm a homemaking dad . [SEP] very cool . my kids are grown . i'm already 60 years old . [SEP] i'm not there yet . my oldest in a junior . [SEP] how old is your youngest ? [SEP] she's 9 . i love them all . what work did you do before retiring ?",
+      "reference": "i work as a librarian , but i am going to retire in the next couple of years .",
+      "prediction": "i graduated from a new business."
+    },
+    {
+      "context": "This is the Bell Captain's Desk . May I help you ? [SEP] Yes , I've been waiting for my bags to be sent up for the last half hour . Where are they ? [SEP] I'm very sorry to hear that . May I have your name and room number , please ? [SEP] Yes , it's Yao Lan . Room 406 .",
+      "reference": "And how many pieces did you have ?",
+      "prediction": "thank you."
+    },
+    {
+      "context": "The Great Wall is a great attraction for visitors .",
+      "reference": "It's a man-made wonder . I've seen it many times in textbooks and it's part of my dream to visit it .",
+      "prediction": "yes, it is."
+    },
+    {
+      "context": "How do you spend your day , Helen ? [SEP] Well , on weekdays I get up around ten . Then I read the paper for an hour and have lunch at about noon . [SEP] Really ? What time do you go to work ? [SEP] I start work at three .",
+      "reference": "And when do you get home at night ?",
+      "prediction": "oh, so you ' re not a student?"
+    },
+    {
+      "context": "hello what are doing today ? [SEP] i am good , i just got off work and tired , i have two jobs . [SEP] i just got done watching a horror movie [SEP] i rather read , i've read about 20 books this year . [SEP] wow ! i do love a good horror movie . loving this cooler weather",
+      "reference": "but a good movie is always good .",
+      "prediction": "i love the weather, so i am not an aspiring actor."
+    },
+    {
+      "context": "favorite rap song is sing for the moment by eminem [SEP] good song and what your favorite beverage ? [SEP] i don't have one but i like pizza [SEP] pizza is nice it hard to find a good cup of coffee around here [SEP] do you like to drive",
+      "reference": "me and wife ride bikes i just do not like why she has to have pink bike",
+      "prediction": "i do not drive, just a little bit of the old."
+    }
+  ],
+  "model": {
+    "path": "checkpoints/chatbert-ed-lr-1e4/final",
+    "type": "encoder_decoder",
+    "params": 100380672
+  }
+}

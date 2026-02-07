@@ -651,23 +651,25 @@ footer a:hover { color: var(--cyan); }
       <th>Metric</th>
       <th>ChatBERT-ED</th>
       <th>ChatBERT-IMR</th>
+      <th>GPT-2 (baseline)</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>BLEU</td><td>0.0021</td><td>0.0017</td></tr>
-    <tr><td>ROUGE-1</td><td>0.1577</td><td>0.1193</td></tr>
-    <tr><td>ROUGE-2</td><td>0.0269</td><td>0.0134</td></tr>
-    <tr><td>ROUGE-L</td><td>0.1419</td><td>0.1082</td></tr>
-    <tr><td>BERTScore F1</td><td>0.8535</td><td>0.8459</td></tr>
-    <tr><td>Distinct-1</td><td>0.1701</td><td>0.2498</td></tr>
-    <tr><td>Distinct-2</td><td>0.4809</td><td>0.6719</td></tr>
-    <tr><td>Perplexity</td><td>30.7</td><td>4.0</td></tr>
-    <tr><td>Avg Length</td><td>9.8</td><td>8.8</td></tr>
+    <tr><td>BLEU</td><td>0.0021</td><td>0.0017</td><td>0.0042</td></tr>
+    <tr><td>ROUGE-1</td><td>0.1577</td><td>0.1193</td><td>0.0677</td></tr>
+    <tr><td>ROUGE-2</td><td>0.0269</td><td>0.0134</td><td>0.0094</td></tr>
+    <tr><td>ROUGE-L</td><td>0.1419</td><td>0.1082</td><td>0.0608</td></tr>
+    <tr><td>BERTScore F1</td><td>0.8535</td><td>0.8459</td><td>0.8382</td></tr>
+    <tr><td>Distinct-1</td><td>0.1701</td><td>0.2498</td><td>0.1986</td></tr>
+    <tr><td>Distinct-2</td><td>0.4809</td><td>0.6719</td><td>0.6521</td></tr>
+    <tr><td>Perplexity</td><td>30.7</td><td>4.0</td><td>—</td></tr>
+    <tr><td>Avg Length</td><td>9.8</td><td>8.8</td><td>8.5</td></tr>
   </tbody>
 </table>
 <p style="font-size:0.75rem;color:var(--text3);margin-top:0.3rem;">
   Evaluated on 500 samples from DailyDialog (test) + PersonaChat (validation).
-  IMR achieves higher diversity (Distinct-N) and lower perplexity; ED has higher n-gram overlap (ROUGE).
+  Both ChatBERT variants outperform GPT-2 (124M) on ROUGE and BERTScore despite fewer parameters.
+  IMR achieves the highest diversity; ED has the strongest reference overlap.
 </p>
 
 <h3>Approach Comparison</h3>

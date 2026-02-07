@@ -1,0 +1,27 @@
+iteration,tokens,newly_revealed,mean_confidence,num_masked
+0,[MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],,0.0000,10
+1,[MASK] i [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],1,0.2278,9
+2,[MASK] i like [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],2,0.2383,8
+3,[MASK] i like to [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],3,0.3872,7
+4,well i like to [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],0,0.4157,6
+5,well i like to play [MASK] [MASK] [MASK] [MASK] [MASK],4,0.4657,5
+6,well i like to play [MASK] [MASK] i [MASK] [MASK],7,0.5736,4
+7,well i like to play [MASK] when i [MASK] [MASK],6,0.6961,3
+8,well i like to play [MASK] when i am [MASK],8,0.8123,2
+9,well i like to play [MASK] when i am not,9,0.9074,1
+10,well i like to play guitar when i am not,5,0.9128,0
+11,well i like to play guitar when i am not,,0.9998,0
+12,well i like to play guitar when i am not,,0.9999,0
+13,well i like to play guitar when i am not,,0.9999,0
+14,well i like to play guitar when i am not,,1.0000,0
+15,well i like to play guitar when i am not,,1.0000,0
+16,well i like to play guitar when i am not,,1.0000,0
+17,well i like to play guitar when i am not,,1.0000,0
+18,well i like to play guitar when i am not,,1.0000,0
+19,well i like to play guitar when i am not,,1.0000,0
+20,well i like to play guitar when i am not,,1.0000,0
+21,well i like to play guitar when i am not,,1.0000,0
+22,well i like to play guitar when i am not,,1.0000,0
+23,well i like to play guitar when i am not,,1.0000,0
+24,well i like to play guitar when i am not,,1.0000,0
+25,well i like to play guitar when i am not,,1.0000,0

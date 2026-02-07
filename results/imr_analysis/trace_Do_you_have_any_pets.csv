@@ -1,0 +1,27 @@
+iteration,tokens,newly_revealed,mean_confidence,num_masked
+0,[MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],,0.0000,10
+1,i [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],0,0.1403,9
+2,i do [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],1,0.2212,8
+3,i do not [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],2,0.3950,7
+4,i do not . [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],3,0.3816,6
+5,i do not . i [MASK] [MASK] [MASK] [MASK] [MASK],4,0.4942,5
+6,i do not . i ' [MASK] [MASK] [MASK] [MASK],5,0.5377,4
+7,i do not . i ' ve [MASK] [MASK] [MASK],6,0.7425,3
+8,i do not . i ' ve a [MASK] [MASK],7,0.7367,2
+9,i do not . i ' ve a [MASK] named,9,0.8477,1
+10,i do not . i ' ve a dog named,8,0.8852,0
+11,i do not . i ' ve a dog named,,0.9520,0
+12,i do not . i ' ve a dog named,,0.9542,0
+13,i do not . i ' ve a dog named,,0.9563,0
+14,i do not . i ' ve a dog named,,0.9585,0
+15,i do not . i ' ve a dog named,,0.9607,0
+16,i do not . i ' ve a dog named,,0.9629,0
+17,i do not . i ' ve a dog named,,0.9654,0
+18,i do not . i ' ve a dog named,,0.9680,0
+19,i do not . i ' ve a dog named,,0.9708,0
+20,i do not . i ' ve a dog named,,0.9740,0
+21,i do not . i ' ve a dog named,,0.9775,0
+22,i do not . i ' ve a dog named,,0.9816,0
+23,i do not . i ' ve a dog named,,0.9862,0
+24,i do not . i ' ve a dog named,,0.9913,0
+25,i do not . i ' ve a dog named,,0.9962,0

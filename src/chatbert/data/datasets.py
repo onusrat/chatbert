@@ -79,6 +79,9 @@ def load_smoltalk(split: str = "train") -> List[Dict[str, Any]]:
     Returns:
         List of dialogue examples.
     """
+    # SmolTalk only has train/test splits (no validation)
+    if split == "validation":
+        split = "test"
     dataset = load_dataset("HuggingFaceTB/smoltalk", "everyday-conversations", split=split)
 
     examples = []

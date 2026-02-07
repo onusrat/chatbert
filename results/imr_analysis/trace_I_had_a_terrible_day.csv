@@ -1,0 +1,27 @@
+iteration,tokens,newly_revealed,mean_confidence,num_masked
+0,[MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],,0.0000,10
+1,[MASK] i [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],1,0.0851,9
+2,think i [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],0,0.2045,8
+3,think i ' [MASK] [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],2,0.3127,7
+4,think i ' m [MASK] [MASK] [MASK] [MASK] [MASK] [MASK],3,0.4413,6
+5,think i ' m [MASK] to [MASK] [MASK] [MASK] [MASK],5,0.4815,5
+6,think i ' m going to [MASK] [MASK] [MASK] [MASK],4,0.6725,4
+7,think i ' m going to have [MASK] [MASK] [MASK],6,0.6850,3
+8,think i ' m going to have a [MASK] [MASK],7,0.8404,2
+9,think i ' m going to have a bad [MASK],8,0.9081,1
+10,think i ' m going to have a bad cold,9,0.9380,0
+11,think i ' m going to have a bad cold,,0.9999,0
+12,think i ' m going to have a bad cold,,0.9999,0
+13,think i ' m going to have a bad cold,,1.0000,0
+14,think i ' m going to have a bad cold,,1.0000,0
+15,think i ' m going to have a bad cold,,1.0000,0
+16,think i ' m going to have a bad cold,,1.0000,0
+17,think i ' m going to have a bad cold,,1.0000,0
+18,think i ' m going to have a bad cold,,1.0000,0
+19,think i ' m going to have a bad cold,,1.0000,0
+20,think i ' m going to have a bad cold,,1.0000,0
+21,think i ' m going to have a bad cold,,1.0000,0
+22,think i ' m going to have a bad cold,,1.0000,0
+23,think i ' m going to have a bad cold,,1.0000,0
+24,think i ' m going to have a bad cold,,1.0000,0
+25,think i ' m going to have a bad cold,,1.0000,0
