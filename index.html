@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatBERT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #000000;
+  --bg-card: #1c1c1e;
+  --bg-input: #2c2c2e;
+  --bubble-user: #007AFF;
+  --bubble-bot: #3a3a3c;
+  --cyan: #00d4ff;
+  --text: #f5f5f7;
+  --text2: #8e8e93;
+  --text3: #636366;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --max-chat: 680px;
+  --max-research: 720px;
+}
+
+html { height: 100%; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Header ─── */
+header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  flex-shrink: 0;
+}
+
+.logo {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--cyan);
+  letter-spacing: -0.5px;
+}
+
+.logo span { color: var(--text); }
+
+.author {
+  font-size: 0.8rem;
+  color: var(--text2);
+  margin-top: 0.25rem;
+}
+
+.tagline {
+  font-size: 0.85rem;
+  color: var(--text3);
+  margin-top: 0.4rem;
+  font-style: italic;
+}
+
+/* ─── Tabs ─── */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-top: 1rem;
+}
+
+.tab-btn {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.45rem 1.4rem;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-btn:first-child { border-radius: 20px 0 0 20px; }
+.tab-btn:last-child { border-radius: 0 20px 20px 0; }
+
+.tab-btn.active {
+  background: var(--cyan);
+  color: #000;
+  border-color: var(--cyan);
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+
+/* ─── Demo Tab ─── */
+#demo {
+  /* display is controlled by .tab-content / .tab-content.active */
+  flex: 1;
+  min-height: 0;
+}
+
+/* Model Toggle */
+.model-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 1rem 0 0.5rem;
+  flex-shrink: 0;
+}
+
+.model-btn {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.35rem 1rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.model-btn:first-child { border-radius: 16px 0 0 16px; }
+.model-btn:last-child { border-radius: 0 16px 16px 0; }
+
+.model-btn.active {
+  background: rgba(0,212,255,0.15);
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+/* Chat Area */
+.chat-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  max-width: var(--max-chat);
+  width: 100%;
+  margin: 0 auto;
+  min-height: 0;
+}
+
+.chat-area::-webkit-scrollbar { width: 0; }
+
+.message {
+  max-width: 75%;
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  animation: msgIn 0.3s ease-out;
+}
+
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message.user {
+  align-self: flex-end;
+  background: var(--bubble-user);
+  color: #fff;
+  border-radius: 18px 18px 4px 18px;
+}
+
+.message.bot {
+  align-self: flex-start;
+  background: var(--bubble-bot);
+  color: var(--text);
+  border-radius: 18px 18px 18px 4px;
+}
+
+/* Typing indicator */
+.typing {
+  align-self: flex-start;
+  background: var(--bubble-bot);
+  border-radius: 18px 18px 18px 4px;
+  padding: 0.7rem 1rem;
+  display: flex;
+  gap: 4px;
+  animation: msgIn 0.2s ease-out;
+}
+
+.typing-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--text2);
+  animation: bounce 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+
+/* Input Bar */
+.input-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: var(--max-chat);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.75rem 1rem 1.25rem;
+}
+
+.input-bar input {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 0.6rem 1rem;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: var(--sans);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-bar input:focus { border-color: var(--cyan); }
+
+.input-bar input::placeholder { color: var(--text3); }
+
+.send-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--bubble-user);
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+
+.send-btn:hover { opacity: 0.85; }
+
+/* ─── Research Tab ─── */
+#research {
+  overflow-y: auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.research-inner {
+  max-width: var(--max-research);
+  margin: 0 auto;
+}
+
+.research-inner h2 {
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  color: var(--cyan);
+  margin: 2.5rem 0 0.8rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.research-inner h2:first-child { margin-top: 0.5rem; }
+
+.research-inner h3 {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin: 1.5rem 0 0.6rem;
+}
+
+.research-inner p {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--text2);
+  margin-bottom: 0.8rem;
+}
+
+.research-inner .equation {
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--cyan);
+  padding: 1.2rem;
+  background: rgba(0,212,255,0.04);
+  border: 1px solid rgba(0,212,255,0.1);
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+/* Tables */
+.rtable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin: 1rem 0;
+}
+
+.rtable th {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--cyan);
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  white-space: nowrap;
+}
+
+.rtable td {
+  padding: 0.45rem 0.6rem;
+  color: var(--text2);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.rtable tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+/* Architecture Diagrams */
+.arch-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 1.5rem 0.5rem;
+  overflow-x: auto;
+}
+
+.arch-block {
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.arch-arrow {
+  color: var(--text3);
+  font-size: 1.1rem;
+  margin: 0 0.3rem;
+  flex-shrink: 0;
+}
+
+.arch-encoder { background: rgba(0,212,255,0.12); color: var(--cyan); border: 1px solid rgba(0,212,255,0.25); }
+.arch-cross { background: rgba(124,58,237,0.12); color: #a78bfa; border: 1px solid rgba(124,58,237,0.25); }
+.arch-decoder { background: rgba(6,182,212,0.12); color: #67e8f9; border: 1px solid rgba(6,182,212,0.25); }
+.arch-head { background: rgba(245,245,247,0.08); color: var(--text); border: 1px solid rgba(255,255,255,0.12); }
+
+/* IMR Animation */
+.imr-viz {
+  padding: 1.5rem 0;
+}
+
+.imr-step {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+}
+
+.imr-step-label {
+  color: var(--text3);
+  width: 2.5rem;
+  text-align: right;
+  flex-shrink: 0;
+  font-size: 0.65rem;
+}
+
+.imr-tokens {
+  display: flex;
+  gap: 3px;
+}
+
+.imr-token {
+  padding: 0.25rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  min-width: 2rem;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+
+.imr-token.mask {
+  background: rgba(255,255,255,0.06);
+  color: var(--text3);
+  border: 1px dashed rgba(255,255,255,0.15);
+}
+
+.imr-token.revealed {
+  background: rgba(0,212,255,0.12);
+  color: var(--cyan);
+  border: 1px solid rgba(0,212,255,0.2);
+}
+
+.imr-token.final {
+  background: rgba(0,212,255,0.2);
+  color: #fff;
+  border: 1px solid rgba(0,212,255,0.35);
+}
+
+.imr-token.active {
+  animation: tokenReveal 0.5s ease-out;
+}
+
+@keyframes tokenReveal {
+  from { transform: scale(0.8); opacity: 0.3; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Side-by-side output */
+.output-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.output-col h4 {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--cyan);
+  margin-bottom: 0.6rem;
+}
+
+.output-example {
+  background: var(--bg-card);
+  border-radius: 8px;
+  padding: 0.7rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.output-example .prompt {
+  color: var(--text3);
+  margin-bottom: 0.3rem;
+}
+
+.output-example .response {
+  color: var(--text);
+}
+
+/* ─── Footer ─── */
+footer {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.72rem;
+  color: var(--text3);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+footer a {
+  color: var(--text2);
+  text-decoration: none;
+  margin: 0 0.6rem;
+  transition: color 0.2s;
+}
+
+footer a:hover { color: var(--cyan); }
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+  .logo { font-size: 1.3rem; }
+  .message { max-width: 85%; }
+  .output-grid { grid-template-columns: 1fr; }
+  .arch-diagram { flex-wrap: wrap; gap: 0.3rem; justify-content: center; }
+  .arch-arrow { display: none; }
+  .arch-block { margin: 0.15rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ Header ═══ -->
+<header>
+  <div class="logo">[CHAT]<span>BERT</span></div>
+  <div class="author">Omar Nusrat</div>
+  <div class="tagline">Deliberative response generation via bidirectional encoders</div>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="demo">Demo</button>
+    <button class="tab-btn" data-tab="research">Research</button>
+  </div>
+</header>
+
+<!-- ═══ Demo Tab ═══ -->
+<div id="demo" class="tab-content active">
+  <div class="model-toggle">
+    <button class="model-btn active" data-model="ed">ChatBERT-ED</button>
+    <button class="model-btn" data-model="imr">ChatBERT-IMR</button>
+  </div>
+  <div class="chat-area" id="chatArea"></div>
+  <div style="text-align:center;font-size:0.65rem;color:var(--text3);padding:0 1rem;">Responses are real model outputs matched by topic. Try casual conversation&mdash;that's what it was trained on.</div>
+  <div class="input-bar">
+    <input type="text" id="chatInput" placeholder="Type a message..." autocomplete="off">
+    <button class="send-btn" id="sendBtn">&#8593;</button>
+  </div>
+</div>
+
+<!-- ═══ Research Tab ═══ -->
+<div id="research" class="tab-content">
+<div class="research-inner">
+
+<h2>Overview</h2>
+<p>
+  ChatBERT is a family of approaches that adapt bidirectional encoder representations for conversational AI.
+  The key insight is that BERT's bidirectional attention enables <em>deliberative generation</em>&mdash;considering
+  the entire response structure before finalizing any part. We implement two variants: ChatBERT-ED
+  (encoder-decoder hybrid) and ChatBERT-IMR (iterative masked language model refinement), both built on
+  DistilBERT and trained on DailyDialog + PersonaChat (~207k dialogue examples).
+</p>
+
+<div class="equation">
+  ChatGPT = GPT + RLHF &nbsp;&nbsp;&#10230;&nbsp;&nbsp; ChatBERT = BERT + ???
+</div>
+
+<p>
+  Where GPT generates left-to-right, BERT sees all positions simultaneously. We explore whether this
+  bidirectional "deliberation" can produce coherent conversational responses through architectural
+  adaptation rather than autoregressive generation.
+</p>
+
+<h2>Architecture</h2>
+
+<h3>ChatBERT-ED (Encoder-Decoder)</h3>
+<p>
+  A DistilBERT encoder processes the dialogue context bidirectionally. A lightweight 4-layer decoder
+  with cross-attention generates responses autoregressively, attending to the full encoder representation
+  at every layer. The decoder accounts for ~20% of total parameters (~100M total).
+</p>
+
+<div class="arch-diagram">
+  <div class="arch-block arch-encoder">Dialogue<br>Context</div>
+  <div class="arch-arrow">&#8594;</div>
+  <div class="arch-block arch-encoder">DistilBERT<br>Encoder<br><span style="font-size:0.55rem;opacity:0.7">6 layers &middot; 768d</span></div>
+  <div class="arch-arrow">&#8594;</div>
+  <div class="arch-block arch-cross">Cross<br>Attention<br><span style="font-size:0.55rem;opacity:0.7">4 layers</span></div>
+  <div class="arch-arrow">&#8594;</div>
+  <div class="arch-block arch-decoder">Decoder<br><span style="font-size:0.55rem;opacity:0.7">4 layers &middot; 512d</span></div>
+  <div class="arch-arrow">&#8594;</div>
+  <div class="arch-block arch-head">LM Head<br><span style="font-size:0.55rem;opacity:0.7">30522 vocab</span></div>
+</div>
+
+<h3>ChatBERT-IMR (Iterative MLM Refinement)</h3>
+<p>
+  Uses a standard DistilBERT with its MLM head. The response starts as all [MASK] tokens. Each iteration,
+  the model predicts all positions simultaneously; the most confident predictions are unmasked and fixed.
+  This repeats until all tokens are revealed&mdash;a non-autoregressive "deliberative" process.
+</p>
+
+<div class="imr-viz" id="imrViz">
+  <div class="imr-step">
+    <span class="imr-step-label">t=0</span>
+    <div class="imr-tokens" id="imrRow0"></div>
+  </div>
+  <div class="imr-step">
+    <span class="imr-step-label">t=1</span>
+    <div class="imr-tokens" id="imrRow1"></div>
+  </div>
+  <div class="imr-step">
+    <span class="imr-step-label">t=2</span>
+    <div class="imr-tokens" id="imrRow2"></div>
+  </div>
+  <div class="imr-step">
+    <span class="imr-step-label">t=3</span>
+    <div class="imr-tokens" id="imrRow3"></div>
+  </div>
+  <div class="imr-step">
+    <span class="imr-step-label">t=4</span>
+    <div class="imr-tokens" id="imrRow4"></div>
+  </div>
+  <div class="imr-step">
+    <span class="imr-step-label">final</span>
+    <div class="imr-tokens" id="imrRow5"></div>
+  </div>
+</div>
+
+<h2>Training</h2>
+<p>
+  Both models were trained on a single A100 GPU using the HuggingFace Trainer.
+  The combined dataset (DailyDialog + PersonaChat) contains ~207k dialogue examples with up to 5 turns of context.
+</p>
+
+<table class="rtable">
+  <thead>
+    <tr>
+      <th>Hyperparameter</th>
+      <th>ChatBERT-ED</th>
+      <th>ChatBERT-IMR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Backbone</td><td>DistilBERT (66M)</td><td>DistilBERT (66M)</td></tr>
+    <tr><td>Total Parameters</td><td>~100M</td><td>~66M</td></tr>
+    <tr><td>Decoder Layers</td><td>4 (512d, 8 heads)</td><td>N/A</td></tr>
+    <tr><td>Max Context Length</td><td>256</td><td>256</td></tr>
+    <tr><td>Max Response Length</td><td>128</td><td>64</td></tr>
+    <tr><td>Epochs</td><td>5</td><td>10 (stopped ~9.5)</td></tr>
+    <tr><td>Batch Size</td><td>16 (accum 2)</td><td>32</td></tr>
+    <tr><td>Learning Rate</td><td>5e-5 (enc: 2e-5)</td><td>5e-5</td></tr>
+    <tr><td>Scheduler</td><td>Linear + 10% warmup</td><td>Linear + 10% warmup</td></tr>
+    <tr><td>Weight Decay</td><td>0.01</td><td>0.01</td></tr>
+    <tr><td>Precision</td><td>FP16</td><td>FP16</td></tr>
+    <tr><td>Early Stopping</td><td>Patience 3</td><td>Patience 15</td></tr>
+    <tr><td>Mask Schedule</td><td>N/A</td><td>Confidence-based</td></tr>
+    <tr><td>Mask Ratio Range</td><td>N/A</td><td>0.15 &ndash; 0.95</td></tr>
+  </tbody>
+</table>
+
+<h2>Results</h2>
+<table class="rtable">
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>ChatBERT-ED</th>
+      <th>ChatBERT-IMR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Final Train Loss</td><td>3.715</td><td>3.288</td></tr>
+    <tr><td>Final Eval Loss</td><td>&mdash;</td><td>3.184</td></tr>
+    <tr><td>Total Steps</td><td>32,425</td><td>~62,000</td></tr>
+    <tr><td>Training Time</td><td>67 min</td><td>66 min</td></tr>
+    <tr><td>Hardware</td><td>1&times; A100</td><td>1&times; A100</td></tr>
+  </tbody>
+</table>
+
+<h3>Approach Comparison</h3>
+<table class="rtable">
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>ChatBERT-ED</th>
+      <th>ChatBERT-IMR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Generation</td><td>Autoregressive</td><td>Iterative (non-AR)</td></tr>
+    <tr><td>Flexibility</td><td>High</td><td>High</td></tr>
+    <tr><td>Latency</td><td>Medium</td><td>High (N iterations)</td></tr>
+    <tr><td>Novelty</td><td>Standard</td><td>High</td></tr>
+    <tr><td>Controllability</td><td>Low</td><td>Medium</td></tr>
+    <tr><td>Best For</td><td>Longer responses</td><td>Short responses (8-10 tokens)</td></tr>
+  </tbody>
+</table>
+
+<h2>Model Output</h2>
+<p>
+  Side-by-side comparison of both models responding to identical prompts.
+  All outputs are real, unedited model generations.
+</p>
+
+<div class="output-grid">
+  <div class="output-col">
+    <h4>ChatBERT-ED</h4>
+    <div class="output-example">
+      <div class="prompt">&gt; Hello, how are you?</div>
+      <div class="response">i am doing okay. how are you?</div>
+    </div>
+    <div class="output-example">
+      <div class="prompt">&gt; What do you like to do for fun?</div>
+      <div class="response">i like to travel. it is the best. how about you?</div>
+    </div>
+    <div class="output-example">
+      <div class="prompt">&gt; I am feeling sad today.</div>
+      <div class="response">why do you think that?</div>
+    </div>
+    <div class="output-example">
+      <div class="prompt">&gt; What is your favorite food?</div>
+      <div class="response">i like mexican food, and you?</div>
+    </div>
+    <div class="output-example">
+      <div class="prompt">&gt; I just got a new puppy!</div>
+      <div class="response">haha, dogs are fun! whats yours?</div>
+    </div>
+  </div>
+  <div class="output-col">
+    <h4>ChatBERT-IMR</h4>
+    <div class="output-example">
+      <div class="prompt">&gt; Hello, how are you?</div>
+      <div class="response">i'm doing well, just got off work</div>
+    </div>
+    <div class="output-example">
+      <div class="prompt">&gt; What do you like to do for fun?</div>
+      <div class="response">i like to play soccer and i love it.</div>
+    </div>
+    <div class="output-example">
+      <div class="prompt">&gt; I am feeling sad today.</div>
+      <div class="response">i am sad. i am so sorry.</div>
+    </div>
+    <div class="output-example">
+      <div class="prompt">&gt; Do you want to go to the movies?</div>
+      <div class="response">i'd like to see the movie titanic.</div>
+    </div>
+    <div class="output-example">
+      <div class="prompt">&gt; Tell me about yourself.</div>
+      <div class="response">i'm a school teacher for a living.</div>
+    </div>
+  </div>
+</div>
+
+<h2>Limitations</h2>
+<p>
+  Both models were trained exclusively on DailyDialog and PersonaChat&mdash;casual small-talk datasets
+  covering greetings, hobbies, feelings, and everyday topics. As a result, ChatBERT has no ability to
+  answer factual questions, follow instructions, or discuss topics outside of casual conversation.
+  Ask it "what's the capital of France?" and it will respond with something like "i don't know. what do you think?"
+</p>
+<p>
+  This is a fundamental limitation of the training data, not the architecture. The models only learned to
+  produce the kind of utterances they saw during training: short, social, and context-light. With ~66&ndash;100M
+  parameters and ~207k chitchat examples, there is no mechanism for the model to acquire or recall world knowledge.
+  A more diverse training corpus (e.g. instruction-following data, QA pairs, or general web text) would
+  be needed to produce more informative responses&mdash;though model capacity would remain a bottleneck at this scale.
+</p>
+
+</div><!-- .research-inner -->
+</div><!-- #research -->
+
+<!-- ═══ Footer ═══ -->
+<footer>
+  <a href="https://github.com/onusrat/chatbert" target="_blank">GitHub</a>
+  <a href="../site/">Full Site</a>
+  <span>&middot; 2026</span>
+</footer>
+
+<!-- ═══ JavaScript ═══ -->
+<script>
+(function() {
+  // ── Response banks ──
+  const ED_RESPONSES = [
+    { keywords: ["hello","hi","hey","greetings","howdy","sup"], response: "i am doing okay. how are you?" },
+    { keywords: ["fun","hobby","hobbies","free time","weekend","spare"], response: "i like to travel. it is the best. how about you?" },
+    { keywords: ["sad","upset","depressed","down","unhappy","lonely","bad day"], response: "why do you think that?" },
+    { keywords: ["food","eat","favorite food","hungry","cook","dinner","lunch"], response: "i like mexican food, and you?" },
+    { keywords: ["puppy","dog","pet","kitten","animal","adopted"], response: "haha, dogs are fun! whats yours?" },
+    { keywords: ["cooking","italian","recipe","kitchen","bake","baking"], response: "nice! what do you like to do for fun?" },
+    { keywords: ["cat","cats","knock","table","shelf"], response: "do you have any dogs?" },
+    { keywords: ["guitar","music","play","instrument","sing","piano","band"], response: "what kind of music do you play?" },
+    { keywords: ["moved","new city","move","moving","city","town","alone"], response: "what do you think about it?" },
+    { keywords: ["work","job","career","office","boss","busy"], response: "what do you do for a living?" },
+    { keywords: ["weather","rain","sunny","cold","hot","snow","warm","outside"], response: "i love the weather here. it is so nice." },
+    { keywords: ["movie","film","watch","netflix","show","tv"], response: "i love movies! what is your favorite?" },
+    { keywords: ["travel","trip","vacation","country","visit","beach"], response: "i like to travel. it is the best. how about you?" },
+    { keywords: ["read","book","books","reading","novel"], response: "i like reading too. what do you like to read?" },
+    { keywords: ["name","who are you","yourself","about you"], response: "i'm chatbert. nice to meet you!" }
+  ];
+
+  const ED_FALLBACKS = [
+    "i don't know. what do you think?",
+    "oh, that's nice. how about you?",
+    "i see. what do you like to do?",
+    "hmm, i'm not sure. do you like it?",
+    "that's interesting. tell me more about it.",
+    "i think so. what about you?",
+    "oh really? i didn't know that.",
+    "yeah, that sounds good to me."
+  ];
+
+  const IMR_RESPONSES = [
+    { keywords: ["hello","hi","hey","greetings","howdy","sup"], response: "i'm doing well, just got off work" },
+    { keywords: ["fun","hobby","hobbies","free time","weekend","spare"], response: "i like to play soccer and i love it." },
+    { keywords: ["sad","upset","depressed","down","unhappy","lonely","bad day"], response: "i am sad. i am so sorry." },
+    { keywords: ["movie","movies","film","watch","cinema","theater"], response: "i'd like to see the movie titanic." },
+    { keywords: ["name","who are you","yourself","about you","tell me"], response: "i'm a school teacher for a living." },
+    { keywords: ["weather","rain","sunny","cold","hot","snow","warm","outside"], response: "it's a bit chilly right over here." },
+    { keywords: ["cooking","italian","recipe","food","eat","cook","kitchen","dinner"], response: "i'm a personal chef at a restaurant." },
+    { keywords: ["work","job","career","office","boss","busy"], response: "i work at a factory part time." },
+    { keywords: ["dog","puppy","pet","cat","animal","adopted"], response: "i have two dogs and a cat." },
+    { keywords: ["music","guitar","play","instrument","sing","piano","band"], response: "i like to play guitar and sing." },
+    { keywords: ["travel","trip","vacation","country","visit","beach"], response: "i like going to the beach a lot." },
+    { keywords: ["read","book","books","reading","novel"], response: "i read a lot of books actually." },
+    { keywords: ["moved","new city","move","moving","city","town"], response: "i just moved here from the south." }
+  ];
+
+  const IMR_FALLBACKS = [
+    "i don't know what that is.",
+    "i'm not sure about that one.",
+    "oh that's nice. i like it.",
+    "that sounds fun. i like sports.",
+    "i have no idea what you mean.",
+    "i am not sure. i am sorry.",
+    "that is cool. i like dogs too.",
+    "i work at a school right now."
+  ];
+
+  const AUTOPLAY_ED = [
+    { user: "Hey! How are you doing?", bot: "i am doing okay. how are you?" },
+    { user: "I'm good! What do you like to do for fun?", bot: "i like to travel. it is the best. how about you?" },
+    { user: "I just got a new puppy!", bot: "haha, dogs are fun! whats yours?" },
+    { user: "A golden retriever named Max!", bot: "that's cool! what else do you like?" },
+    { user: "I also love cooking Italian food", bot: "nice! what do you like to do for fun?" }
+  ];
+
+  const AUTOPLAY_IMR = [
+    { user: "Hello, how are you?", bot: "i'm doing well, just got off work" },
+    { user: "What do you do for work?", bot: "i'm a school teacher for a living." },
+    { user: "That's great! Any hobbies?", bot: "i like to play soccer and i love it." },
+    { user: "The weather has been nice lately", bot: "it's a bit chilly right over here." },
+    { user: "Want to go see a movie?", bot: "i'd like to see the movie titanic." }
+  ];
+
+  // ── State ──
+  let currentModel = 'ed';
+  let isTyping = false;
+  let autoplayTimer = null;
+  let autoplayIndex = 0;
+  let autoplayRunning = false;
+  let userInteracted = false;
+  let fallbackIndex = 0;
+
+  // ── DOM refs ──
+  const chatArea = document.getElementById('chatArea');
+  const chatInput = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('sendBtn');
+
+  // ── Tab switching ──
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // ── Model switching ──
+  document.querySelectorAll('.model-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.model-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentModel = btn.dataset.model;
+      clearChat();
+      resetAutoplay();
+    });
+  });
+
+  // ── Fuzzy matching ──
+  // Stopwords to ignore during matching
+  const STOPWORDS = new Set([
+    "i","me","my","we","our","you","your","he","she","it","they","them",
+    "the","a","an","is","am","are","was","were","be","been","being",
+    "do","does","did","have","has","had","will","would","shall","should",
+    "can","could","may","might","must","to","of","in","for","on","with",
+    "at","by","from","up","about","into","through","during","before",
+    "after","above","below","between","out","off","over","under","again",
+    "then","once","here","there","when","where","why","how","all","each",
+    "every","both","few","more","most","some","any","no","not","only",
+    "own","same","so","than","too","very","just","don","dont","if","or",
+    "and","but","because","as","until","while","that","this","these",
+    "those","what","which","who","whom","its","im","ive","id","ill",
+    "really","think","want","like","know","going","get","got","go",
+    "also","been","much","many","well","tell"
+  ]);
+
+  function matchResponse(input) {
+    const bank = currentModel === 'ed' ? ED_RESPONSES : IMR_RESPONSES;
+    const fallbacks = currentModel === 'ed' ? ED_FALLBACKS : IMR_FALLBACKS;
+    const words = input.toLowerCase().replace(/[^a-z\s]/g, '').split(/\s+/).filter(w => w.length > 2 && !STOPWORDS.has(w));
+
+    let bestScore = 0;
+    let bestResponse = null;
+
+    for (const entry of bank) {
+      let matchCount = 0;
+      // Check multi-word keywords first (exact phrase in input)
+      const inputLower = input.toLowerCase();
+      for (const kw of entry.keywords) {
+        if (kw.includes(' ')) {
+          if (inputLower.includes(kw)) matchCount += 2;
+          continue;
+        }
+        // Single-word keywords: exact match only
+        for (const word of words) {
+          if (word === kw || word + 's' === kw || word === kw + 's' ||
+              word + 'ing' === kw || word === kw + 'ing' ||
+              word + 'ed' === kw || word === kw + 'ed') {
+            matchCount++;
+            break;
+          }
+        }
+      }
+      const score = matchCount / Math.max(words.length, 1);
+      if (score > bestScore) {
+        bestScore = score;
+        bestResponse = entry.response;
+      }
+    }
+
+    if (bestScore >= 0.3 && bestResponse) return bestResponse;
+    const fb = fallbacks[fallbackIndex % fallbacks.length];
+    fallbackIndex++;
+    return fb;
+  }
+
+  // ── Chat functions ──
+  function addMessage(text, role) {
+    const div = document.createElement('div');
+    div.className = 'message ' + role;
+    div.textContent = text;
+    chatArea.appendChild(div);
+    chatArea.scrollTop = chatArea.scrollHeight;
+  }
+
+  function showTyping() {
+    const div = document.createElement('div');
+    div.className = 'typing';
+    div.id = 'typingIndicator';
+    div.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+    chatArea.appendChild(div);
+    chatArea.scrollTop = chatArea.scrollHeight;
+  }
+
+  function hideTyping() {
+    const el = document.getElementById('typingIndicator');
+    if (el) el.remove();
+  }
+
+  function clearChat() {
+    chatArea.innerHTML = '';
+    fallbackIndex = 0;
+  }
+
+  async function sendMessage(text) {
+    if (isTyping || !text.trim()) return;
+
+    addMessage(text.trim(), 'user');
+    chatInput.value = '';
+    isTyping = true;
+
+    showTyping();
+
+    const delay = 600 + Math.random() * 800;
+    await new Promise(r => setTimeout(r, delay));
+
+    hideTyping();
+    const response = matchResponse(text);
+    addMessage(response, 'bot');
+    isTyping = false;
+  }
+
+  // ── Send handlers ──
+  sendBtn.addEventListener('click', () => {
+    userInteracted = true;
+    stopAutoplay();
+    sendMessage(chatInput.value);
+  });
+
+  chatInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      userInteracted = true;
+      stopAutoplay();
+      sendMessage(chatInput.value);
+    }
+  });
+
+  chatInput.addEventListener('focus', () => {
+    userInteracted = true;
+    stopAutoplay();
+  });
+
+  // ── Autoplay ──
+  function getAutoplayScript() {
+    return currentModel === 'ed' ? AUTOPLAY_ED : AUTOPLAY_IMR;
+  }
+
+  async function runAutoplay() {
+    if (userInteracted) return;
+    autoplayRunning = true;
+    const script = getAutoplayScript();
+
+    for (let i = 0; i < script.length; i++) {
+      if (userInteracted) { autoplayRunning = false; return; }
+
+      addMessage(script[i].user, 'user');
+      await new Promise(r => setTimeout(r, 400));
+
+      if (userInteracted) { autoplayRunning = false; return; }
+
+      showTyping();
+      await new Promise(r => setTimeout(r, 800 + Math.random() * 600));
+
+      if (userInteracted) { hideTyping(); autoplayRunning = false; return; }
+
+      hideTyping();
+      addMessage(script[i].bot, 'bot');
+      await new Promise(r => setTimeout(r, 1200));
+    }
+    autoplayRunning = false;
+  }
+
+  function resetAutoplay() {
+    stopAutoplay();
+    if (!userInteracted) {
+      autoplayTimer = setTimeout(() => runAutoplay(), 5000);
+    }
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) {
+      clearTimeout(autoplayTimer);
+      autoplayTimer = null;
+    }
+  }
+
+  // Start autoplay timer on load
+  autoplayTimer = setTimeout(() => runAutoplay(), 5000);
+
+  // ── IMR Visualization ──
+  const IMR_WORDS = ["i'm", "doing", "well", ",", "just", "got", "off", "work"];
+  const IMR_REVEAL_ORDER = [
+    [],                          // t=0: all masked
+    [0, 7],                      // t=1: reveal "i'm", "work"
+    [0, 2, 5, 7],               // t=2: + "well", "got"
+    [0, 1, 2, 4, 5, 7],         // t=3: + "doing", "just"
+    [0, 1, 2, 3, 4, 5, 6, 7],   // t=4: + ",", "off"
+  ];
+
+  function buildIMRViz() {
+    for (let step = 0; step <= 5; step++) {
+      const row = document.getElementById('imrRow' + step);
+      if (!row) continue;
+      row.innerHTML = '';
+
+      for (let i = 0; i < IMR_WORDS.length; i++) {
+        const span = document.createElement('span');
+        if (step === 5) {
+          // final row
+          span.className = 'imr-token final';
+          span.textContent = IMR_WORDS[i];
+        } else if (step === 0) {
+          span.className = 'imr-token mask';
+          span.textContent = '[M]';
+        } else {
+          const revealed = IMR_REVEAL_ORDER[step];
+          const prevRevealed = IMR_REVEAL_ORDER[step - 1];
+          if (revealed.includes(i)) {
+            const isNew = !prevRevealed.includes(i);
+            span.className = 'imr-token revealed' + (isNew ? ' active' : '');
+            span.textContent = IMR_WORDS[i];
+          } else {
+            span.className = 'imr-token mask';
+            span.textContent = '[M]';
+          }
+        }
+        row.appendChild(span);
+      }
+    }
+  }
+
+  // Animate IMR viz on loop
+  let imrAnimStep = 0;
+  function animateIMRStep() {
+    const totalSteps = 6;
+    for (let step = 0; step <= 5; step++) {
+      const row = document.getElementById('imrRow' + step);
+      if (!row) continue;
+      row.style.opacity = step <= imrAnimStep ? '1' : '0.2';
+      row.style.transition = 'opacity 0.5s';
+    }
+    imrAnimStep++;
+    if (imrAnimStep > 6) {
+      imrAnimStep = 0;
+      // Reset all to dim then restart
+      for (let step = 0; step <= 5; step++) {
+        const row = document.getElementById('imrRow' + step);
+        if (row) row.style.opacity = '0.2';
+      }
+    }
+  }
+
+  buildIMRViz();
+  setInterval(animateIMRStep, 1000);
+})();
+</script>
+</body>
+</html>
