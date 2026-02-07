@@ -8,13 +8,15 @@
 
 ---
 
-[Live Demo](https://onusrat.github.io/chatbert/)
+[Site](https://onusrat.github.io/chatbert/)
 
 </div>
 
 ## Overview
 
-ChatBERT is a family of approaches that adapt BERT — a bidirectional encoder — for conversational AI. Where GPT generates left-to-right, BERT sees all positions simultaneously. We explore whether this bidirectional "deliberation" can produce coherent conversational responses through architectural adaptation rather than autoregressive generation.
+ChatBERT is a family of approaches that adapt BERT — a bidirectional encoder — for conversational AI. Where GPT generates left-to-right, BERT sees all positions simultaneously. This explores whether this bidirectional "deliberation" can produce coherent conversational responses through architectural adaptation rather than autoregressive generation.
+
+This is more an exercise on seeing if such a thing is possible than creating something equal in capabilities to the latest versions of ChatGPT or Claude.
 
 ```
 ChatGPT = GPT + RLHF  →  ChatBERT = BERT + ???
