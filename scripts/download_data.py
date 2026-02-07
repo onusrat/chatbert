@@ -11,6 +11,7 @@ SUPPORTED_DATASETS = [
     "daily_dialog",
     "personachat",
     "empathetic_dialogues",
+    "smoltalk",
 ]
 
 
@@ -38,6 +39,12 @@ def download_dataset(name: str, cache_dir: Path) -> None:
             "empathetic_dialogues",
             cache_dir=str(cache_dir),
             trust_remote_code=True,
+        )
+    elif name == "smoltalk":
+        dataset = load_dataset(
+            "HuggingFaceTB/smoltalk",
+            "everyday-conversations",
+            cache_dir=str(cache_dir),
         )
     else:
         raise ValueError(f"Unknown dataset: {name}")

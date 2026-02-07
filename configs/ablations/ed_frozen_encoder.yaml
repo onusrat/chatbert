@@ -1,0 +1,58 @@
+# Ablation: Frozen encoder (no encoder fine-tuning)
+# Question: Does encoder fine-tuning matter?
+
+model:
+  name: "chatbert-ed-frozen-encoder"
+  type: "encoder_decoder"
+
+  encoder:
+    pretrained: "distilbert-base-uncased"
+    hidden_size: 768
+    num_layers: 6
+    num_attention_heads: 12
+    intermediate_size: 3072
+    freeze: true  # FROZEN
+
+  decoder:
+    hidden_size: 512
+    num_layers: 4
+    num_attention_heads: 8
+    intermediate_size: 2048
+    max_position_embeddings: 256
+
+  cross_attention:
+    enabled: true
+    num_layers: 4
+
+  vocab_size: 30522
+  max_context_length: 256
+  max_response_length: 128
+
+training:
+  datasets:
+    - "daily_dialog"
+    - "personachat"
+  max_turns: 5
+
+  epochs: 5
+  batch_size: 16
+  gradient_accumulation_steps: 2
+  learning_rate: 5.0e-5
+  encoder_learning_rate: 0.0  # Frozen
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  scheduler: "linear"
+  fp16: true
+  gradient_checkpointing: true
+  logging_steps: 50
+  eval_steps: 500
+  save_steps: 1000
+  early_stopping_patience: 3
+
+inference:
+  max_length: 128
+  temperature: 0.7
+  top_p: 0.9
+  top_k: 50
+  repetition_penalty: 1.2
+  do_sample: true

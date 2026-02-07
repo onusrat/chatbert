@@ -36,22 +36,41 @@ chatbert/
 │   │   ├── encoder_decoder.py   # ChatBERT-ED model architecture
 │   │   └── iterative_mlm.py     # ChatBERT-IMR model architecture
 │   ├── data/
-│   │   ├── datasets.py          # DailyDialog + PersonaChat loaders & collators
+│   │   ├── datasets.py          # DailyDialog, PersonaChat, SmolTalk loaders
 │   │   └── preprocessing.py     # Tokenization & dialogue formatting
 │   ├── inference/
 │   │   └── generator.py         # Generation interface (beam search, iterative unmasking)
+│   ├── baselines/
+│   │   └── gpt2_generator.py    # GPT-2 baseline wrapper
 │   └── utils/
 │       ├── config.py            # YAML config loader
-│       └── metrics.py           # Evaluation metrics
+│       └── metrics.py           # Evaluation metrics (BLEU, ROUGE, BERTScore, perplexity)
 ├── scripts/
 │   ├── train.py                 # Main training script
-│   ├── download_data.py         # Download DailyDialog + PersonaChat
+│   ├── evaluate.py              # Full evaluation pipeline
+│   ├── analyze_imr.py           # IMR iteration analysis & visualization
+│   ├── compare_results.py       # Multi-model comparison tables & charts
+│   ├── train_gpt2_baseline.py   # GPT-2 baseline training
+│   ├── run_ablations.py         # Ablation study runner
+│   ├── push_to_hub.py           # HuggingFace Hub publishing
+│   ├── download_data.py         # Download datasets
 │   └── demo.py                  # Interactive chat demo
 ├── configs/
 │   ├── ed_small.yaml            # ChatBERT-ED small config
 │   ├── ed_base.yaml             # ChatBERT-ED base config
-│   └── imr_small.yaml           # ChatBERT-IMR small config
+│   ├── imr_small.yaml           # ChatBERT-IMR small config
+│   ├── gpt2_baseline.yaml       # GPT-2 baseline config
+│   ├── ed_small_smoltalk.yaml   # ED + SmolTalk data
+│   ├── imr_small_smoltalk.yaml  # IMR + SmolTalk data
+│   └── ablations/               # Ablation study configs
+│       ├── ed_frozen_encoder.yaml
+│       ├── ed_decoder_depth_2.yaml
+│       ├── ed_decoder_depth_6.yaml
+│       ├── ed_lr_1e4.yaml
+│       ├── ed_lr_1e5.yaml
+│       └── ed_dailydialog_only.yaml
 ├── cloud/
+│   ├── train_all.sh             # Full training & eval pipeline
 │   ├── setup_prime.sh           # Prime Intellect pod setup
 │   ├── launch.sh                # Launch training on cloud GPU
 │   └── train_cloud.sh           # Cloud training wrapper
@@ -159,11 +178,79 @@ Both models were trained on a single **NVIDIA A100 GPU** provisioned through **[
 
 ## Results
 
+### Training
+
 | Metric | ChatBERT-ED | ChatBERT-IMR |
 |--------|------------|-------------|
 | Final Train Loss | 3.715 | 3.288 |
 | Final Eval Loss | — | 3.184 |
 | Total Steps | 32,425 | ~62,000 |
+| Training Time | 67 min | 66 min |
+
+### Evaluation
+
+Evaluated on test splits of DailyDialog + PersonaChat (500 samples).
+
+| Metric | ChatBERT-ED | ChatBERT-IMR |
+|--------|------------|-------------|
+| BLEU | 0.0021 | 0.0017 |
+| ROUGE-1 | 0.1577 | 0.1193 |
+| ROUGE-2 | 0.0269 | 0.0134 |
+| ROUGE-L | 0.1419 | 0.1082 |
+| BERTScore F1 | 0.8535 | 0.8459 |
+| Distinct-1 | 0.1701 | 0.2498 |
+| Distinct-2 | 0.4809 | 0.6719 |
+| Perplexity | 30.7 | 4.0 |
+| Avg Length | 9.8 | 8.8 |
+
+IMR achieves higher lexical diversity (Distinct-1/2) and much lower perplexity, while ED produces slightly more n-gram overlap with references (ROUGE). Both models achieve comparable BERTScore, suggesting semantic similarity is similar despite different generation strategies.
+
+To evaluate locally:
+
+```bash
+python scripts/evaluate.py --model_path checkpoints/chatbert-ed-small/final --model_type encoder_decoder
+python scripts/evaluate.py --model_path checkpoints/chatbert-imr-small/final --model_type iterative_mlm --max_length 10 --num_iterations 25
+```
+
+### Baseline Comparison
+
+A GPT-2 (124M) model fine-tuned on the same data provides a standard autoregressive baseline. Train it with:
+
+```bash
+python scripts/train_gpt2_baseline.py --config configs/gpt2_baseline.yaml
+```
+
+### Ablation Studies
+
+Six ablation configs explore key design decisions:
+
+| Ablation | Variable | Question |
+|----------|----------|----------|
+| `ed_frozen_encoder` | Freeze encoder | Does encoder fine-tuning matter? |
+| `ed_decoder_depth_2` | 2-layer decoder | Minimum viable decoder? |
+| `ed_decoder_depth_6` | 6-layer decoder | Does deeper decoder help? |
+| `ed_lr_1e4` | LR = 1e-4 | Higher learning rate effect |
+| `ed_lr_1e5` | LR = 1e-5 | Lower learning rate effect |
+| `ed_dailydialog_only` | DailyDialog only | Data mix impact |
+
+Run all ablations:
+
+```bash
+python scripts/run_ablations.py --all
+```
+
+### IMR Analysis
+
+The `analyze_imr.py` script provides deep analysis of the iterative refinement process:
+
+- Per-iteration unmasking traces
+- Quality vs number of iterations curves
+- Mask schedule comparison (confidence vs linear vs cosine)
+- Confidence evolution statistics
+
+```bash
+python scripts/analyze_imr.py --model_path checkpoints/chatbert-imr-small/final --prompt "Hello, how are you?" --run_full_analysis
+```
 
 ### Example Output
 
@@ -189,6 +276,20 @@ Bot:  i'd like to see the movie titanic.
 
 User: Tell me about yourself.
 Bot:  i'm a school teacher for a living.
+```
+
+## Models
+
+| Model | HuggingFace | Params |
+|-------|-------------|--------|
+| ChatBERT-ED Small | [onusrat/chatbert-ed-small](https://huggingface.co/onusrat/chatbert-ed-small) | ~100M |
+| ChatBERT-IMR Small | [onusrat/chatbert-imr-small](https://huggingface.co/onusrat/chatbert-imr-small) | ~66M |
+
+Publish models to HuggingFace Hub:
+
+```bash
+python scripts/push_to_hub.py --model_path checkpoints/chatbert-ed-small/final --model_type encoder_decoder --repo_name onusrat/chatbert-ed-small
+python scripts/push_to_hub.py --model_path checkpoints/chatbert-imr-small/final --model_type iterative_mlm --repo_name onusrat/chatbert-imr-small
 ```
 
 ## Limitations

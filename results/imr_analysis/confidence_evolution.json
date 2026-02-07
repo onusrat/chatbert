@@ -1,0 +1,652 @@
+[
+  {
+    "iteration": 0,
+    "mean_confidence": 0.0,
+    "num_masked": 10
+  },
+  {
+    "iteration": 1,
+    "mean_confidence": 0.18387798964977264,
+    "num_masked": 9
+  },
+  {
+    "iteration": 2,
+    "mean_confidence": 0.3062881827354431,
+    "num_masked": 8
+  },
+  {
+    "iteration": 3,
+    "mean_confidence": 0.27883291244506836,
+    "num_masked": 7
+  },
+  {
+    "iteration": 4,
+    "mean_confidence": 0.44291266798973083,
+    "num_masked": 6
+  },
+  {
+    "iteration": 5,
+    "mean_confidence": 0.609056293964386,
+    "num_masked": 5
+  },
+  {
+    "iteration": 6,
+    "mean_confidence": 0.731016993522644,
+    "num_masked": 4
+  },
+  {
+    "iteration": 7,
+    "mean_confidence": 0.8068990707397461,
+    "num_masked": 3
+  },
+  {
+    "iteration": 8,
+    "mean_confidence": 0.8106687664985657,
+    "num_masked": 2
+  },
+  {
+    "iteration": 9,
+    "mean_confidence": 0.8529653549194336,
+    "num_masked": 1
+  },
+  {
+    "iteration": 10,
+    "mean_confidence": 0.9151994585990906,
+    "num_masked": 0
+  },
+  {
+    "iteration": 11,
+    "mean_confidence": 0.9948908686637878,
+    "num_masked": 0
+  },
+  {
+    "iteration": 12,
+    "mean_confidence": 0.9959942102432251,
+    "num_masked": 0
+  },
+  {
+    "iteration": 13,
+    "mean_confidence": 0.9969341158866882,
+    "num_masked": 0
+  },
+  {
+    "iteration": 14,
+    "mean_confidence": 0.9977230429649353,
+    "num_masked": 0
+  },
+  {
+    "iteration": 15,
+    "mean_confidence": 0.9983720779418945,
+    "num_masked": 0
+  },
+  {
+    "iteration": 16,
+    "mean_confidence": 0.998891294002533,
+    "num_masked": 0
+  },
+  {
+    "iteration": 17,
+    "mean_confidence": 0.9992914199829102,
+    "num_masked": 0
+  },
+  {
+    "iteration": 18,
+    "mean_confidence": 0.9995837211608887,
+    "num_masked": 0
+  },
+  {
+    "iteration": 19,
+    "mean_confidence": 0.9997822046279907,
+    "num_masked": 0
+  },
+  {
+    "iteration": 20,
+    "mean_confidence": 0.9999029040336609,
+    "num_masked": 0
+  },
+  {
+    "iteration": 21,
+    "mean_confidence": 0.9999658465385437,
+    "num_masked": 0
+  },
+  {
+    "iteration": 22,
+    "mean_confidence": 0.9999917149543762,
+    "num_masked": 0
+  },
+  {
+    "iteration": 23,
+    "mean_confidence": 0.9999988675117493,
+    "num_masked": 0
+  },
+  {
+    "iteration": 24,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 25,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 0,
+    "mean_confidence": 0.0,
+    "num_masked": 10
+  },
+  {
+    "iteration": 1,
+    "mean_confidence": 0.22782392799854279,
+    "num_masked": 9
+  },
+  {
+    "iteration": 2,
+    "mean_confidence": 0.23825256526470184,
+    "num_masked": 8
+  },
+  {
+    "iteration": 3,
+    "mean_confidence": 0.38716450333595276,
+    "num_masked": 7
+  },
+  {
+    "iteration": 4,
+    "mean_confidence": 0.4157067835330963,
+    "num_masked": 6
+  },
+  {
+    "iteration": 5,
+    "mean_confidence": 0.4657319188117981,
+    "num_masked": 5
+  },
+  {
+    "iteration": 6,
+    "mean_confidence": 0.5735840797424316,
+    "num_masked": 4
+  },
+  {
+    "iteration": 7,
+    "mean_confidence": 0.6960617899894714,
+    "num_masked": 3
+  },
+  {
+    "iteration": 8,
+    "mean_confidence": 0.8123247027397156,
+    "num_masked": 2
+  },
+  {
+    "iteration": 9,
+    "mean_confidence": 0.907356858253479,
+    "num_masked": 1
+  },
+  {
+    "iteration": 10,
+    "mean_confidence": 0.9128031730651855,
+    "num_masked": 0
+  },
+  {
+    "iteration": 11,
+    "mean_confidence": 0.9998297095298767,
+    "num_masked": 0
+  },
+  {
+    "iteration": 12,
+    "mean_confidence": 0.9998940825462341,
+    "num_masked": 0
+  },
+  {
+    "iteration": 13,
+    "mean_confidence": 0.9999372363090515,
+    "num_masked": 0
+  },
+  {
+    "iteration": 14,
+    "mean_confidence": 0.9999651312828064,
+    "num_masked": 0
+  },
+  {
+    "iteration": 15,
+    "mean_confidence": 0.9999820590019226,
+    "num_masked": 0
+  },
+  {
+    "iteration": 16,
+    "mean_confidence": 0.9999918341636658,
+    "num_masked": 0
+  },
+  {
+    "iteration": 17,
+    "mean_confidence": 0.9999966621398926,
+    "num_masked": 0
+  },
+  {
+    "iteration": 18,
+    "mean_confidence": 0.9999988675117493,
+    "num_masked": 0
+  },
+  {
+    "iteration": 19,
+    "mean_confidence": 0.9999997019767761,
+    "num_masked": 0
+  },
+  {
+    "iteration": 20,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 21,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 22,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 23,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 24,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 25,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 0,
+    "mean_confidence": 0.0,
+    "num_masked": 10
+  },
+  {
+    "iteration": 1,
+    "mean_confidence": 0.08514074236154556,
+    "num_masked": 9
+  },
+  {
+    "iteration": 2,
+    "mean_confidence": 0.20446065068244934,
+    "num_masked": 8
+  },
+  {
+    "iteration": 3,
+    "mean_confidence": 0.31271836161613464,
+    "num_masked": 7
+  },
+  {
+    "iteration": 4,
+    "mean_confidence": 0.44134950637817383,
+    "num_masked": 6
+  },
+  {
+    "iteration": 5,
+    "mean_confidence": 0.48154518008232117,
+    "num_masked": 5
+  },
+  {
+    "iteration": 6,
+    "mean_confidence": 0.6724786162376404,
+    "num_masked": 4
+  },
+  {
+    "iteration": 7,
+    "mean_confidence": 0.6850224733352661,
+    "num_masked": 3
+  },
+  {
+    "iteration": 8,
+    "mean_confidence": 0.8403899073600769,
+    "num_masked": 2
+  },
+  {
+    "iteration": 9,
+    "mean_confidence": 0.908135712146759,
+    "num_masked": 1
+  },
+  {
+    "iteration": 10,
+    "mean_confidence": 0.9379881024360657,
+    "num_masked": 0
+  },
+  {
+    "iteration": 11,
+    "mean_confidence": 0.9998859763145447,
+    "num_masked": 0
+  },
+  {
+    "iteration": 12,
+    "mean_confidence": 0.9999370574951172,
+    "num_masked": 0
+  },
+  {
+    "iteration": 13,
+    "mean_confidence": 0.9999675154685974,
+    "num_masked": 0
+  },
+  {
+    "iteration": 14,
+    "mean_confidence": 0.9999845623970032,
+    "num_masked": 0
+  },
+  {
+    "iteration": 15,
+    "mean_confidence": 0.9999933242797852,
+    "num_masked": 0
+  },
+  {
+    "iteration": 16,
+    "mean_confidence": 0.9999975562095642,
+    "num_masked": 0
+  },
+  {
+    "iteration": 17,
+    "mean_confidence": 0.9999992251396179,
+    "num_masked": 0
+  },
+  {
+    "iteration": 18,
+    "mean_confidence": 0.9999998211860657,
+    "num_masked": 0
+  },
+  {
+    "iteration": 19,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 20,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 21,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 22,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 23,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 24,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 25,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 0,
+    "mean_confidence": 0.0,
+    "num_masked": 10
+  },
+  {
+    "iteration": 1,
+    "mean_confidence": 0.14031802117824554,
+    "num_masked": 9
+  },
+  {
+    "iteration": 2,
+    "mean_confidence": 0.22119693458080292,
+    "num_masked": 8
+  },
+  {
+    "iteration": 3,
+    "mean_confidence": 0.3950333297252655,
+    "num_masked": 7
+  },
+  {
+    "iteration": 4,
+    "mean_confidence": 0.3815963864326477,
+    "num_masked": 6
+  },
+  {
+    "iteration": 5,
+    "mean_confidence": 0.49422961473464966,
+    "num_masked": 5
+  },
+  {
+    "iteration": 6,
+    "mean_confidence": 0.5377256870269775,
+    "num_masked": 4
+  },
+  {
+    "iteration": 7,
+    "mean_confidence": 0.742540717124939,
+    "num_masked": 3
+  },
+  {
+    "iteration": 8,
+    "mean_confidence": 0.7367433309555054,
+    "num_masked": 2
+  },
+  {
+    "iteration": 9,
+    "mean_confidence": 0.8477198481559753,
+    "num_masked": 1
+  },
+  {
+    "iteration": 10,
+    "mean_confidence": 0.8851743936538696,
+    "num_masked": 0
+  },
+  {
+    "iteration": 11,
+    "mean_confidence": 0.9520492553710938,
+    "num_masked": 0
+  },
+  {
+    "iteration": 12,
+    "mean_confidence": 0.9541956186294556,
+    "num_masked": 0
+  },
+  {
+    "iteration": 13,
+    "mean_confidence": 0.9563271403312683,
+    "num_masked": 0
+  },
+  {
+    "iteration": 14,
+    "mean_confidence": 0.9584736227989197,
+    "num_masked": 0
+  },
+  {
+    "iteration": 15,
+    "mean_confidence": 0.9606680274009705,
+    "num_masked": 0
+  },
+  {
+    "iteration": 16,
+    "mean_confidence": 0.9629486203193665,
+    "num_masked": 0
+  },
+  {
+    "iteration": 17,
+    "mean_confidence": 0.9653602838516235,
+    "num_masked": 0
+  },
+  {
+    "iteration": 18,
+    "mean_confidence": 0.9679567217826843,
+    "num_masked": 0
+  },
+  {
+    "iteration": 19,
+    "mean_confidence": 0.9708016514778137,
+    "num_masked": 0
+  },
+  {
+    "iteration": 20,
+    "mean_confidence": 0.973970353603363,
+    "num_masked": 0
+  },
+  {
+    "iteration": 21,
+    "mean_confidence": 0.9775476455688477,
+    "num_masked": 0
+  },
+  {
+    "iteration": 22,
+    "mean_confidence": 0.981619656085968,
+    "num_masked": 0
+  },
+  {
+    "iteration": 23,
+    "mean_confidence": 0.9862390756607056,
+    "num_masked": 0
+  },
+  {
+    "iteration": 24,
+    "mean_confidence": 0.9913075566291809,
+    "num_masked": 0
+  },
+  {
+    "iteration": 25,
+    "mean_confidence": 0.9962334036827087,
+    "num_masked": 0
+  },
+  {
+    "iteration": 0,
+    "mean_confidence": 0.0,
+    "num_masked": 10
+  },
+  {
+    "iteration": 1,
+    "mean_confidence": 0.3062618374824524,
+    "num_masked": 9
+  },
+  {
+    "iteration": 2,
+    "mean_confidence": 0.28064224123954773,
+    "num_masked": 8
+  },
+  {
+    "iteration": 3,
+    "mean_confidence": 0.4302959442138672,
+    "num_masked": 7
+  },
+  {
+    "iteration": 4,
+    "mean_confidence": 0.462297648191452,
+    "num_masked": 6
+  },
+  {
+    "iteration": 5,
+    "mean_confidence": 0.48251113295555115,
+    "num_masked": 5
+  },
+  {
+    "iteration": 6,
+    "mean_confidence": 0.6607775688171387,
+    "num_masked": 4
+  },
+  {
+    "iteration": 7,
+    "mean_confidence": 0.7170459628105164,
+    "num_masked": 3
+  },
+  {
+    "iteration": 8,
+    "mean_confidence": 0.7875303626060486,
+    "num_masked": 2
+  },
+  {
+    "iteration": 9,
+    "mean_confidence": 0.8376150131225586,
+    "num_masked": 1
+  },
+  {
+    "iteration": 10,
+    "mean_confidence": 0.9368671774864197,
+    "num_masked": 0
+  },
+  {
+    "iteration": 11,
+    "mean_confidence": 0.9958232045173645,
+    "num_masked": 0
+  },
+  {
+    "iteration": 12,
+    "mean_confidence": 0.9967736601829529,
+    "num_masked": 0
+  },
+  {
+    "iteration": 13,
+    "mean_confidence": 0.9975814819335938,
+    "num_masked": 0
+  },
+  {
+    "iteration": 14,
+    "mean_confidence": 0.9982534646987915,
+    "num_masked": 0
+  },
+  {
+    "iteration": 15,
+    "mean_confidence": 0.998796284198761,
+    "num_masked": 0
+  },
+  {
+    "iteration": 16,
+    "mean_confidence": 0.9992178082466125,
+    "num_masked": 0
+  },
+  {
+    "iteration": 17,
+    "mean_confidence": 0.9995288252830505,
+    "num_masked": 0
+  },
+  {
+    "iteration": 18,
+    "mean_confidence": 0.9997429251670837,
+    "num_masked": 0
+  },
+  {
+    "iteration": 19,
+    "mean_confidence": 0.9998771548271179,
+    "num_masked": 0
+  },
+  {
+    "iteration": 20,
+    "mean_confidence": 0.999951183795929,
+    "num_masked": 0
+  },
+  {
+    "iteration": 21,
+    "mean_confidence": 0.9999851584434509,
+    "num_masked": 0
+  },
+  {
+    "iteration": 22,
+    "mean_confidence": 0.9999969601631165,
+    "num_masked": 0
+  },
+  {
+    "iteration": 23,
+    "mean_confidence": 0.9999996423721313,
+    "num_masked": 0
+  },
+  {
+    "iteration": 24,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  },
+  {
+    "iteration": 25,
+    "mean_confidence": 1.0,
+    "num_masked": 0
+  }
+]
