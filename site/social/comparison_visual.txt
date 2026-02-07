@@ -1,0 +1,124 @@
++==================================================================================+
+|               GPT (Autoregressive) vs ChatBERT-IMR (Iterative Unmasking)         |
+|              -----------------------------------------------------------         |
+|                         Generating: "The answer is 42"                           |
++==================================================================================+
+
+
+  +-----------------------------------+   +--------------------------------------+
+  |  GPT: Left-to-Right Generation    |   |  ChatBERT-IMR: Iterative Unmasking   |
+  |  (Autoregressive / Causal)        |   |  (Bidirectional / Deliberative)      |
+  +-----------------------------------+   +--------------------------------------+
+
+  Step 0:                               Step 0:
+  +-----+-----+-----+-----+            +------+------+------+------+
+  |     |     |     |     |            |[MASK]|[MASK]|[MASK]|[MASK]|
+  |  ?  |  ?  |  ?  |  ?  |            |      |      |      |      |
+  +-----+-----+-----+-----+            +------+------+------+------+
+  Nothing generated yet.                All positions initialized as [MASK].
+                                        BERT sees all positions at once.
+
+                 |                                      |
+                 v                                      v
+
+  Step 1:                               Step 1:
+  +-----+-----+-----+-----+            +------+------+------+------+
+  | The |     |     |     |            |[MASK]|[MASK]| *is* |[MASK]|
+  | >>> |  ?  |  ?  |  ?  |            |      |      | 0.94 |      |
+  +-----+-----+-----+-----+            +------+------+------+------+
+  "The" generated. Committed.           "is" revealed first (highest
+  Cannot be changed.                    confidence). NOT left-to-right!
+       |                                           |
+       |  Sees only: [The]                         |  Sees: [MASK] [MASK] is [MASK]
+       v                                           v
+
+  Step 2:                               Step 2:
+  +-----+-----+-----+-----+            +------+------+------+------+
+  | The |answ.|     |     |            |*The* |[MASK]|  is  |[MASK]|
+  |     | >>> |  ?  |  ?  |            | 0.91 |      |      |      |
+  +-----+-----+-----+-----+            +------+------+------+------+
+  "answer" generated next.              "The" revealed. Now model sees
+  Sees only: [The]                      "The [MASK] is [MASK]" and
+  No knowledge of what follows.         RETHINKS remaining positions.
+       |                                           |
+       v                                           v
+
+  Step 3:                               Step 3:
+  +-----+-----+-----+-----+            +------+------+------+------+
+  | The |answ.|  is |     |            | The  |*ans* |  is  | *42* |
+  |     |     | >>> |  ?  |            |      | 0.87 |      | 0.82 |
+  +-----+-----+-----+-----+            +------+------+------+------+
+  "is" generated.                       "answer" and "42" revealed
+  Sees: [The, answer]                   SIMULTANEOUSLY. Model saw "is"
+  Still no idea it ends with 42.        when predicting both. Coherent!
+       |                                           |
+       v                                           v
+
+  Step 4:                               DONE:
+  +-----+-----+-----+-----+            +------+------+------+------+
+  | The |answ.|  is | 42  |            | The  |answer|  is  |  42  |
+  |     |     |     | >>> |            |      |      |      |      |
+  +-----+-----+-----+-----+            +------+------+------+------+
+  "42" generated last.                  All tokens revealed.
+  Only NOW is the response complete.    Every token was predicted with
+  4 sequential steps.                   awareness of the others.
+
+
+  ============================================================================
+
+  KEY DIFFERENCES:
+  ============================================================================
+
+  GPT (Autoregressive)                  ChatBERT-IMR (Iterative)
+  ----------------------                --------------------------
+
+  Direction:                            Direction:
+    ---- L E F T --> R I G H T ----       <---- A N Y   O R D E R ---->
+
+  Attention at each step:               Attention at each step:
+    Token sees ONLY prior tokens.         Token sees ALL positions
+    [The] [answer] [?] [?]                (masked and revealed).
+     ^       ^                            [The] [MASK] [is] [MASK]
+     |       |                             ^      ^      ^     ^
+     +-------+                             +------+------+-----+
+    "is" only knows about                 "answer" knows about "The",
+    "The" and "answer"                    "is", and that something
+                                          follows at position 4.
+
+  Commitment:                           Commitment:
+    * Each token is FINAL once            * Tokens are provisional until
+      generated. No take-backs.             the final iteration. Model
+      If "The" was wrong, too late.         can revise predictions.
+
+  Planning:                             Planning:
+    X Cannot plan ahead.                  + CAN plan ahead.
+      Writes "The answer is..."             Sees "[MASK] [MASK] is [MASK]"
+      then must guess ending.               and predicts ending BEFORE
+                                            committing to beginning.
+
+  Speed:                                Speed:
+    N tokens = N sequential steps         N tokens = K iterations
+    (always sequential)                   (K << N, parallel within step)
+
+
+  ============================================================================
+
+  THE ANALOGY:
+  ============================================================================
+
+  GPT is like writing with a pen:       ChatBERT-IMR is like writing
+  once ink hits paper, you can't        with a pencil: sketch the whole
+  take it back. Write word by word,     response lightly, then darken
+  hope it all makes sense at the end.   the parts you're most sure about,
+                                        revising as you go.
+
+           +-----+                               +-----+
+           | PEN |  ------>                       |PENCL|  <----->
+           +-----+                               +-----+
+       commit immediately                     draft, revise, finalize
+
+
+  ============================================================================
+  ChatBERT: Deliberative Response Generation via Bidirectional Encoders
+  Paper: paper/chatbert_paper.md  |  Code: src/chatbert/models/
+  ============================================================================

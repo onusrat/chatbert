@@ -1,0 +1,40 @@
+# Credentials
+github.md
+
+# Checkpoints (too large for git — use HuggingFace Hub)
+checkpoints/
+
+# Claude Code
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Environment
+.env
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+wandb/
+
+# Data cache
+data/
+*.parquet
+*.arrow

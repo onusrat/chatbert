@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatBERT - What if BERT could chat?</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0e1a; --bg2: #111827; --bg3: #1a2035;
+  --accent: #00d4ff; --accent2: #7c3aed; --accent3: #06b6d4;
+  --text: #e2e8f0; --text2: #94a3b8; --text3: #64748b;
+  --mono: 'JetBrains Mono', monospace; --sans: 'Inter', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
+a { color: var(--accent); text-decoration: none; }
+nav { position: fixed; top: 0; width: 100%; padding: 1rem 2rem; z-index: 100; backdrop-filter: blur(12px); background: rgba(10,14,26,.7); border-bottom: 1px solid rgba(0,212,255,.08); display: flex; justify-content: space-between; align-items: center; }
+nav .logo { font-family: var(--mono); font-weight: 700; font-size: 1.1rem; color: var(--accent); }
+nav .links { display: flex; gap: 1.5rem; }
+nav .links a { color: var(--text2); font-size: .85rem; font-weight: 500; transition: color .2s; }
+nav .links a:hover { color: var(--accent); }
+section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+.section-label { font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .15em; color: var(--accent); margin-bottom: 1rem; }
+h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1.5rem; }
+h2 span { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+#hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; padding-top: 5rem; }
+#hero-bg { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+.mask-float { position: absolute; font-family: var(--mono); font-size: .85rem; color: rgba(0,212,255,.12); animation: maskFloat 20s linear infinite; pointer-events: none; white-space: nowrap; }
+@keyframes maskFloat { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-10vh) rotate(15deg); opacity: 0; } }
+#hero .content { position: relative; z-index: 1; }
+#hero h1 { font-family: var(--mono); font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 700; letter-spacing: -.03em; margin-bottom: .5rem; background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+#hero .subtitle { font-size: clamp(1.1rem, 3vw, 1.5rem); color: var(--text2); margin-bottom: 1rem; font-weight: 300; }
+#hero .tagline { font-family: var(--mono); font-size: .9rem; color: var(--text3); max-width: 500px; margin: 0 auto 2.5rem; }
+#hero .hero-mask-demo { font-family: var(--mono); font-size: 1.1rem; padding: 1rem 1.5rem; background: var(--bg2); border: 1px solid rgba(0,212,255,.15); border-radius: 8px; display: inline-block; }
+.mask { color: var(--accent); opacity: .6; }
+.revealed { animation: revealToken .5s ease forwards; }
+@keyframes revealToken { from { color: var(--accent); opacity: .6; } to { color: #fff; opacity: 1; } }
+.hero-arrows { margin-top: 3rem; }
+.hero-arrows a { color: var(--text3); font-size: 1.5rem; animation: bounce 2s infinite; display: inline-block; }
+@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+.compare-card { background: var(--bg2); border: 1px solid rgba(255,255,255,.06); border-radius: 12px; padding: 2rem; position: relative; overflow: hidden; }
+.compare-card.highlight { border-color: rgba(0,212,255,.25); }
+.compare-card.highlight::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,212,255,.04), transparent); pointer-events: none; }
+.compare-card h3 { font-family: var(--mono); font-size: 1rem; margin-bottom: .75rem; }
+.compare-card p { font-size: .9rem; color: var(--text2); margin-bottom: 1.5rem; }
+.token-row { display: flex; gap: .4rem; flex-wrap: wrap; font-family: var(--mono); font-size: .85rem; min-height: 2.2rem; align-items: center; margin-bottom: .5rem; }
+.token-row .tok { padding: .25rem .5rem; border-radius: 4px; background: rgba(255,255,255,.06); opacity: 0; animation: tokenAppear .3s ease forwards; }
+.token-row .tok.m { background: rgba(0,212,255,.12); color: var(--accent); }
+.gpt-tokens .tok:nth-child(1) { animation-delay: 0s; } .gpt-tokens .tok:nth-child(2) { animation-delay: .4s; }
+.gpt-tokens .tok:nth-child(3) { animation-delay: .8s; } .gpt-tokens .tok:nth-child(4) { animation-delay: 1.2s; }
+.gpt-tokens .tok:nth-child(5) { animation-delay: 1.6s; } .gpt-tokens .tok:nth-child(6) { animation-delay: 2s; }
+.bert-step { margin-bottom: .3rem; }
+.bert-tokens .tok { animation-delay: 0s !important; opacity: 1 !important; }
+@keyframes tokenAppear { to { opacity: 1; } }
+.step-label { font-size: .7rem; color: var(--text3); font-family: var(--mono); min-width: 3rem; }
+.cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 2rem; }
+.card { background: var(--bg2); border: 1px solid rgba(255,255,255,.06); border-radius: 12px; padding: 1.75rem; transition: transform .2s, border-color .3s; }
+.card:hover { transform: translateY(-2px); border-color: rgba(0,212,255,.2); }
+.card.star { border-color: rgba(0,212,255,.3); background: linear-gradient(135deg, rgba(0,212,255,.06), var(--bg2)); }
+.card .badge { font-family: var(--mono); font-size: .7rem; padding: .2rem .6rem; border-radius: 100px; background: rgba(0,212,255,.1); color: var(--accent); display: inline-block; margin-bottom: .75rem; }
+.card.star .badge { background: var(--accent); color: var(--bg); font-weight: 700; }
+.card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: .15rem; }
+.card .card-sub { font-family: var(--mono); font-size: .8rem; color: var(--text3); margin-bottom: .75rem; }
+.card p { font-size: .88rem; color: var(--text2); line-height: 1.55; }
+.imr-steps { max-width: 600px; margin: 2rem auto 0; }
+.imr-step { display: flex; align-items: center; gap: 1rem; margin-bottom: .5rem; padding: 1rem 1.25rem; background: var(--bg2); border-radius: 8px; border: 1px solid rgba(255,255,255,.04); opacity: 0; animation: stepIn .5s ease forwards; }
+.imr-step:nth-child(1) { animation-delay: .2s; } .imr-step:nth-child(2) { animation-delay: .8s; }
+.imr-step:nth-child(3) { animation-delay: 1.4s; } .imr-step:nth-child(4) { animation-delay: 2s; }
+.imr-step:nth-child(5) { animation-delay: 2.6s; }
+.imr-step.final { border-color: rgba(0,212,255,.3); background: linear-gradient(135deg, rgba(0,212,255,.06), var(--bg2)); }
+@keyframes stepIn { to { opacity: 1; } }
+.step-num { font-family: var(--mono); font-size: .7rem; color: var(--text3); min-width: 2.5rem; }
+.step-tokens { font-family: var(--mono); font-size: .95rem; flex: 1; display: flex; gap: .35rem; flex-wrap: wrap; }
+.step-tokens .t { padding: .2rem .45rem; border-radius: 4px; }
+.step-tokens .t.mask { background: rgba(0,212,255,.1); color: var(--accent); opacity: .7; }
+.step-tokens .t.new { background: rgba(0,212,255,.18); color: #fff; }
+.step-tokens .t.old { background: rgba(255,255,255,.05); color: var(--text2); }
+.step-conf { font-family: var(--mono); font-size: .65rem; color: var(--text3); min-width: 3rem; text-align: right; }
+#arch { text-align: center; }
+.arch-diagram { font-family: var(--mono); font-size: .78rem; line-height: 1.65; color: var(--text2); background: var(--bg2); border: 1px solid rgba(255,255,255,.06); border-radius: 12px; padding: 2rem; max-width: 550px; margin: 2rem auto 0; text-align: left; white-space: pre; overflow-x: auto; }
+.arch-diagram .hl { color: var(--accent); } .arch-diagram .hl2 { color: var(--accent2); }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 2rem; }
+.stat-card { background: var(--bg2); border: 1px solid rgba(255,255,255,.06); border-radius: 12px; padding: 1.75rem; text-align: center; }
+.stat-card .num { font-family: var(--mono); font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-card .label { font-size: .85rem; color: var(--text2); margin-top: .35rem; }
+#cta { padding-bottom: 6rem; text-align: center; }
+.cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+.btn { font-family: var(--mono); font-size: .9rem; font-weight: 500; padding: .85rem 1.75rem; border-radius: 8px; border: 1px solid rgba(255,255,255,.1); background: var(--bg2); color: var(--text); cursor: pointer; transition: all .2s; display: inline-flex; align-items: center; gap: .5rem; }
+.btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+.btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.btn.primary:hover { background: #33dfff; transform: translateY(-1px); }
+footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(255,255,255,.04); font-size: .8rem; color: var(--text3); }
+@media (max-width: 768px) {
+  section { padding: 4rem 1.25rem; }
+  .compare-grid, .cards-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  nav .links { display: none; }
+  h2 { font-size: 1.7rem; }
+}
+.fade-up { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">[CHAT]BERT</div>
+  <div class="links">
+    <a href="#insight">Insight</a>
+    <a href="#approaches">Approaches</a>
+    <a href="#imr">How It Works</a>
+    <a href="#demo">Demo</a>
+    <a href="#stats">Stats</a>
+    <a href="#cta">Links</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div id="hero-bg"></div>
+  <div class="content">
+    <h1>ChatBERT</h1>
+    <p class="subtitle">What if BERT could chat?</p>
+    <p class="tagline">Deliberative text generation through bidirectional reasoning. Think before you write every token.</p>
+    <div class="hero-mask-demo" id="hero-demo">
+      <span class="mask" data-reveal="The">[MASK]</span>
+      <span class="mask" data-reveal="future">[MASK]</span>
+      <span class="mask" data-reveal="of">[MASK]</span>
+      <span class="mask" data-reveal="generation">[MASK]</span>
+      <span class="mask" data-reveal="is">[MASK]</span>
+      <span class="mask" data-reveal="bidirectional.">[MASK]</span>
+    </div>
+    <div class="hero-arrows"><a href="#insight">&#8595;</a></div>
+  </div>
+</section>
+
+<section id="insight" class="fade-up">
+  <div class="section-label">The Insight</div>
+  <h2>Autoregressive is not the <span>only way</span></h2>
+  <p style="color:var(--text2);max-width:650px;margin-bottom:1rem;">GPT commits to tokens left-to-right, never looking back. BERT sees everything at once. What if we used that power to <em>generate</em>?</p>
+  <div class="compare-grid">
+    <div class="compare-card">
+      <h3 style="color:var(--text2);">GPT-style (Autoregressive)</h3>
+      <p>Tokens appear one at a time, left to right. Each token is a point of no return.</p>
+      <div class="token-row gpt-tokens">
+        <span class="tok">The</span><span class="tok">answer</span><span class="tok">is</span><span class="tok">definitely</span><span class="tok">42,</span><span class="tok">yes</span>
+      </div>
+      <div style="font-family:var(--mono);font-size:.7rem;color:var(--text3);margin-top:.5rem;">&#8594; sequential, committed, no revision</div>
+    </div>
+    <div class="compare-card highlight">
+      <h3 style="color:var(--accent);">ChatBERT-IMR (Bidirectional)</h3>
+      <p>All positions visible at once. Fills in the most confident tokens first, iteratively.</p>
+      <div class="bert-step">
+        <div class="token-row bert-tokens"><span class="step-label">t=0</span><span class="tok m">[M]</span><span class="tok m">[M]</span><span class="tok m">[M]</span><span class="tok m">[M]</span><span class="tok m">[M]</span><span class="tok m">[M]</span></div>
+      </div>
+      <div class="bert-step">
+        <div class="token-row bert-tokens"><span class="step-label">t=1</span><span class="tok m">[M]</span><span class="tok m">[M]</span><span class="tok">is</span><span class="tok m">[M]</span><span class="tok m">[M]</span><span class="tok m">[M]</span></div>
+      </div>
+      <div class="bert-step">
+        <div class="token-row bert-tokens"><span class="step-label">t=2</span><span class="tok">The</span><span class="tok m">[M]</span><span class="tok">is</span><span class="tok m">[M]</span><span class="tok m">[M]</span><span class="tok">yes</span></div>
+      </div>
+      <div class="bert-step">
+        <div class="token-row bert-tokens"><span class="step-label">t=3</span><span class="tok">The</span><span class="tok">answer</span><span class="tok">is</span><span class="tok">42,</span><span class="tok m">[M]</span><span class="tok">yes</span></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:.7rem;color:var(--accent);margin-top:.5rem;">&#8594; parallel, deliberative, revisable</div>
+    </div>
+  </div>
+</section>
+
+<section id="approaches" class="fade-up">
+  <div class="section-label">Four Approaches</div>
+  <h2>One question, <span>four architectures</span></h2>
+  <p style="color:var(--text2);max-width:600px;margin-bottom:.5rem;">We explored four distinct ways to make BERT generate conversational text.</p>
+  <div class="cards-grid">
+    <div class="card">
+      <span class="badge">ED</span>
+      <h3>ChatBERT-ED</h3>
+      <div class="card-sub">Encoder-Decoder</div>
+      <p>BERT encodes the conversation context bidirectionally. A lightweight GPT-style decoder generates the response, attending to BERT's rich representations.</p>
+    </div>
+    <div class="card star">
+      <span class="badge">IMR</span>
+      <h3>ChatBERT-IMR</h3>
+      <div class="card-sub">Iterative Mask-Refinement</div>
+      <p>Pure BERT generation. Start with all [MASK] tokens, iteratively unmask the most confident predictions. Discrete diffusion meets masked language modeling.</p>
+    </div>
+    <div class="card">
+      <span class="badge">RA</span>
+      <h3>ChatBERT-RA</h3>
+      <div class="card-sub">Retrieval-Augmented</div>
+      <p>BERT scores and ranks candidate responses from a retrieval corpus. Bidirectional understanding as a discriminator, not a generator.</p>
+    </div>
+    <div class="card">
+      <span class="badge">FIB</span>
+      <h3>ChatBERT-FIB</h3>
+      <div class="card-sub">Fill-in-the-Blank</div>
+      <p>Template-guided generation. Given a sentence structure with blanks, BERT fills them in using full bidirectional context.</p>
+    </div>
+  </div>
+</section>
+
+<section id="imr" class="fade-up">
+  <div class="section-label">Deep Dive</div>
+  <h2>How <span>IMR</span> works</h2>
+  <p style="color:var(--text2);max-width:600px;margin-bottom:.5rem;">Iterative Mask-Refinement generates text by progressively unmasking tokens in order of confidence, not position.</p>
+  <div class="imr-steps">
+    <div class="imr-step">
+      <span class="step-num">Step 0</span>
+      <div class="step-tokens"><span class="t mask">[MASK]</span><span class="t mask">[MASK]</span><span class="t mask">[MASK]</span><span class="t mask">[MASK]</span><span class="t mask">[MASK]</span></div>
+      <span class="step-conf">-</span>
+    </div>
+    <div class="imr-step">
+      <span class="step-num">Step 1</span>
+      <div class="step-tokens"><span class="t mask">[MASK]</span><span class="t mask">[MASK]</span><span class="t new">is</span><span class="t mask">[MASK]</span><span class="t mask">[MASK]</span></div>
+      <span class="step-conf" style="color:var(--accent);opacity:.5;">0.93</span>
+    </div>
+    <div class="imr-step">
+      <span class="step-num">Step 2</span>
+      <div class="step-tokens"><span class="t new">The</span><span class="t mask">[MASK]</span><span class="t old">is</span><span class="t mask">[MASK]</span><span class="t new">yes</span></div>
+      <span class="step-conf" style="color:var(--accent);opacity:.7;">0.87</span>
+    </div>
+    <div class="imr-step">
+      <span class="step-num">Step 3</span>
+      <div class="step-tokens"><span class="t old">The</span><span class="t new">answer</span><span class="t old">is</span><span class="t new">42,</span><span class="t old">yes</span></div>
+      <span class="step-conf" style="color:var(--accent);opacity:.9;">0.81</span>
+    </div>
+    <div class="imr-step final">
+      <span class="step-num">Done</span>
+      <div class="step-tokens"><span class="t old">The</span><span class="t old">answer</span><span class="t old">is</span><span class="t old">42,</span><span class="t old">yes</span></div>
+      <span class="step-conf" style="color:var(--accent);">&#10003;</span>
+    </div>
+  </div>
+</section>
+
+<section id="arch" class="fade-up">
+  <div class="section-label">Architecture</div>
+  <h2>Model <span>overview</span></h2>
+  <div class="arch-diagram"><span class="hl">  Input:</span> "What is the meaning of life?"
+         |
+    +-------------------------------+
+    | <span class="hl">BERT Encoder</span> (6L, 768H)      |
+    |  Bidirectional self-attention  |
+    |  Full context at every layer   |
+    +---------------+---------------+
+                    |
+    +---------------+---------------+
+    | <span class="hl2">MLM Head</span> (project + softmax)  |
+    |  Predict token at each [MASK]  |
+    +---------------+---------------+
+                    |
+              +-----+-----+
+              | <span class="hl">Confidence</span> |
+              |  Ranking   |
+              +-----+-----+
+                    |
+      Unmask top-k -> Iterate <span class="hl2">T</span> times
+                    |
+<span class="hl">  Output:</span> "The answer is 42, yes"</div>
+</section>
+
+<section id="demo" class="fade-up">
+  <div class="section-label">Real Output</div>
+  <h2>ChatBERT-ED <span>speaks</span></h2>
+  <p style="color:var(--text2);max-width:600px;margin-bottom:1.5rem;">Real responses from our 100M parameter model trained for 67 minutes on a single A100. No cherry-picking.</p>
+  <div style="max-width:600px;margin:0 auto;">
+    <div style="margin-bottom:1.25rem;padding:1.25rem;background:var(--bg2);border-radius:12px;border:1px solid rgba(255,255,255,.06);">
+      <div style="font-size:.75rem;color:var(--text3);font-family:var(--mono);margin-bottom:.5rem;">Conversation 1</div>
+      <div style="margin-bottom:.5rem;"><span style="color:var(--text3);font-family:var(--mono);font-size:.8rem;">User:</span> <span style="color:var(--text);">Hello, how are you?</span></div>
+      <div><span style="color:var(--accent);font-family:var(--mono);font-size:.8rem;">Bot:</span> <span style="color:var(--text);">i am doing okay. how are you?</span></div>
+    </div>
+    <div style="margin-bottom:1.25rem;padding:1.25rem;background:var(--bg2);border-radius:12px;border:1px solid rgba(255,255,255,.06);">
+      <div style="font-size:.75rem;color:var(--text3);font-family:var(--mono);margin-bottom:.5rem;">Conversation 2</div>
+      <div style="margin-bottom:.5rem;"><span style="color:var(--text3);font-family:var(--mono);font-size:.8rem;">User:</span> <span style="color:var(--text);">What do you like to do for fun?</span></div>
+      <div><span style="color:var(--accent);font-family:var(--mono);font-size:.8rem;">Bot:</span> <span style="color:var(--text);">i like to travel. it is the best. how about you?</span></div>
+    </div>
+    <div style="margin-bottom:1.25rem;padding:1.25rem;background:var(--bg2);border-radius:12px;border:1px solid rgba(255,255,255,.06);">
+      <div style="font-size:.75rem;color:var(--text3);font-family:var(--mono);margin-bottom:.5rem;">Conversation 3</div>
+      <div style="margin-bottom:.5rem;"><span style="color:var(--text3);font-family:var(--mono);font-size:.8rem;">User:</span> <span style="color:var(--text);">I am feeling sad today.</span></div>
+      <div><span style="color:var(--accent);font-family:var(--mono);font-size:.8rem;">Bot:</span> <span style="color:var(--text);">why do you think that?</span></div>
+    </div>
+    <div style="margin-bottom:1.25rem;padding:1.25rem;background:var(--bg2);border-radius:12px;border:1px solid rgba(255,255,255,.06);">
+      <div style="font-size:.75rem;color:var(--text3);font-family:var(--mono);margin-bottom:.5rem;">Conversation 4</div>
+      <div style="margin-bottom:.5rem;"><span style="color:var(--text3);font-family:var(--mono);font-size:.8rem;">User:</span> <span style="color:var(--text);">What is your favorite food?</span></div>
+      <div><span style="color:var(--accent);font-family:var(--mono);font-size:.8rem;">Bot:</span> <span style="color:var(--text);">i like mexican food, and you?</span></div>
+    </div>
+    <div style="margin-bottom:1.25rem;padding:1.25rem;background:var(--bg2);border-radius:12px;border:1px solid rgba(0,212,255,.15);">
+      <div style="font-size:.75rem;color:var(--accent);font-family:var(--mono);margin-bottom:.5rem;">Multi-turn</div>
+      <div style="margin-bottom:.5rem;"><span style="color:var(--text3);font-family:var(--mono);font-size:.8rem;">User:</span> <span style="color:var(--text);">I just moved to a new city and I dont know anyone here.</span></div>
+      <div style="margin-bottom:.5rem;"><span style="color:var(--accent);font-family:var(--mono);font-size:.8rem;">Bot:</span> <span style="color:var(--text);">what do you think about it?</span></div>
+      <div style="margin-bottom:.5rem;"><span style="color:var(--text3);font-family:var(--mono);font-size:.8rem;">User:</span> <span style="color:var(--text);">Its been really lonely.</span></div>
+      <div><span style="color:var(--accent);font-family:var(--mono);font-size:.8rem;">Bot:</span> <span style="color:var(--text);">i'm sorry. are you from the west?</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="imr-demo" class="fade-up">
+  <div class="section-label">The Wild One</div>
+  <h2>ChatBERT-IMR <span>speaks</span></h2>
+  <p style="color:var(--text2);max-width:600px;margin-bottom:1.5rem;">Pure BERT. No decoder. No autoregression. Just iterative unmasking. These are real outputs from our 66M parameter model.</p>
+  <div style="max-width:600px;margin:0 auto;">
+    <div style="margin-bottom:1.25rem;padding:1.25rem;background:var(--bg2);border-radius:12px;border:1px solid rgba(124,58,237,.15);">
+      <div style="font-size:.75rem;color:var(--accent2);font-family:var(--mono);margin-bottom:.5rem;">Iterative Unmasking</div>
+      <div style="margin-bottom:.5rem;"><span style="color:var(--text3);font-family:var(--mono);font-size:.8rem;">User:</span> <span style="color:var(--text);">Hello, how are you?</span></div>
+      <div><span style="color:var(--accent2);font-family:var(--mono);font-size:.8rem;">IMR:</span> <span style="color:var(--text);">i'm doing well, just got off work</span></div>
+    </div>
+    <div style="margin-bottom:1.25rem;padding:1.25rem;background:var(--bg2);border-radius:12px;border:1px solid rgba(124,58,237,.15);">
+      <div style="font-size:.75rem;color:var(--accent2);font-family:var(--mono);margin-bottom:.5rem;">Iterative Unmasking</div>
+      <div style="margin-bottom:.5rem;"><span style="color:var(--text3);font-family:var(--mono);font-size:.8rem;">User:</span> <span style="color:var(--text);">Do you want to go to the movies?</span></div>
+      <div><span style="color:var(--accent2);font-family:var(--mono);font-size:.8rem;">IMR:</span> <span style="color:var(--text);">i'd like to see the movie titanic.</span></div>
+    </div>
+    <div style="margin-bottom:1.25rem;padding:1.25rem;background:var(--bg2);border-radius:12px;border:1px solid rgba(124,58,237,.15);">
+      <div style="font-size:.75rem;color:var(--accent2);font-family:var(--mono);margin-bottom:.5rem;">Iterative Unmasking</div>
+      <div style="margin-bottom:.5rem;"><span style="color:var(--text3);font-family:var(--mono);font-size:.8rem;">User:</span> <span style="color:var(--text);">Tell me about yourself.</span></div>
+      <div><span style="color:var(--accent2);font-family:var(--mono);font-size:.8rem;">IMR:</span> <span style="color:var(--text);">i'm a school teacher for a living.</span></div>
+    </div>
+    <div style="padding:1.25rem;background:var(--bg2);border-radius:12px;border:1px solid rgba(124,58,237,.15);">
+      <div style="font-size:.75rem;color:var(--accent2);font-family:var(--mono);margin-bottom:.5rem;">Iterative Unmasking</div>
+      <div style="margin-bottom:.5rem;"><span style="color:var(--text3);font-family:var(--mono);font-size:.8rem;">User:</span> <span style="color:var(--text);">The weather has been really nice lately.</span></div>
+      <div><span style="color:var(--accent2);font-family:var(--mono);font-size:.8rem;">IMR:</span> <span style="color:var(--text);">it's a bit chilly right over here.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="stats" class="fade-up">
+  <div class="section-label">By the Numbers</div>
+  <h2>Lean and <span>efficient</span></h2>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="num">~100M</div><div class="label">Params (ED)</div></div>
+    <div class="stat-card"><div class="num">~66M</div><div class="label">Params (IMR)</div></div>
+    <div class="stat-card"><div class="num">67min</div><div class="label">Train time (ED)</div></div>
+    <div class="stat-card"><div class="num">10</div><div class="label">IMR iterations</div></div>
+  </div>
+</section>
+
+<section id="cta" class="fade-up">
+  <div class="section-label">Get Started</div>
+  <h2>Explore <span>ChatBERT</span></h2>
+  <p style="color:var(--text2);max-width:500px;margin:0 auto;">Open source, reproducible, and built to be extended. Check out the code, read the paper, or try the demo.</p>
+  <div class="cta-buttons">
+    <a class="btn primary" href="#">GitHub</a>
+    <a class="btn" href="blog.md">Blog Post</a>
+    <a class="btn" href="#">Paper</a>
+    <a class="btn" href="#">Try Demo</a>
+  </div>
+</section>
+
+<footer>ChatBERT &mdash; Deliberative Response Generation via Bidirectional Encoders &mdash; 2026</footer>
+
+<script>
+(function() {
+  var bg = document.getElementById('hero-bg');
+  var masks = ['[MASK]', '[CLS]', '[SEP]', '[MASK]', '[MASK]', '[MASK]', '[PAD]', '[MASK]'];
+  for (var i = 0; i < 25; i++) {
+    var el = document.createElement('span');
+    el.className = 'mask-float';
+    el.textContent = masks[i % masks.length];
+    el.style.left = Math.random() * 100 + '%';
+    el.style.animationDuration = (15 + Math.random() * 20) + 's';
+    el.style.animationDelay = (-Math.random() * 20) + 's';
+    el.style.fontSize = (.7 + Math.random() * .5) + 'rem';
+    bg.appendChild(el);
+  }
+})();
+(function() {
+  var spans = document.querySelectorAll('#hero-demo .mask');
+  var order = [4, 2, 0, 5, 1, 3];
+  function runReveal() {
+    spans.forEach(function(s) { s.textContent = '[MASK]'; s.classList.add('mask'); s.classList.remove('revealed'); });
+    order.forEach(function(idx, i) {
+      setTimeout(function() {
+        var s = spans[idx];
+        s.textContent = s.dataset.reveal;
+        s.classList.remove('mask');
+        s.classList.add('revealed');
+      }, 2000 + i * 600);
+    });
+  }
+  runReveal();
+  setInterval(runReveal, 8000);
+})();
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+})();
+</script>
+</body>
+</html>
