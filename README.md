@@ -4,11 +4,11 @@
 
 **Deliberative response generation via bidirectional encoders**
 
-Omar Nusrat
+**Omar Nusrat** &nbsp; [<img src="https://cdn.simpleicons.org/x/white" alt="X" width="14">](https://x.com/omarnusrat)
 
 ---
 
-[Live Demo](https://onusrat.github.io/chatbert/) &nbsp;&middot;&nbsp; [Paper](paper/chatbert_paper.md)
+[Live Demo](https://onusrat.github.io/chatbert/)
 
 </div>
 
@@ -55,8 +55,6 @@ chatbert/
 │   ├── setup_prime.sh           # Prime Intellect pod setup
 │   ├── launch.sh                # Launch training on cloud GPU
 │   └── train_cloud.sh           # Cloud training wrapper
-├── paper/
-│   └── chatbert_paper.md        # Full research paper
 ├── docs/
 │   └── index.html               # Live demo website
 └── site/
