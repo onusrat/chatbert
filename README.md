@@ -320,6 +320,35 @@ python scripts/push_to_hub.py --model_path checkpoints/chatbert-ed-small/final -
 python scripts/push_to_hub.py --model_path checkpoints/chatbert-imr-small/final --model_type iterative_mlm --repo_name onusrat/chatbert-imr-small
 ```
 
+### Cross-Domain Evaluation
+
+All models were trained on DailyDialog + PersonaChat and evaluated zero-shot on three out-of-domain datasets: [EmpatheticDialogues](https://huggingface.co/datasets/Estwld/empathetic_dialogues_llm), [Topical-Chat](https://huggingface.co/datasets/agentlans/Conversational-Reasoning-Topical-Chat), and [Wizard of Wikipedia](https://huggingface.co/datasets/chujiezheng/wizard_of_wikipedia). 500 samples per dataset.
+
+| Dataset | Model | ROUGE-L | Distinct-2 | Perplexity |
+|---------|-------|---------|------------|------------|
+| **In-Domain** | ChatBERT-ED | **0.1419** | 0.4809 | 30.7 |
+| | ChatBERT-IMR | 0.1082 | **0.6719** | **4.0** |
+| | GPT-2 | 0.0608 | 0.6521 | — |
+| **EmpatheticDialogues** | ChatBERT-ED | **0.1219** | 0.4512 | 62.4 |
+| | ChatBERT-IMR | 0.0886 | **0.6750** | **6.8** |
+| | GPT-2 | 0.0681 | 0.6292 | — |
+| **Topical-Chat** | ChatBERT-ED | **0.1184** | 0.4284 | 217.4 |
+| | ChatBERT-IMR | 0.0862 | **0.6836** | **13.5** |
+| | GPT-2 | 0.0495 | 0.6771 | — |
+| **Wizard of Wikipedia** | ChatBERT-ED | **0.1090** | 0.4639 | 147.8 |
+| | ChatBERT-IMR | 0.0982 | **0.6908** | **7.8** |
+| | GPT-2 | 0.0552 | 0.6843 | — |
+
+Key findings:
+- **ED generalizes best on ROUGE-L**: ChatBERT-ED maintains the highest reference overlap across all domains, with only a ~20% drop from in-domain to out-of-domain.
+- **IMR diversity is domain-robust**: Distinct-2 scores remain high (~0.67-0.69) regardless of domain, showing the iterative refinement process produces consistently diverse outputs.
+- **Topical-Chat is hardest**: All models show the largest quality drop on Topical-Chat, likely because its conversations involve specific knowledge topics far from the casual chitchat training data.
+- **ED perplexity spikes OOD**: ED perplexity jumps from 30.7 (in-domain) to 147-217 (OOD), while IMR stays remarkably low (4-14), suggesting IMR's non-autoregressive generation is more robust to distribution shift.
+
+```bash
+python scripts/evaluate.py --model_path checkpoints/chatbert-ed-small/final --model_type encoder_decoder --datasets empathetic_dialogues --max_samples 500
+```
+
 ## Limitations
 
 Both models were trained exclusively on casual conversation datasets (DailyDialog, PersonaChat). ChatBERT has no ability to answer factual questions, follow instructions, or discuss topics outside of everyday small talk. This is a limitation of the training data, not the architecture — a more diverse training corpus would be needed to produce more informative responses, though model capacity remains a bottleneck at ~66–100M parameters.

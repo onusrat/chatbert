@@ -1,0 +1,273 @@
+{
+  "metrics": {
+    "bleu": 0.0006323552813071962,
+    "rouge1": 0.06114354981774982,
+    "rouge2": 0.006344056377032474,
+    "rougeL": 0.055201745932245985,
+    "distinct_1": 0.20594381239842116,
+    "distinct_2": 0.6843209229155742,
+    "avg_length": 8.614,
+    "min_length": 0,
+    "max_length": 38,
+    "std_length": 6.0346502798422375,
+    "generation_time_s": 66.69917607307434,
+    "samples": 500
+  },
+  "examples": [
+    {
+      "context": "Florida [SEP] I love living in Florida.  We have the largest Coastline.  Have you been there?",
+      "reference": "Florida is awesome, love Orlando",
+      "prediction": ""
+    },
+    {
+      "context": "It is fantastic exercise that people can do at almost any age. [SEP] especially since it mainly relys on the body's natural buoyancy [SEP] Ha, yes, it's great to put that to work. Plus swimming is also an important survival skill to have. I believe everyone should know how to swim. [SEP] I think so too, swimming is also considered a low impact activity compared to other forms of exercise [SEP] Yes, I think that's why older people can do it. Sports like running are so much harder on the knees and hips.",
+      "reference": "most people have a body density to allow them to float naturally",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "Guns N' Roses\nI just recently started listening to Guns N' Roses. [SEP] Oh they are classic!! They are an American band from LA that formed in 1985. [SEP] All the great bands come from LA. Is the band still together today? [SEP] Axl Rose, Slash, Izzy, Duff and Steven Adler still perform today!",
+      "reference": "Which one of them is the lead vocalist?",
+      "prediction": "\u3002 ! Why is it that they're all Americans ?"
+    },
+    {
+      "context": "Absolutely! It is a very complex issue with no real clear answers in sight. I do feel for families though who can't afford to take care of their loved ones. [SEP] It's been going on for a long time.  One of the earliest proposals at the federal level was in 1854. [SEP] Wow! I had no idea! What can you tell me about this 1854 health care proposal? [SEP] It was a bill for the Indigent Insane - established asylums for the indigent as well as blind and deaf. [SEP] How did it go? Was it well received and adopted?",
+      "reference": "Passed both houses, but vetoed by the President",
+      "prediction": ""
+    },
+    {
+      "context": "Game design\nhow long have you been designing games? [SEP] I personally haven't designed any games but have taken classes about games, I like it because there are rules and roles that everyone has to adhere to and it gives you any kind of element you want to work with. [SEP] where were your classes taken? [SEP] I took classes in high school before getting my diploma. [SEP] does the process involve drawing?",
+      "reference": "not so much drawing but learning to code. most Game designers have bachelor degrees.",
+      "prediction": "\u3002 Well , all students get their own teacher's notes for each class so they can be used as guides ."
+    },
+    {
+      "context": "The Walking Dead (TV series) [SEP] I love The Walking Dead, I've seen every episode since it premiered on October 31, 2010. [SEP] Oooh! I've heard so much about that show, but I haven't seen it! Is it very popular? [SEP] It is! Since it's 3rd season its attracted the most 18-49 year old viewers of any broadcast or cable series! [SEP] Oh wow! I know the show has zombies, but beyond that, what's the plot of the show?",
+      "reference": "Well the main guy, Rick Grimes, wakes up in the hospital from a coma and finds out that the whole world has been overrun by zombies or \"walkers\".",
+      "prediction": "We have a zombie who lives in an apartment , and we take him to a big hospital for treatment ."
+    },
+    {
+      "context": "Snorkeling [SEP] Today... I got all equipped up with my diving mask, pu on my snorkel and worse my pink swimfits... Guess where I was going and what I did with that description [SEP] I'll bet you went snorkeling in the ocean.",
+      "reference": "Close, I went to the Ocean yesterday. I have a giant pool in my backyard and I played underwater hockey. I bleep you not it's a real thing.",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "You might be interested in driving the Dodge Viper, which has 75% or more of its parts manufactured in the US. [SEP] Don't Italian companies make better auto racing parts? [SEP] They might, and they also tend to build better roads, like the A1 motorway in romania, which will connect Bucharest with the Banat and Crisana regions. [SEP] Did you watch the Indy 500 last weekend? [SEP] It's interesting, and I always liked that it was held over Memorial Day weekend.",
+      "reference": "Will Power finally won. I guess that name really paid off, since he's raced over 10 years without a win there.",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "Pizza delivery [SEP] I love pizza and i have a pizzerian that delivers it to me. [SEP] I also love pizza! What are your favorite toppings? [SEP] I can eat any type of pizza but i sometimes prefer  frozen pizza [SEP] I think frozen pizza has an undeserved bad reputation. I eat it at least twice a week. Yum!",
+      "reference": "But it is one of the traditional Italian dish",
+      "prediction": "iced coffee is my go-to drink ."
+    },
+    {
+      "context": "Rapping\nDo you like rap music? Meek Mill is my favorite rapper by far",
+      "reference": "I do listen to rap on occassion. It is music that incorporates rhyme, speech, repetition.",
+      "prediction": "irma , i really love it ."
+    },
+    {
+      "context": "ofc! i play tennis alot, do you not play anymore/ [SEP] I just haven't had the time to play, though I keep meaning to since the neighborhood recently finished the new tennis courts. HOwever I can still enjoy watching tennis in the Olympics at least. [SEP] that's true, i completely understand i've been there after all, but maybe you can leave yourself an hour every weekend to go and play? [SEP] Unfortunately I can't play by myself, I will need at least one opponent to play. Since the objective of the game is to play the ball in such a way that my opponent is unable to return the ball back to my side of the court. [SEP] i mean yeah, i was implying that, and like you said your neighbourhood finished the new tennis court so there should be someone else able to play",
+      "reference": "I'm kind of a shut it, I would be so embarrassed to place an ad looking for another player. I think it is interesting that we play on special courts now, when tennis was originally developed as a lawn game.",
+      "prediction": "\u3002 . , well it depends on how hard they are trying or not"
+    },
+    {
+      "context": "Divorce [SEP] My parents are divorced, which is the dissolution of the marriage [SEP] Aww, I am sorry to hear about that, divorce seems like it is becoming more and more popular today.",
+      "reference": "Its the termination of the marriage and bonds between the couple under rule of law",
+      "prediction": "\u3002 Well , let's just go to church ."
+    },
+    {
+      "context": "Comic book [SEP] man, comic books are such a fun way to pass the time. [SEP] Yeah.  Do you like the new comic books or the retro ones?  I love the old ones myself [SEP] I got to say the real old ones bore me. Some as old as 1830's in europe [SEP] Wow Ive never seen one quite that old! Marvel or DC?",
+      "reference": "Neither, the first modern comic was famous funnies in the us",
+      "prediction": "ike , i am not sure yet ."
+    },
+    {
+      "context": "Arsenal F.C.\nI am a huge Arsenal F.C. fan! [SEP] I am too, they are based out of Highbury  right? [SEP] No, they are from London, England [SEP] Highbury is a district in London",
+      "reference": "Oh you are right! I have never actually been to a game so I didn't know their exact location",
+      "prediction": "\u3002 They have many good clubs , but there's a very big number"
+    },
+    {
+      "context": "What are some examples of the thoughts or routines? [SEP] Routines are often simple things like repetitive hand washing, counting things, and checking to see if a door is locked. [SEP] Is there a component of people with OCD thinking bad things will happen if they stop. [SEP] I'm not sure. Most adults with OCD realize that their behaviors don't make sense, so if it is a fear of bad things happening it is subconscious. [SEP] Did you experience that or not?",
+      "reference": "I have never experienced OCD myself, but I have experienced intrusive thoughts, which is something that can be associated with OCD and a number of other anxiety/stress disorders.",
+      "prediction": "irma , when someone has anorexia i think about them ."
+    },
+    {
+      "context": "Stock market\nI want to teach my family about investing by buying them a few shares of stock, but I really don't know much about it. [SEP] The stock market can also be called the equity market or share market. That is where you buy and sell stocks. The stock represent ownership claims on businesses. [SEP] Oh, so I could tell my kids they own part of a company.  That's cool.  Maybe I should get them a share in a company they know then, like Apple or XBox or Snapchat? [SEP] Yes, it's like the shares of a company are sold to investors through equity crowdfunding platforms. [SEP] So if it's through crowdfunding, can I just get them 1 or 2 shares, or do I have to get a lot/",
+      "reference": "You can buy as little or as much as you want. In 2017, the world stock market size was about $76.3 trillion dollars. The skies the limit",
+      "prediction": "\ufffd , very similar . You need lots for things besides your children ' money - like books etc !"
+    },
+    {
+      "context": "Do you use long skis and poles? I do. Skiers a long time ago would use one pole haha [SEP] Yeah I use particularly long skis by today's standards. I use poles as well. [SEP] Yeah thats what I think most use. Ive seen people with stubby short skis and no poles before. The first skier who used two poles was back in 1741 [SEP] Ever since the advent of parabolic skis, they have been getting progressively shorter. I'm still a bit old fashioned and prefer to use race skis that are quite a bit longer. [SEP] Cool I didnt know that! Ive seen where people have also used one long non arching ski on one foot and a shorter ski on the other. Im not sure how that works though.",
+      "reference": "That sounds ridiculous. Either way, skiing is really a lot of fun. Nothing like finding some fresh powder.",
+      "prediction": "irma , i've had some really good skiing done recently ."
+    },
+    {
+      "context": "exactly, He came to power by uniting his people [SEP] oh yea and he conquered so much so fast [SEP] after he named himself genghis, he proceeded to capture most of uerasia [SEP] thats insane amounts of land. [SEP] Exactly this was often achieved by large scale massacre",
+      "reference": "oof yea he was brutal.",
+      "prediction": "irma ?"
+    },
+    {
+      "context": "Dylan's Candy Bar [SEP] I definitely have a sweet tooth! One of my favorite candy stores is Dylan's Candy Bar.",
+      "reference": "I love going to candy stores, it really takes my back to my childhood.",
+      "prediction": "\u3002 What kind are they ?"
+    },
+    {
+      "context": "Volkswagen Passat",
+      "reference": "I drive a Volkswagen passat it's a great car.",
+      "prediction": "\u3002 Will you take a seat ?"
+    },
+    {
+      "context": "Green [SEP] I love the color green - its much nicer than blue or yellow! [SEP] I agree, it is so bright and happy and reminds me of money haha",
+      "reference": "Yes and the chlorophyll in plants makes them all be green!",
+      "prediction": "\u3001 Happy birthday !"
+    },
+    {
+      "context": "Meatloaf\nI dearly love a good meatloaf with mashed potatoes! [SEP] I havent had a Schnitzel in a while. I never knew its similar to escalope, a french dish. [SEP] I make meatloaf with ground beef and pork and lots of onion, garlic, bell pepper and spicy tomato paste topping",
+      "reference": "Thats sounds good. Its similar to the schnitzel with flour, eggs, and breadcrumbs.",
+      "prediction": "iced coffee and the like ?"
+    },
+    {
+      "context": "Broken heart [SEP] A friend of mine is suffering from a Broken heart right now. Its a metaphor for intense emotional pain after losing his dog.",
+      "reference": "Oh thats really sad, I had my heart broken recently by my ex girlfriend, what happened with your friend, is he OK?",
+      "prediction": "\u3002 Why is that ?"
+    },
+    {
+      "context": "Agoraphobia [SEP] I have agoraphobia, which means that spiders cause me lots of anxiety and stress. [SEP] I dont mind spiders to much. How does agoraphobia affect others? [SEP] Sometimes people with agoraphobia have panic attacks, which can last up to 30 minutes, so they need other people's help..",
+      "reference": "Oh wow. I am glad I dont suffer from that. What else can you tell me about agoraphobia?",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "The Walking Dead (TV series) [SEP] Are you a fan of The Walking Dead, the post-apocalyptic TV series based on a comic book? [SEP] I don't watch it, but I know it's very popular. It's had several seasons I think, do you know how many exactly? [SEP] I'm not sure how many seasons exactly but I know its a lot. Also, there are 2 TV series, 6 novels, video games and audio books, all Walking Dead related.",
+      "reference": "Wow it must be quite popular if there's so much material for it. Do you have a favorite actor/actress on the series?",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "I know, what are the various reasons that make people become vegetarians? [SEP] Honestly, I think it might because of animal cruelty? What do you think? [SEP] Not sure but the idea of abstaining from meat, seafood and poultry is foreign to me [SEP] Yeah, I agree. Could it also be a political to not eat meat? [SEP] Maybe> In some cases I know it is religious and others its animal rights advocacy",
+      "reference": "Such a foreign concept to me. Do you know when the idea was even created?",
+      "prediction": "\u3002 It seems that the problem isn't just about politics ."
+    },
+    {
+      "context": "Singing\nI love to sing how about you?",
+      "reference": "Hey, just your luck!  I'm a professional singer!  I sing as religious devotion and as a hobby too - it provides me a lot of pleasure!",
+      "prediction": "\u3002 I like to dance ."
+    },
+    {
+      "context": "Oh they are classic!! They are an American band from LA that formed in 1985. [SEP] All the great bands come from LA. Is the band still together today? [SEP] Axl Rose, Slash, Izzy, Duff and Steven Adler still perform today! [SEP] Which one of them is the lead vocalist? [SEP] Well Axl of course! lol His band released 6 albums selling more than 100 million records worldwide making them the 41st best selling artists of all time!",
+      "reference": "That's an incredible feat! Has the band ever been involved in any controversy?",
+      "prediction": "irma , but how many members do you have ?"
+    },
+    {
+      "context": "Casino [SEP] Casinos probably make so much money with all the gambling that goes on inside [SEP] You're telling me!  I love how they make odds.  It's so interesting. [SEP] Yep they also include restaurants and hotels and other things to accomadate guests and make more money",
+      "reference": "Speaking of a Casino I saw Travis Pastrana jump over a fountain in Vegas last night.",
+      "prediction": "How many people do you think are going into casinos ?"
+    },
+    {
+      "context": "Podcast",
+      "reference": "I like to download and listen ti podcasts. Do you have a favorite one?",
+      "prediction": "\u3002 I'm so sorry to hear that ."
+    },
+    {
+      "context": "Accounting [SEP] I am an accountant. Thanks to the establishment of  the Italian mathematician Luca Pacioli in 1494.",
+      "reference": "Oh? How was Luca Pacioli instrumental in the establishment of accountancy?",
+      "prediction": "\u3001 L . A , how many years have you worked there ?"
+    },
+    {
+      "context": "Cod [SEP] Do you know much about Cod?  I read that it belongs to the family Gadidae [SEP] I like Cod but only eat Wild Caught Cod. I prefer to eat fish that is not farm raised due to the pesticides in the food. [SEP] Yes the two most common are atlanticcod and pacific cod",
+      "reference": "Most cod sold in stores is farm raised, and also the cod you eat in restaurants.",
+      "prediction": "\u3001 ! , i love both kinds of seafood"
+    },
+    {
+      "context": "Gymnastics",
+      "reference": "I have often watched the Olympics and love gymnastics.  It's a sports that requires balance, strength, flexibility and control.  Do you like gymnastics?",
+      "prediction": "\u3002 Do you play any sports ?"
+    },
+    {
+      "context": "John Grisham",
+      "reference": "John Grisham books have been translated into 42 different languages. He is pretty popular.",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "I don't but would love to go to Ireland and buy one!  It just reminds me of the Irish! [SEP] OK tell me more about the lrish [SEP] It has the culture of the United Kingdom with a liberal democracy and is a major power.  I just like the people, though. [SEP] Where is United Kingdom located [SEP] The United Kingdom of GB and Northern Ireland is is western Europe.",
+      "reference": "Wow it must be a big city",
+      "prediction": "Is it interesting ?"
+    },
+    {
+      "context": "Dating",
+      "reference": "Do you have a date? Dating is a stage of romantic relationships in humans whereby two people meet socially with the aim of each assessing the other's suitability",
+      "prediction": "\u3002 It \u2019 s a good idea to pay attention and keep in touch with your family ."
+    },
+    {
+      "context": "American football [SEP] I'm a big American Football fan - interestingly, the first American football game was played on November 6, 1869!",
+      "reference": "That's really interesting. I love to watch football. I am a huge Oklahoma State fan, but like to watch about any game there is on including pro ball.",
+      "prediction": "\u3001It's very interesting . What did you do ?"
+    },
+    {
+      "context": "That makes sense, it was a bit before my time, how albums have the sold in total? [SEP] To date, they've release 6 studio albums that sold over 100million albums total. [SEP] Oh wow, that is a lot of albums, if you have sold more in total than Thriller, you made it big time [SEP] I agree. They even put out twin albums that debuted #1 and #2 on the Billboard chart which went on to sell 14 million copies in the US alone. [SEP] Wow, now that is impressive, what albums were those?",
+      "reference": "\"Use Your Illusion I\" and \"Use Your Illusion II\" they were released in 1991.",
+      "prediction": "iphone , android ."
+    },
+    {
+      "context": "Guns N' Roses [SEP] Guns N' Roses is my favorite rock band! Have you heard of them? They're from Los Angeles, California. [SEP] Tell me more [SEP] You've probably heard a few songs off their debut album, Appetite for Destruction. Their only number one song, Sweet Child o' Mine came from that album.",
+      "reference": "Yes I have when was the band formed",
+      "prediction": "\u3002 . where did it come ?"
+    },
+    {
+      "context": "Not really, although it depends who you ask sometimes. [SEP] That's fair enough. Accounting is also divided into many fields, like management accounting and financial accounting. [SEP] Yes, that's true. Then there's similar fields, like book keeping [SEP] I always thought book keeping was pretty much the same. There's also accounting information systems that are designed to support functions that accountants do. [SEP] Yes, they're very useful. Do you work on anything like that?",
+      "reference": "Just a little bit of it on the side, really. What kind of accounting work do you do out of all the options like tax accounting and all that?",
+      "prediction": "\u3002 How about studying for exams ?"
+    },
+    {
+      "context": "Harry Potter\nI love fantasy fiction, but I never finished the Harry Potter series. [SEP] Yes. They are fantasy novels written by British author J. K. Rowling, if reading is too hard you can watch the movie. [SEP] I know they made movies, but I wonder if the movies are as good as the books.  The books didn't keep me interested, so I worry about the movies!",
+      "reference": "The novel talks about the  life of a young wizard, Harry Potter, and his friends Hermione Granger and Ron Weasley, all of whom are students at Hogwarts School of Witchcraft and Wizardry.The movies are also good",
+      "prediction": "\u3002 You are right . Maybe the book was better than a lot of other popular ones , like Alice in Wonderland and 1984 !"
+    },
+    {
+      "context": "Green\nColors are a lot of fun. My favorite to use in art is green.",
+      "reference": "I also like green.  It is right between yellow and blue on the color wheel",
+      "prediction": "\u3002 I've never tried it . It's so difficult , but really very useful for me !"
+    },
+    {
+      "context": "Herbal protein shakes are the best if you want to increase strength and stamina. Athletes have been doing this since ancient times. [SEP] cool, tell me more plz [SEP] Eugen Sandow was the first modern bodybuilder in the west that started to suggest the use of dietary supplements to grow your muscles faster. [SEP] i've never heard of him! Where is Eugen Sandow from? [SEP] He was born in Kaliningrad, Russia and was the son of a German father and Russian mother.",
+      "reference": "I'm Russian but i've never heard of him. how cool!",
+      "prediction": "\u3002 he's an interesting name !"
+    },
+    {
+      "context": "A friend of mine is suffering from a Broken heart right now. Its a metaphor for intense emotional pain after losing his dog. [SEP] Oh thats really sad, I had my heart broken recently by my ex girlfriend, what happened with your friend, is he OK? [SEP] He just need some time. Broken heart  is a cross-cultural concept mostly associated with the loss of a loved one. [SEP] Oh ok, yeah its important to give him some time to think and give him fresh air. when my girlfriend cheated on my, My heart was broken so bad that I thought id never date anyone again. [SEP] That is the worse. I know how you felt. Some people can even suffer emotional pain so severe it can cause \"broken heart syndrome\". It can even lead to physical damage to the heart.",
+      "reference": "Oh no! that sounds terrible, I sure hope your friend finds love again with another animal, Just let him know that he has family and friends to back him up.",
+      "prediction": "irma , sorry ."
+    },
+    {
+      "context": "Kale\ni love eating kale,only had a bite ,it was nice but i dont knowmuch about it [SEP] kale is sometimes called leaf cabbage and is a cultivar of cabbage which is grown for its edible leaves [SEP] is a type of salad?",
+      "reference": "its considered to be closer to wild cabbage, though i know thats hard to believe because when i look at kale i see spinach haha. kale aused to be one of the most common green vegetables in europe a long time ago believe it or not",
+      "prediction": "iced tea . where do you grow it ?"
+    },
+    {
+      "context": "Pipe smoking [SEP] I smoke a pipe. I taste and inhale a burning substance, usually tobacco (depending on how wild i'm feeling). [SEP] how long have you done that? [SEP] Gee, since I was 7 years old maybe. I would steal my fathers pipe. It's the oldest traditional way people would smoke.",
+      "reference": "you ever quit or tried to quit?",
+      "prediction": "ick , is it true ?"
+    },
+    {
+      "context": "Auto racing [SEP] I love race cars! Auto racing is very exciting to me.",
+      "reference": "Awesome! Do you race yourself, or just watch?",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "Immigration to the United States [SEP] Hello, are you a first or second generation immigrant? [SEP] I an an bloodline of shoemakers [SEP] Oh, glad it isn't the Jesus bloodline. Although they say it is a hypothetical sequence of lineage",
+      "reference": "I wonder if some people who have taken an blood test would know thier bloodline",
+      "prediction": "irma , i suppose . Do we have any children ?"
+    },
+    {
+      "context": "Beach [SEP] I just love to spend time at the beach and feel the sand particles between my toes.  Do you like the beach?",
+      "reference": "It's been so long since I've been to the beach, but I do remember it fondly. What is your favourite thing to do at the beach?",
+      "prediction": "\u3002 . It's a lovely place , but I do not really like it much either in summertime or during winter months"
+    },
+    {
+      "context": "American football [SEP] I'm a big American Football fan - interestingly, the first American football game was played on November 6, 1869! [SEP] That's really interesting. I love to watch football. I am a huge Oklahoma State fan, but like to watch about any game there is on including pro ball. [SEP] I never realized until recently that the American football rules became popular because of college football! [SEP] I didn't know that. I have always wondered where and how the game got started. It can be a dangerous game though.",
+      "reference": "Yes, it can be. College football is considered the second tier of American football in the U.S.  I'm a Wolverines fan myself - Go Blue!",
+      "prediction": "\u3001Why do you say that ?"
+    }
+  ],
+  "model": {
+    "path": "checkpoints/gpt2-baseline/final",
+    "type": "gpt2_baseline",
+    "params": 124439808
+  }
+}

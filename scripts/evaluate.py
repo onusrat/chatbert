@@ -36,7 +36,13 @@ class NumpyEncoder(json.JSONEncoder):
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from chatbert.inference.generator import ChatBERTGenerator
-from chatbert.data.datasets import load_dailydialog, load_personachat
+from chatbert.data.datasets import (
+    load_dailydialog,
+    load_personachat,
+    load_empathetic_dialogues,
+    load_topical_chat,
+    load_wizard_of_wikipedia,
+)
 from chatbert.utils.metrics import (
     compute_metrics,
     compute_distinct_n,
@@ -60,6 +66,9 @@ def load_test_data(datasets, max_samples=500, max_turns=5):
     loaders = {
         "daily_dialog": ("test", load_dailydialog),
         "personachat": ("validation", load_personachat),  # no test split
+        "empathetic_dialogues": ("test", load_empathetic_dialogues),
+        "topical_chat": ("test", load_topical_chat),
+        "wizard_of_wikipedia": ("test", load_wizard_of_wikipedia),
     }
 
     examples = []
@@ -169,6 +178,11 @@ def main():
     parser.add_argument("--temperature", type=float, default=None, help="Override temperature")
     parser.add_argument("--num_iterations", type=int, default=None, help="IMR iterations")
     parser.add_argument("--device", type=str, default=None, help="Device (cuda/cpu)")
+    parser.add_argument(
+        "--datasets", type=str, nargs="+",
+        default=["daily_dialog", "personachat"],
+        help="Datasets to evaluate on (default: daily_dialog personachat)",
+    )
     args = parser.parse_args()
 
     device = args.device or ("cuda" if torch.cuda.is_available() else "cpu")
@@ -205,7 +219,7 @@ def main():
 
     # Load test data
     test_data = load_test_data(
-        datasets=["daily_dialog", "personachat"],
+        datasets=args.datasets,
         max_samples=args.max_samples,
     )
     print(f"Test samples: {len(test_data)}")

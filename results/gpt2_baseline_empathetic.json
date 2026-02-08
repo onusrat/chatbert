@@ -1,0 +1,273 @@
+{
+  "metrics": {
+    "bleu": 0.002535302146114424,
+    "rouge1": 0.07666743313166548,
+    "rouge2": 0.007891061167905899,
+    "rougeL": 0.06810466102682008,
+    "distinct_1": 0.15854203935599284,
+    "distinct_2": 0.6292106586224233,
+    "avg_length": 8.944,
+    "min_length": 0,
+    "max_length": 63,
+    "std_length": 7.329997544337924,
+    "generation_time_s": 67.69735622406006,
+    "samples": 500
+  },
+  "examples": [
+    {
+      "context": "My husband and I have a fun weekend trip planned soon. We are going to go to the casino for the weekend, just the two of us. We are really looking forward to it. [SEP] That's a nice getaway",
+      "reference": "Yes, it's been awhile since we had just some time for us. Plus, we love Blackjack!",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "When I went to the fair last year, I tripped on a large cord they had going across the walkway. It was a long, running fall! I wanted to hide!",
+      "reference": "Did you hurt yourself?",
+      "prediction": "\u3002 Can you imagine what it would have been like if we hadn't fallen ?"
+    },
+    {
+      "context": "I was about to book a flight for my baby and i and i was so surprised to find out i didn't need to pay for my baby'sticket [SEP] That's really exciting! I would be so happy about that.",
+      "reference": "i know! now i can spend the rest of the money on something cool",
+      "prediction": "irma is the place where we are going now . We have got some good seats on our schedule , but we can't afford it !"
+    },
+    {
+      "context": "Life seems to be going perfect right now, how about you? [SEP] I'm glad to hear that! Things are really going great for me too!",
+      "reference": "Well that's even better news! i'm feeling hopeful for the both of us.",
+      "prediction": "\u3001 What are your plans this weekend ?"
+    },
+    {
+      "context": "I am so mad that our politicians won't do something to stop Russian hacking [SEP] That would take a miracle , or have some major money backing it.",
+      "reference": "Yes.  The Republicans just don't seem to care about our country any more and I am so mad that Putin owns Trump",
+      "prediction": "\u3002 And I know there are people in the government who could help us ."
+    },
+    {
+      "context": "That's terrible to hear. Were you eventually able to be there? [SEP] I was and she was had a full recovery. [SEP] That's great news. I don't know what I would do if my mom passed. [SEP] Me neither, my mom means so much to me. [SEP] Me too. I'm glad everytihng worked out in the end for you.",
+      "reference": "Do you get to see your mom often?",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "I am going to a concert very soon.",
+      "reference": "Cool! Who are you going to see?",
+      "prediction": "\u3002 What kind of music do you like ?"
+    },
+    {
+      "context": "i really hate when people make me wait for no reason [SEP] Me too! Who did this to you? [SEP] my girlfriend allways makes me wait, it makes me really anxious ahhahah",
+      "reference": "I understand that! When I am ready to go- I just want to hurry up and go. I hate sitting around waiting too. Maybe you should make her wait and see if she likes it. Lesson",
+      "prediction": "ike , who is it ?"
+    },
+    {
+      "context": "I won a prize at an event in my college and felt very happy, proud",
+      "reference": "Oh cool! How did you win it?",
+      "prediction": "\u3002 ! I feel like I have got a lot of trophies and honors ."
+    },
+    {
+      "context": "My parents always argue and it pisses me off! [SEP] i bet, have you told them how u feel about it?",
+      "reference": "I have but they rarely listen. They act like children and it can get frustrating. What can you do?",
+      "prediction": "irma , they're too busy at the office to talk ."
+    },
+    {
+      "context": "I felt like I could do anything after I finished meditating",
+      "reference": "Nice! How long do you meditate for?",
+      "prediction": "\u3002 What are you doing ?"
+    },
+    {
+      "context": "My daughter is in 8th grade and just started school a little over a week ago. She is already being bullied.",
+      "reference": "Oh no!  That's such a shame.  Did you go to the principal?",
+      "prediction": "\u3002 Is she going to get bullied ?"
+    },
+    {
+      "context": "Sometimes I'm just surprised and amazed at the kindness of others. Recently, one of the maintenance men in our complex delivered a package to me, without my saying anything!",
+      "reference": "Wow!  What was in the package?",
+      "prediction": "\u3002 Well , it's not that easy . You must be very careful about your behavior when you are dealing with such people ..."
+    },
+    {
+      "context": "5 [SEP] What?",
+      "reference": "I recently got an A on my paper. I feel great.",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "it infuriates me that my wife expects me to read her mind where she wants to eat. [SEP] Women these days. I don't think i'll ever understand them.",
+      "reference": "Me either. If you would like to go to a specific place to eat just tell me. I'd rather do that than hear why you dont like the place we ended up.",
+      "prediction": "irma is a great place for women ."
+    },
+    {
+      "context": "I just saw the craziest thing! A baby was riding a dog like a horse outside! [SEP] How old was the child?",
+      "reference": "She couldn't have been older than one!",
+      "prediction": "\u3002 He \u2019 s five ."
+    },
+    {
+      "context": "I broke up with my boyfriend last week, and nothing is the same without him. [SEP] Time will make it better. You just have to move on.",
+      "reference": "Yeah, I know but we were planning to start our lives together. We were moving in and now I have to rethink everything.",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "I am looking forward to next week! My husband has been out of town on business for several weeks and comes home next weekend!",
+      "reference": "Do you have any special welcome-back events planned?",
+      "prediction": "\u3002 I'm sure he will be able handle the travel ."
+    },
+    {
+      "context": "Recently, I received the news about my ex boyfriend's relapse. [SEP] Oh no! :(   How are you taking it? [SEP] It's definitely a hard situation to take in. He had stopped using when we started dating and was off it for 2 years until we broke up. It's very discouraging.",
+      "reference": "Dang.  Please don't blame yourself.",
+      "prediction": "What can people do ?"
+    },
+    {
+      "context": "Did I tell you what happened with the concert I was supposed to go to Saturday? [SEP] No, what happened? [SEP] Well first of all, it wasn't just any concert - it was Jay-Z and Beyonce! AND IT GOT RAINED OUT!",
+      "reference": "Thats horrible. Will they reschedule?",
+      "prediction": "\u314b\u314b\u314b\u314b"
+    },
+    {
+      "context": "I was angry when my son destroyed my car [SEP] oh no is it completely destroyed not salvagable ? [SEP] no not salvagable. i had to buy a new one. [SEP] so sorry to hear about this disaster",
+      "reference": "its okay. gave me an opportunity for a new adventure",
+      "prediction": "irma . its been very busy with the police"
+    },
+    {
+      "context": "I came home from work last night and my step dad scared me! [SEP] How did he scare you? [SEP] Like he jumped out from behind a door and scared me. I was not expecting it!",
+      "reference": "I bet that gave you a good scare! Gotta love dads and step dads!",
+      "prediction": "\u3002 But why ? Why didn't they say anything about him or something like that !"
+    },
+    {
+      "context": "I love being in the \"flow\" -- whether it's in speaking to a group of people or working to help facilitate meetings. [SEP] What kind of work do you do? [SEP] I work with different organizations on strengthening their culture, and I do large-scale visual notetaking (also known as graphic recording). Are you familiar with that at all? (Not unusual NOT to be!) [SEP] Actually I'm not, but it sounds very interesting and by working with different organizations, I would imagine it's also exciting and new every day.",
+      "reference": "That's one of the huge benefits -- learning about many different industries and subjects!",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "Imagine my surprise after 6 months of trying. Now we also know it's a boy [SEP] You must be over the moon happy.",
+      "reference": "I am. Especially when we saw the ultrasound. Takes after his dad if you know what I mean haha",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "how sweet. bless you! [SEP] i was beet red when I realized what had happened. [SEP] 5",
+      "reference": "Thank you, your so kind",
+      "prediction": "irma is the best thing for me ."
+    },
+    {
+      "context": "I like like loaning money to friends. It can ruin friendships and sometimes doesn't get paid back. [SEP] I'm always leery of loaning money to friends",
+      "reference": "Yeah, I meant don't like, sorry. I recently lent some to my friend with no expectation of getting it back because of her hard situation. I actually got it back.",
+      "prediction": "\u3002 How much do you like it ?"
+    },
+    {
+      "context": "I was supposed to go for brunch with my friend Maria the other day. At least that was the plan.",
+      "reference": "Why didn't you go?",
+      "prediction": "\u3002 I guess it \u2019 s not like we have much time together ."
+    },
+    {
+      "context": "When my buddy asked me to help him clean out his grandmother's house who had recently passed, I was not prepared for what we found. [SEP] Oh dang. Was she a hoarder? What did you find?",
+      "reference": "You hit it right on the money. She was not only a hoarder but a cat lady, and the mix of paper, bugs and cat feces was an affront to the senses.",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "A good friend was supposed to visit me this Summer, but he got a job and had to cancel.",
+      "reference": "Aw, that sucks. But at least he got a job, right?",
+      "prediction": "\u3001 Hey , hey ! What \u2019 s going on ?"
+    },
+    {
+      "context": "So my partner gave me the biggest surprise this week.",
+      "reference": "what did they do?",
+      "prediction": "\u3002 I \u2019 m so happy ."
+    },
+    {
+      "context": "i did not expect my car to be soo good for the price i paid",
+      "reference": "I have never had that feeling.",
+      "prediction": "irma is a great place ! what else do you enjoy ?"
+    },
+    {
+      "context": "I finally got to see a baseball game live this last week.",
+      "reference": "Nice! Who did you go see? Did you catch a homerun?",
+      "prediction": "\u3002 I'm going for the playoffs ."
+    },
+    {
+      "context": "My dog died today :( [SEP] I am so sorry to hear that. Was she able to go surrounded by you guys?",
+      "reference": "Yes, she had cancer so we knew she was going to pass soon. My daughter won't stop crying.",
+      "prediction": "\u3001She wasn't.We didn \u2019 t see her for more than two hours ."
+    },
+    {
+      "context": "A man came to my door with a gun, asking for money. [SEP] Whoa, that is scary! Did you know him? [SEP] I did not know him. He took some items from the house as I didn't have any money on me",
+      "reference": "I am glad that you are okay!",
+      "prediction": "\u3002 Why ?"
+    },
+    {
+      "context": "I didn't force her into anything. She seemed to know what she was doing anyway [SEP] Wow back up there friend, what are you talking about?",
+      "reference": "I wish it never happened now.",
+      "prediction": "irma , the police officer I went to meet ."
+    },
+    {
+      "context": "I recently went on a trip with a woman I adore. The trip ended poorly, though, and things have not been the same since. [SEP] I hate to hear that, what happened that made it end poorly?",
+      "reference": "We did not capitalize well on the short amount of time that we had together.",
+      "prediction": "\u3002 Well , this was supposed for lunch ."
+    },
+    {
+      "context": "So a customer just came into my work and started yelling at me for something that wasn't my fault. I hate when people do that! [SEP] did you talk to them politely or yell back ? [SEP] No, I didn't yell back haha. I would get fired. [SEP] what industry are you in, i find that a lot in retail and service",
+      "reference": "Retail, yep.",
+      "prediction": "irma ."
+    },
+    {
+      "context": "This is terrible but there was this bad smell getting worse and worse in my kitchen. Couldn't find where it was coming from.",
+      "reference": "Uh oh!  What did it end up coming from?",
+      "prediction": "\u3001 That's right . I should have known better !"
+    },
+    {
+      "context": "I woke up this morning and my eye is itchy and my right eyelid is drooping [SEP] You should probably go to the doctor about that [SEP] yeah I am going to see what it seems like tomorrow - not sure if something got in it that scratched it or what",
+      "reference": "You could have a tear on your eye. You really should get it checked out",
+      "prediction": "irma , don't worry , just a little bit of everything will be fine ."
+    },
+    {
+      "context": "I just had a delicious breakfast and now I'm casually relaxing in my room. Life is good!",
+      "reference": "What was for breakfast?",
+      "prediction": "\u3002 Why don't you go back to your normal life ?"
+    },
+    {
+      "context": "I get really mad when I hear about people abusing animals. What revolting individuals!",
+      "reference": "Me too!!! ii never could understand what drives people to be so mean to such innocent creatures.",
+      "prediction": "\u3002 But you are right . The most disturbing thing is that the vast majority of people don \u2019 t care about animals , so they treat them like criminals ."
+    },
+    {
+      "context": "I was disgusted when my food had a hair in it",
+      "reference": "ewww did you get a refund or at least a voucher ?",
+      "prediction": "\u3002 that's too bad . i'm sure you'll be fine with it"
+    },
+    {
+      "context": "I have a job interview tomorrow. I'm looking forward to it. [SEP] oh that's wonderful! Is it a job that you would enjoy?",
+      "reference": "Yes. It seems like a great opportunity.",
+      "prediction": "\u3002 What sort of work do we do ?"
+    },
+    {
+      "context": "That horror movie made me terrified [SEP] What movie was it ?",
+      "reference": "Scream",
+      "prediction": "iced tea , which is a popular drink in the country ."
+    },
+    {
+      "context": "i am impressed that video games grow so much every year [SEP] The only video game I have ever played is Super Mario. [SEP] that is a great game the growth on video games has been amazing this past few years",
+      "reference": "It is a classic, even my kids enjoy playing it.",
+      "prediction": "\u3002 . i love playing the arcade , and my favorite hobby is reading comics"
+    },
+    {
+      "context": "Last week my granddaughter started school for the first time. I worried about her the entire day. [SEP] Aww, they grow up so fast!!  How did she do?",
+      "reference": "It turns out she loves and and I was a mess for 8 hours for nothing.",
+      "prediction": "\u3001She went to a preschool , and the teacher taught me how ."
+    },
+    {
+      "context": "I was stopped at a traffic light when a woman in a truck scraped slowly along the side of my car.",
+      "reference": "That's brutal, did she get out?",
+      "prediction": "\u3002 She must have been drunk ."
+    },
+    {
+      "context": "I was terrified when I watched that horror movie",
+      "reference": "which one was it",
+      "prediction": "\u3002"
+    },
+    {
+      "context": "I got to go to a cat cafe when no one else was around!",
+      "reference": "I've been to one before with my girlfriend, what an amazing experience eh?",
+      "prediction": "\u3002 Is that so ? What kind of food do you like , then !"
+    },
+    {
+      "context": "I'm teaching my daughter how to drive, and so far, so good! [SEP] That is wonderful, I imagine she is very excited. [SEP] She is!  At first, though, she was very nervous.  I told her we could start off slow - her dad lives 1 mile from me down a quiet road, so we started driving back and forth between the two houses. [SEP] Okay i see well, take your time she will be getting her liscense soon [SEP] Hopefully by the first of the year.  We've worked up to driving to the dollar store 5 miles away.  She's still a little nervous but she's getting better and more confident the more we practice.",
+      "reference": "She just needs to get her confidence and I am sure you are a great teacher.",
+      "prediction": "What do you mean ?"
+    }
+  ],
+  "model": {
+    "path": "checkpoints/gpt2-baseline/final",
+    "type": "gpt2_baseline",
+    "params": 124439808
+  }
+}

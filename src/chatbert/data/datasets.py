@@ -110,8 +110,11 @@ def load_smoltalk(split: str = "train") -> List[Dict[str, Any]]:
     return examples
 
 
-def load_empathetic_dialogues(split: str = "train") -> List[Dict[str, Any]]:
-    """Load EmpatheticDialogues dataset.
+def load_topical_chat(split: str = "train") -> List[Dict[str, Any]]:
+    """Load Topical-Chat dataset.
+
+    Uses agentlans/Conversational-Reasoning-Topical-Chat (Parquet, no loading script).
+    Conversations are in ShareGPT format: list of dicts with 'from' and 'value' keys.
 
     Args:
         split: Dataset split ('train', 'validation', 'test').
@@ -119,33 +122,102 @@ def load_empathetic_dialogues(split: str = "train") -> List[Dict[str, Any]]:
     Returns:
         List of dialogue examples.
     """
-    dataset = load_dataset("empathetic_dialogues", split=split, trust_remote_code=True)
-
-    # Group by conversation ID
-    conversations = {}
-    for item in dataset:
-        conv_id = item["conv_id"]
-        if conv_id not in conversations:
-            conversations[conv_id] = {
-                "utterances": [],
-                "context": item.get("situation", ""),
-                "emotion": item.get("context", ""),
-            }
-        conversations[conv_id]["utterances"].append({
-            "text": item["utterance"],
-            "speaker": item["speaker_idx"],
-        })
+    dataset = load_dataset(
+        "agentlans/Conversational-Reasoning-Topical-Chat", split=split,
+    )
 
     examples = []
-    for conv_id, conv in conversations.items():
-        utterances = conv["utterances"]
-        for i in range(1, len(utterances)):
-            context = [u["text"] for u in utterances[:i]]
-            response = utterances[i]["text"]
+    for item in dataset:
+        conversations = item.get("conversations", [])
+        # Extract turns (skip system messages)
+        turns = []
+        for msg in conversations:
+            role = msg.get("from", "")
+            value = msg.get("value", "").strip()
+            if not value or role == "system":
+                continue
+            turns.append(value)
+
+        for i in range(1, len(turns)):
             examples.append({
-                "context": context,
-                "response": response,
-                "emotion": conv["emotion"],
+                "context": turns[:i],
+                "response": turns[i],
+                "source": "topical_chat",
+            })
+
+    return examples
+
+
+def load_wizard_of_wikipedia(split: str = "train") -> List[Dict[str, Any]]:
+    """Load Wizard of Wikipedia dataset.
+
+    Uses chujiezheng/wizard_of_wikipedia (Parquet, no loading script).
+    Each item has parallel lists: 'post' (user turns) and 'response' (wizard turns).
+
+    Args:
+        split: Dataset split ('train', 'validation', 'test').
+
+    Returns:
+        List of dialogue examples.
+    """
+    dataset = load_dataset("chujiezheng/wizard_of_wikipedia", split=split)
+
+    examples = []
+    for item in dataset:
+        posts = item.get("post", [])
+        responses = item.get("response", [])
+        # Interleave posts and responses into a turn list
+        turns = []
+        for p, r in zip(posts, responses):
+            if p and p.strip():
+                turns.append(p.strip())
+            if r and r.strip():
+                turns.append(r.strip())
+
+        for i in range(1, len(turns)):
+            examples.append({
+                "context": turns[:i],
+                "response": turns[i],
+                "source": "wizard_of_wikipedia",
+            })
+
+    return examples
+
+
+def load_empathetic_dialogues(split: str = "train") -> List[Dict[str, Any]]:
+    """Load EmpatheticDialogues dataset.
+
+    Uses Estwld/empathetic_dialogues_llm (Parquet, no loading script).
+    Each item has 'conversations' (list of role/content dicts), 'emotion', 'situation'.
+    Split mapping: 'validation' -> 'valid', 'test' -> 'test'.
+
+    Args:
+        split: Dataset split ('train', 'validation', 'test').
+
+    Returns:
+        List of dialogue examples.
+    """
+    split_map = {"validation": "valid", "train": "train", "test": "test"}
+    hf_split = split_map.get(split, split)
+    dataset = load_dataset("Estwld/empathetic_dialogues_llm", split=hf_split)
+
+    examples = []
+    for item in dataset:
+        conversations = item.get("conversations", [])
+        emotion = item.get("emotion", "")
+
+        # Extract turns
+        turns = []
+        for msg in conversations:
+            content = msg.get("content", "").strip()
+            if content:
+                turns.append(content)
+
+        for i in range(1, len(turns)):
+            examples.append({
+                "context": turns[:i],
+                "response": turns[i],
+                "emotion": emotion,
                 "source": "empathetic_dialogues",
             })
 
@@ -262,6 +334,8 @@ class CombinedDialogueDataset(Dataset):
             "personachat": load_personachat,
             "empathetic_dialogues": load_empathetic_dialogues,
             "smoltalk": load_smoltalk,
+            "topical_chat": load_topical_chat,
+            "wizard_of_wikipedia": load_wizard_of_wikipedia,
         }
 
         for name in dataset_names:

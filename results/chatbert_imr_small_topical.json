@@ -1,0 +1,277 @@
+{
+  "metrics": {
+    "bleu": 0.0006124206223069043,
+    "rouge1": 0.09919624552022431,
+    "rouge2": 0.00985302468586086,
+    "rougeL": 0.0861833345853073,
+    "bertscore_precision": 0.8424274325370789,
+    "bertscore_recall": 0.8330544233322144,
+    "bertscore_f1": 0.8375747799873352,
+    "distinct_1": 0.23836421147763218,
+    "distinct_2": 0.6836474783494652,
+    "avg_length": 8.852,
+    "min_length": 1,
+    "max_length": 10,
+    "std_length": 1.1358239300173245,
+    "perplexity": 13.45109039574154,
+    "generation_time_s": 136.87968111038208,
+    "samples": 500
+  },
+  "examples": [
+    {
+      "context": "*takes a step back* WOW [SEP] *smiles* Yeah. I notice that in the old \"Greatest Generation\" era of comics the teen sidekicks were always about a head shorter than the adult superhero, kind of like Bud on Father Knows Best. Like they were trying to infantilize them. [SEP] Have you ever read the first spider man? [SEP] Nah, I've never been a much of a comics person, but I'd like to catch up on the movies. You? [SEP] Yeah, me either. Did you see the movie Glass?",
+      "reference": "I never heard of it to be honest. Was it good?",
+      "prediction": "yeah i only seen a few of the old ones"
+    },
+    {
+      "context": "I sometimes watch football. You? [SEP] I like watching it when it's on! Can you believe there is only 11 minutes of actual gameplay? [SEP] I can. they do so much standing around and waiting. it feels like they try to run down the clock. i wouldnt buy a ticket. too expensive. [SEP] It really is! Maybe that's why they get paid the big bucks these days, unlike in the 60s. [SEP] the 60s were not a great time for players. i dont think they had a union, and the league revenue was pretty low.",
+      "reference": "I agree, even bowlers made double what they made!",
+      "prediction": "it ' s easy to come on to control."
+    },
+    {
+      "context": "Hi there ! Looking forward to chat with You ! :) [SEP] Good morning! Did you know that an early typewriter was called a \"literary piano\"? [SEP] lol - I guess there are certain similarities ;) it's got.... keys... ? ;)",
+      "reference": "Yes. And in 2005, a mute man was found wandering somewhere in England and he could only communicate via piano, so that's kind of like the opposite - a piano being used like a typewriter.",
+      "prediction": "!!!!!!! a!!"
+    },
+    {
+      "context": "*body relaxes* hahaha that is true, James earl Jones got paid $7500 for that. [SEP] *leans slightly forward* Vader's voice (JEJ) is probably my favorite childhood memory of Star Wars.  The first time I saw it, the voice was so calm, unique and creepy [SEP] It sure did get stuck in our minds, I think he should have been paid more!! [SEP] Seems fair for 1977 and they had no idea it was going to be a billion dollar industry - no way! [SEP] *eyes brighten* looking from that perpective, it is probably fine, but Star Wars got so big that it even holds a Guiness record for being succesful in merchandising, and I think we all want to have something from star wars",
+      "reference": "*eyes widen* Amazing how they've kept it going and gotten better in most aspects.  The Last Jedi was awesome!",
+      "prediction": ".. i guess i would like to make a"
+    },
+    {
+      "context": "Do you like trees? I find nature fascinating. [SEP] Tree are very fascinating indeed! Did you know some male trees can turn female? [SEP] I didnt know that, didnt even know that trees had genders also lol, [SEP] I didn't either! Are you into the fantasy genre?",
+      "reference": "I like fantasy yeah and also play fantasy games like fantasy football do you like the genre?",
+      "prediction": "i love fantasy books! you do not read them"
+    },
+    {
+      "context": "Good, and you? I haven't seen any superhero movies in a long time, but I think I saw a brief portion of Iron Man once on a TV that was going at my job. [SEP] Really! I feel like all the movies coming out now, like 25% are super hero movies. Do you not enjoy them? [SEP] *hands at sides* I probably would, I just never think to watch them. I watched the first two or three installments of the Frank Miller Batman franchise. [SEP] Nice. So if not superhero movies, what movies do you enjoy? [SEP] Mostly sci fi and horror. How about you?",
+      "reference": "I enjoy sci fi and comedies. I usually like to stay home and watch the movies so I can have a cocktail or two. Do you go to the theaters and watch?",
+      "prediction": "those are the best of the old cartoons! i"
+    },
+    {
+      "context": "HA! Is that like students using Wikipedia as a knowledge source to you? [SEP] very much so. One of the students in my grad school class used it one time. You'd figure by then you would know [SEP] HA... That's funny. Grad school? I teach undergrad and made a point to say wiki is not an ok source. [SEP] *takes a step back* kids don't try anymore, just pick up the first result and hope for the best [SEP] I see that. I do have about 12 students that just shine. I cannot wait to see what they do in their career. They are really good.",
+      "reference": "what do you teach?",
+      "prediction": "to them. your parents could never stop saying that"
+    },
+    {
+      "context": "Oh, okay. That makes sense. [SEP] Tim is 30 years old.  That is near the end of career for either league.    i hope he is happy trying for MLB career. [SEP] I hope so! Baseball is a good sport too, so maybe it will work out. Do you know why MLB managers wear uniforms? [SEP] They can take the field if needed.  I have never seen any manager on the field other than to yell at an ump though. [SEP] Yes, I can not imagine, but I have to think it would be entertaining to see.Funny that in Japan baseball fans are surprised to find out the sport is America's favorite past time.",
+      "reference": "Yes, managers on the field would be funny.   It is said that the team with the most runs at the end of the game is the winner.",
+      "prediction": "is that? why do you want to play baseball"
+    },
+    {
+      "context": "*leans slightly forward* Thats crazy. [SEP] Yeah, you would think with Serena and her sister Venus dominating on the women's side, a black man would represent, as well? [SEP] You would think that huh. Maybe they should grunt more. I guess it gives ou a leg up in tennis. [SEP] Apparently! lol I just learned recently that polp shirts were originally invented for tennis. [SEP] *body relaxes* I didnt know that. I used to play table tennis. do you like table tennis.",
+      "reference": "Yes, I played as a kid.  Was pretty good actually, I picked it quick.",
+      "prediction": "although i don ' t, but i do."
+    },
+    {
+      "context": "Doing good? Do you follow football at all? It's a family of sports that includes rugby, gridiron, and soccer [SEP] Why yes, I do I love all types of football.  Do you like football? [SEP] Yea I enjoy gridiron, I also think rugby football is pretty interesting too, would love to play it [SEP] Interesting to me that the word \"football\" is understood to refer to whichever form of football that is most popular in the regional context in which the word appears.  So football in some areas, is called soccer in other parts. [SEP] Yea, I wonder if there is any other football variation types besides American football, soccer, and rugby",
+      "reference": "Oh, there's more, for sure.",
+      "prediction": "soccer, i like soccer, i think they are"
+    },
+    {
+      "context": "Same here. I wonder if that's still true today, it seems there's an emphasis on salary of football players since the average lifetime earnings of an engineer are also higher than football players. I find that very hard to believe. [SEP] *laughs* I wonder if it's because engineers have longer careers? [SEP] Oh, good point. But I imagine multi-million endorsements are probably higher than the players' salary. [SEP] That's incredible how they do that with the chips.  They also have them in the footballs to track velocity, etc. [SEP] That's pretty neat, do you know if this data has been released?",
+      "reference": "*smiles* I am not sure.  I always think it's funny when you hear soccer being referred to as football in other parts of the world outside of the U.S.",
+      "prediction": "i don ' t know, but that predicts"
+    },
+    {
+      "context": "I'm not sure, apparently it was a big problem there for a long time. [SEP] *raises eyebrows* Maybe, it was a negative perspective to the Swedish. [SEP] It could be, the writers for superman did not name their super villain or a preexisting word, they coined the term brainiac. [SEP] However, what's crazy was that Superman was suppose to be a villain. [SEP] I believe it, maybe Lex Luther was going to be the good guy for once!",
+      "reference": "*eyes widen* Also, superman's power was to disguise into anybody. All I could think of was him in his cape flying and saving the world.",
+      "prediction": "they were trying and talking about him to the right"
+    },
+    {
+      "context": "*raises eyebrows* Yes the vampire bit him, but because Superman is powered by the sun Dracula immediately exploded LOL [SEP] It takes some imagination to have that happen.  I read that he was originally designed to be a villain. [SEP] That is very shocking. Do you read any other comic books? I read a lot that were created by Stan Lee, it's too bad that hes passed away [SEP] I read a lot of Marvel and DC when I was a kid.  I have not kept up.  I liked the Batman book character rather than the brooding one in the movies.  They have been around since 1933. [SEP] *laughs* Yes that is definitely a long time. I'm pretty although and even I know that DC stands for Detective Comics, even though that is redundant LOL",
+      "reference": "Yes.  A lot of acronyms create that redundancy problem.  I don't know if I would brag about having the world's biggest comic book library if I was a university.",
+      "prediction": "have you read the pages of crossover of that series"
+    },
+    {
+      "context": "*tilts head* It must right, hopefully the city didnt erase his work of art, [SEP] *eyes widen* I had no idea that they replaced Ferrari as Brand Finance's world's most powerful brand. [SEP] Wow, thats a huge step up, there is a 14 karat gold lego given to employees back in the 80s [SEP] *takes a step back* They are values at nearly $15,000. That is an expensive lego. [SEP] That is really expensive I agree, did you watch the Lego Batman movie?",
+      "reference": "*laughs* I did not. Did you?",
+      "prediction": "was the movie to be on the beach? lo"
+    },
+    {
+      "context": "*raises eyebrows* Yes that is very incredible. The wife of Stan Lee was the voice of Madame Web in the 1994 Spiderman series. [SEP] *tilts head* Oh cool! Speaking of spiderman, apparently sony bought the rights for 10 mill but they only wanted spiderman and rejected the offer to buy all for 25 mill... i wonder if they regret it now [SEP] Yes I bet Sony wished they could buy the rest of the characters right now. But at least they have Spiderman. [SEP] *eyes widen* Yes, it feels like it was just yesterday but this was back in 1998 so im sure they are worth way more now. [SEP] Oh yes and no doubt. Actually the most expensive production in Broadway history was the Broadway musical Spiderman: turn off the dark.",
+      "reference": "interesting, I can see how people can relate or want to be a superhero in real life. Did you know there are over 300 registered superheroes in the US.",
+      "prediction": "that ' s. it was the last show."
+    },
+    {
+      "context": "I don't know, people pay hourly to play with cats and have drinks. [SEP] Wow strange. I did hear that when a cat reaches 15 years old it would have already spent 10 years sleeping. [SEP] *raises eyebrows* I believe that, all my cats do is sleep! Did you know Stubbs the cat is the mayor in a town in Alaska! [SEP] Yeah since 1997 right? Now that is truly strange. The cat in the opening scene of the Godfather was a stray. [SEP] I would like to watch that again and look for that. ha",
+      "reference": "Yeah i remember the Don stroking a cat while he was meeting with some ppl. You know there are more than 70 breeds of cat.",
+      "prediction": "i would like it. the dogs are my dogs"
+    },
+    {
+      "context": "Hi!  Are you a fan of Nintendo? [SEP] Yes I am. Are you?",
+      "reference": "I am!  Super Mario was always my favroite game.  Did you know Nintendo started in 1889 as a playing card company?",
+      "prediction": "i ' ve been playing it for 7 years!"
+    },
+    {
+      "context": "Sorry i meant the nfl is not only putting tracking chips in the shoulder pads but also the footballs, lol! [SEP] *calm eyes* Oh, ok. I guess the NFL is worried about losing footballs. I thought they were pretty easy to keep track of. The players need to be tracked? I guess they get around quite a bit, too. [SEP] They will record a players movements on the field and the velocity, rotation and ball speed. [SEP] Ok, that's good. The players should have their privacy. That would be worse than Facebook! LOL I guess they use that data for all kinds of strategizing. [SEP] Yeah apparently Tom Brady has a thing for Avocado ice cream. Have you ever had it?",
+      "reference": "What? That sounds awful. Why avocado ice cream? Why not strawberry? That's natural. Well, he's the coach. He can do what he wants.",
+      "prediction": "on a team. texans are a linebacker, and"
+    },
+    {
+      "context": "hi how are you? do you like the moon? [SEP] *leans slightly forward* Hi, I love the moon!! I love to watch a full moon",
+      "reference": "I dont usually pay attention to it, but it has shaped so much of human culture.",
+      "prediction": "don ' t have a view of the moon."
+    },
+    {
+      "context": "I wonder if the headsets have improved since 1968. I know originally, it was a stereoscopic head-mounted display rendering computer-generated images, but I'm sure it was bulkier back then, and maybe lighter and easier to use now. [SEP] With the improvements on computers the headsets are probably a lot smaller and lighter than before.  Did you know that the scientist who discovered some of saturn's moons thinks that we are living in a computer generated virtual reality? [SEP] Wow, as much as I want to call him insane he seems more qualified than me, but I'm still a skeptic. Are you interested in clothing at all? [SEP] I am interested in clothing.  I think it's very funny to realize that the romans thought that wearing pants was a sign of barbarism! [SEP] Well I can see where they're coming from! I think the only reason people DO wear pants is because to ride a horse in an army, it was more effective to wear pants than robes.",
+      "reference": "Yes it was unless you were in britain where they rode side saddle.  A lot of things are different there.  They consider trousers to be underwear where america considers trousers to be pants.",
+      "prediction": "the romans created the romans. as the romans created"
+    },
+    {
+      "context": "yes you're spot on. do you think his firing was fair since he had apologized before? [SEP] *hands at sides* I don't think it's fair. I don't think people should be held accountable for things they said years ago.  Life was different years ago and people not so easily offended.  You? [SEP] i agree with you. it happened several years ago. it says pro-trumpers found them and posted them to social media. that seems odd... [SEP] It does seem odd and makes you wonder if that part is true.  Who knows.  I think if he did a good job on his movies and didn't commit an actual crime then so be it. [SEP] yes. so i believe guardians is a marvel movie. do you like other marvel movies?",
+      "reference": "I do like Iron Man and Thor and Captain America.  How about you?",
+      "prediction": ". he was a super hero in the comics."
+    },
+    {
+      "context": "I am impressed that there is so little action. Baseball games are like three hours and have 18 minutes of action. I guess the game allows for lots of commercial advertisements. [SEP] *body relaxes* All sports tend to run long.  However fans come to watch their players.  Tom Brady would be mine since he went to Michigan.  He just came out with an athlete's bible called The TB12 Method, hear of it? [SEP] I have not heard of the The TB12 method. TB = Tom Brady. 12? Is his number 12? [SEP] *leans slightly forward* Yes it is!  He goes into detail about what has kept him at the top of his game at age 40.  I would not really question it since he has won a lot of super bowls. [SEP] I guess he will be legend forever. He has earned it. He probably has written an interesting book.",
+      "reference": "Brady is definitely a messiah figure for pats fans.  He puts in hard work and eats avocado ice cream while doing it.  :)",
+      "prediction": "i have heard that he has won the lottery."
+    },
+    {
+      "context": "*eyes brighten* I agree.  I didn't like him until I watched his documentary Tom vs Time.  I became a big fan after watching that.  It shows how much work he puts into his craft. [SEP] *eyes widen* I've heard of the documentary but have never watched it. I liked watching the Patriots when Benjarvus Green-Ellis played for him. He was a solid running back and actually has never fumbled the football in his NFL career! [SEP] That's incredible!  Did you know they put tracking chips in the footballs to track the data such as velocity, etc. on them? [SEP] I did not know that. That's probably why players get fined so much for throwing them into that stands. I heard that they also have tracking chips embedded in the players shoulder pads to record they're every move. [SEP] Crazy how the game has come along technology wise.  I wish the actual gameplay was longer though.  There's only 11 minutes of actual gameplay in  an average NFL game.",
+      "reference": "I know, that seems so short. It's 2 hours and 49 minutes of crap. They should get some women to play, they could make gameplay last longer. I mean there's no rules against them playing.",
+      "prediction": "not all. i can ' t believe it."
+    },
+    {
+      "context": "That would be different. Maybe they could get a pink locker room like the Univ of Iowa has for its visiting football teams. :) So bad!! [SEP] *body relaxes* Haha, right! That is crazy. It's not any different than the crazy high score game that ended with 222-0 that's unbelievable! [SEP] Yeah that was awful for the losing team I bet. They probably could have benefited from the tracking chips they use today in the players' shoulder pads to record their moves. Maybe could have figured out what they were doing wrong. [SEP] *takes a step forward* Exactly! Good point. Did you know Tom Brady's wife makes more than twice the amount of money that Tom does?? He could definitely retire hahaa, that's a lot of money! [SEP] Yeah but very few has her body and talents so alas they play football or work regular ole jobs. LOL",
+      "reference": "Hahaha, I don't even know what she does but wow, that's still a lot of money.",
+      "prediction": "lol..... i say i"
+    },
+    {
+      "context": "Hi good morning. Are you a fan of the Beatles? They have the best selling album of the 2000s! [SEP] I expect that the Beatles will have a best selling album for the next century as well! [SEP] *takes a step forward* Yeah that's a good point I bet as well. Surprisingly though none of the Beatles could read music. [SEP] Like many rocks musicians, they learned by ear. Reading music is useful though. I don't think it would have made a difference for the Beatles. [SEP] Yeah that's true. Ringo Starr couldn't read at all as he was a illiterate for most of his childhood.",
+      "reference": "*relaxed posture* He was a good drummer. I did not know that he was illiterate.",
+      "prediction": "that ' s hard to be at the time."
+    },
+    {
+      "context": "It is bizarre that disney cannot show big marvel characters in theme parks. [SEP] Yeah, they have some old agreement with Universal about that. [SEP] Yes, back in the 90s they signed. [SEP] No Avengers at Disney World, I guess! [SEP] *raises eyebrows* Yes, also they went to court to say that mutants are not people.",
+      "reference": "So they could get cheaper rate on the toys the sell. Not a bad idea! Thanks for chatting!",
+      "prediction": "they are my thing. i were a mutant mutant"
+    },
+    {
+      "context": "Did you see the Disney Nutcracker? [SEP] Yes,  I did.  Do you like Disney? [SEP] I love Disney!  It really brings out my inner child! [SEP] *tilts head* yeah same.  What are some of your favorite disney movies? [SEP] I loved the cartoon Beauty and the Beast, The Little Mermaid, Lion King, some of those iconic cartoons from when I was growing up",
+      "reference": "Yeah same!  I really like little mermaid,  lion king,  aladdin, frozen, moana.",
+      "prediction": "disney movies are of my favorite movies of all."
+    },
+    {
+      "context": "I didn't! Did you know that Thomas Jefferson created his own Bible version because he didn't like the supernatural parts! [SEP] He wanted to see religion in humanist terms. He wanted to understand the morality of Christianity without the miracles. [SEP] That's a good explanation! Did you know that Roosevelt and Adams are the only ones who didn't use a bible at their swearing in ceremonies? [SEP] *calm eyes* I think they were sworn in on the Constitution. They felt that they owed allegiance to the people and the government first. [SEP] That's good. I thought maybe they didn't believe in the Bible.  Many football players kneel after games to pray. Do you like football?",
+      "reference": "I sometimes watch football. It's interesting that the NFL has no rule against female players.",
+      "prediction": "think i wouldn ' t have heard of people,"
+    },
+    {
+      "context": "Hello, are you interested in baseball at all?",
+      "reference": "*raises eyebrows* Yes I do, I am a red sox fan. How about yourself?",
+      "prediction": "i ' m from london and i work at home"
+    },
+    {
+      "context": "Yes it has been around for a while. But at that time they were called Timely Publications. [SEP] Very cool stat right there. They once created a superhero for a boy who was deaf. [SEP] *smiles* Such a nice thing to do. Are you referring to blue ear? I love when companies do things like that. [SEP] Yep, that is Blue Ear. Such a good thing to do. Melts my heart hearing stories like that. [SEP] It really does! Do you like the Marvel character Spider-man? He is the only character who Sony has the rights to!",
+      "reference": "*opens mouth slightly* I love Spider Man. I did not know that Sony had rights to him.",
+      "prediction": "but sony is the best, and sony, sony"
+    },
+    {
+      "context": "Are you into Tom Brady?",
+      "reference": "Can't say that I am, I know of him and what he does, but that is about it.",
+      "prediction": "of course i ' m sure who ' s who"
+    },
+    {
+      "context": "I wonder too, there is an AM radio frequency that catches Jupiter's radio storms [SEP] Very cool, wonder if it just sounds like static or what? Bill Murray voiced the Human Torch in the 1970's fantastic four radio show! [SEP] no way! Now i need to look that up. It probably was amazing [SEP] Yeah I bet. Surprisingly, one of the top radio acts in 1930's was a ventriloquist...people must have been hard up for entertainment. [SEP] For sure lol! the radio has come a long way. I like to go to some free website and listen to dramas on it. It was so great chatting with you!",
+      "reference": "Oh yeah that would be cool. Once a Hanson song became the most requested song on an alt rock radio station lol. You too have a good evening!",
+      "prediction": "good evening there was a great chatting and good evening"
+    },
+    {
+      "context": "I have actually not and that is quite the score. Did you know ESPN won an Emmy once? [SEP] Yes for creation of the yellow line representing the first down for football. [SEP] Yeah. Did you know women can play in the NFL? [SEP] *lips slightly parted* Do you think they should? 250-300 lbs men hitting smaller women would certainly make things different. [SEP] *raises eyebrows* Yeah that is a good point. Maybe they should stick to engineering there is more money there",
+      "reference": "Yes I agree, I think wnba is great and maybe women should get a all women pro team called wnfl and see how that work out for them.",
+      "prediction": "probably a team will get the first team. maybe"
+    },
+    {
+      "context": "Yes. That is  crazy  stuff. [SEP] It really is! Can you believe Michael Jackson tried buying Marvel in the 90's? [SEP] No I did not know that. I did see that in the opening to 1990s spider man was performed by Joe Perry. [SEP] *tilts head* Wow that is awesome. I wonder if it was good? I'll have to listen to it sometime! Do you know where the word brainiac came from? [SEP] *lips slightly parted* I remember a brainiac  character from the superman comics when I was a kid.",
+      "reference": "That's where it came from! I can't believe DC Comics only paid 130 dollars for the rights to superman!",
+      "prediction": "oh that ' s nice! my sister has powers"
+    },
+    {
+      "context": "Jazz is so unique and you find this sort of things, like this woman who holds a concert on sundays and has done it for 20 years! [SEP] *opens mouth slightly* yea and Pakistan jazz is currently at the top of that list. Thats so cool to find out [SEP] See, I always think about jazz from America and Europe but I really want to hear this orchestra from Pakistan, they must be great! [SEP] *eyes widen* have to be. Im guessing rich in tradition. ... while we have our African Americans to help us stay connected to it all [SEP] *body relaxes* Jazz has traveled everywhere, because in a great part it came from west Africa and then other things adopted from African american culture.",
+      "reference": "yes and then back to america to refine. I use to listen to the fatter tempo stuff as a kid",
+      "prediction": "but i think it is just a trend for some"
+    },
+    {
+      "context": "Good Morning....don''t know anything about Avengers or Infinity War....but I'll try my best on it. Your views? [SEP] Good morning, I saw the movie, and thought it was pretty good.  It contains alot of different superheroes that have to work together and try to stop the bad gut Thanos from getting all the Infinity stones.  Having all of then allows him to instantly kill off billions of people on Earth.  Spoiler Alert: He gets the stones and some of the people killed are even some of the most beloved superheroes. [SEP] *tilts head* Wow! Wait a sec....I did see one of those Avengers movies. (Can't remember which one). But, I liked the Robert Downey Jr. character (can't remember his name) But, Simple Minds \"Don't You (Forget About Me)\" is a pretty awful song. [SEP] *eyes widen* I agree with you about the song! All I think is a Molly Ringwald 80s movie.  Well, anyway what's so funny about Robert Downey Jr. is that he hid food while he was on the set and the crew could never find the food he hid, so they just kept letting him do it.  Some of the scenes in the movie are  some of the food he hid.",
+      "reference": "*tilts head* LOL...Was Robert Downey's character called \"Flash\" or something? I can't remember, been years since I saw it. Too many of these movies have flooded the market with so many characters, I can't keep up. I'd never download a Jeremy Renner app though. Dont need all the ads that probably come with it.",
+      "prediction": "i just remember the guy who scolds they"
+    },
+    {
+      "context": "interesting. Do you know if there is a fish with 2 hearts? [SEP] No lol i know there's cows with 3 stomachs, but 2 hearts is something else, what is the fish called? [SEP] I dont know. There is a beer called 2 hearted ale with a big fish on it so i always wondered. [SEP] Do you know which fish is composed of mostly water actually 98 percent of it to be exact? [SEP] I dont. have a great day!",
+      "reference": "*body relaxes* Thank you my friend it was great",
+      "prediction": "ok ok, you guys have a fish or beer"
+    },
+    {
+      "context": "Do you watch football? [SEP] How yes I watch football from time to time,  I saw the super bowl this year, what about you [SEP] I did, it was pretty boring this year though.",
+      "reference": "Free with you, they should have had Snoop Dogg make a theme song for the game like he did for his son's high school football team LOL",
+      "prediction": "i do not watch sports, but i ' m"
+    },
+    {
+      "context": "They are my favorite team so Im not one of them lol, the author of Game of Thrones reffer to them as the Lanisters of the NFL, thats funny [SEP] I don't follow Games Of Thrones, is it a good thing or a bad thing ? [SEP] Its a bad thing, well its the most powerful family on the show but they are cruel, [SEP] That is kind of fitting for them, they are really a football dynasty. [SEP] They are, they are the team with the most Superbowls won but they also share the record for Superbowl losses",
+      "reference": "How do you think they will honor Bill Belichick when he retires ? He is a legendary coach.",
+      "prediction": "' re not sure if that ' s the in"
+    },
+    {
+      "context": "Ah that book. Wasn't a book that was branded  as an 'athlete bible'? I have heard much about the book. [SEP] Well some say that it was kind of cultist. So i not sure i care to read it really. i'll just stick to watching him make great plays. [SEP] *raises eyebrows* We cannot talk about Tom Brady without talking about the football sport as a whole. Did you know that in the 1960s, Top Bowlers made twice as much as Professional football players? Imagine a bowler making twice the amount of Tom Brady! [SEP] Yeah that's weird however did you know his wife makes twice as much as him now? [SEP] *leans slightly forward* No I did not. Wow! An engineer would make more than Tom Brady if you compared their lifetime earnings. That is probably due to how few years football can be played professionally.",
+      "reference": "Wow that is something but i'd rather do 10-15 and out with millions that 40-50.",
+      "prediction": "i ' m sure tom and wills must be more"
+    },
+    {
+      "context": "To make sure that they do not eat with the cheerleaders? That seems like an invasion of privacy. [SEP] No, that would be a little bit over the top! The tracking devices are used to track things like velocity, rotation, ball speed when the football players play. [SEP] Oh, ok. I guess that is necessary for something.  I think that the game is more complex than I thought. [SEP] *opens mouth slightly* What do you think they do with that data? It is surprisingly complex considering the fact that there's only 11 minutes of live gameplay. [SEP] The game is only 11 minutes? That seems too short. Why so short?",
+      "reference": "My guess is to make time for advertisements, what's your guess?",
+      "prediction": "it sounds like a game. lots of people watching"
+    },
+    {
+      "context": "*eyes widen* Good evening!  I hope you are well!  How do you think the US would be if the runner up in the presidential race became the Vice President like it was prior to 1805? [SEP] *lips slightly parted* hello,  I dont think that would work for our current situation lol Those 2 do not get a long lol [SEP] It would be crazy that is for sure!  Maybe our next election can feature a sing-off.  If the President of Indonesia can release three pop music albums, it might just work!  lol [SEP] I think that would be quite entertaining!  Thats pretty good,  making albums and running a country,  multi tasking! [SEP] *body relaxes* It would be the icing on the cake if we could have a President Banana like Zimbabwe did!",
+      "reference": "lol why?",
+      "prediction": "it would be a blast to be in the bush"
+    },
+    {
+      "context": "Good evening.  So Hillary is at it again? [SEP] *leans slightly forward* Whats she doing this time. [SEP] Promoting her book it looks like.  It's called What Happened.",
+      "reference": "Haven't heard of it to be honest.",
+      "prediction": "a guy guy who didn ' t meet up there"
+    },
+    {
+      "context": "Yeah, there are an awful lot of players on each team, and some don't last long. What do you think about Tom Brady of the Patriots. I heard he is trying to promote football as a whole lifestyle, maybe even religion, sort of thing. [SEP] I think he is just trying to scam people. [SEP] *squints eyes* Yeah, that is about my opinion too. I am guessing it is his plan for making money when he has to leave the sport. [SEP] *squints eyes* probably setting himself up for some sort of supplement company or books or something. He can't really believe all the stuff he is saying. It is just ridiculous. [SEP] I agree. It surprises me that so many people fall for that stuff. And Gotham Chopra being involved? It is all so weird!",
+      "reference": "*curls lip* I'm glad to see there are people that are skeptical of it. I think so many will fall for this drivel just because he is famous.",
+      "prediction": "is he the strangest guy on the baseball team"
+    },
+    {
+      "context": "*tilts head* Sounds interesting doesn't it? Specially given the great writers behind the comic. And it's a great cause as well. Have you seen the Black panther films before? [SEP] Haven't seen it, but heard good things from the critics. I know it came out this year and was made by Marvel. [SEP] Yes correct, I've seen the first but have yet to see the second. Given their intentions and the great writers do you believe it will have an impact on the public's perception on Puerto Rico and its history? [SEP] *eyes widen* I think it might. Especially after the hurricane that hit there. They had a lot of economic problems before it hit. [SEP] Yeah, I hope so too. Given that they still seem to be struggling from the Hurricane to this day. It's interesting how they are implementing comics for this. Its interesting how popular they became in the US and UK even though they originated in Japan.",
+      "reference": "Yeah, it was a great move for them. And the cover artist was Naomi Franquez. She did a good job.",
+      "prediction": "although some of the comics are still fans in these"
+    },
+    {
+      "context": "*hands at sides* That is funny.  I always thought they wore a wig.  Chefs have their own style of hats as well called the Toque. [SEP] I guess everyone has some sort of a hat to wear. APparently the most popular hat used to be the bowler one, not the cowboy hat in the old west [SEP] And don't forget the styles that Catholic Bishops wear or the Sikh Turbans [SEP] Yup for sure. DO you know how the whole thing about tipping the hat originated? [SEP] No how did that start?  I think its funny that London cabs have the design they do to accomodate hats!",
+      "reference": "That is a good one. It came from the Knights back in the day who raised their visors to show friendliness",
+      "prediction": "what was the earliest form of cabs? london"
+    },
+    {
+      "context": "How do you feel about man buns? [SEP] *tilts head* I am not a fan. I know hockey player Jonsson-Fjallby has one, [SEP] Yeah he puts it into a man bun of the ice. [SEP] *tilts head* Yes, he has held onto his long after they have gone away.The man bun craze peaked in 2015 so it is time to be done.",
+      "reference": "I'm told he grimaces at the hair flapping out of his helmet, lol!",
+      "prediction": "that is sense. i ' m not very religious"
+    },
+    {
+      "context": "*leans slightly forward* The Lion King. I know it's too child, but it's fantastic. [SEP] *smiles* No I completely agree the lion king is an absolute classic simba is the classic journey of every young man. [SEP] Well, we know there are a lot of amazing facts about Dysney. It's number 1 in the world. [SEP] *eyes brighten* Yes they basically made my whole childhood [SEP] *leans slightly forward* True. It was my pleasure to talk with you.",
+      "reference": "*body relaxes* Have a good day my friend watch a disney film for me today",
+      "prediction": "that was all my time. could you tell me"
+    },
+    {
+      "context": "Do you watch any of the Marvel movies? They are some of my favorites",
+      "reference": "I love Marvel movies. I really like the first Iron Man. I'm super impressed that Robert Downey Jr. improvised it all.",
+      "prediction": "it is the last year of marvel movie!!"
+    },
+    {
+      "context": "Yeah I agree. It's so devastating. I personally am a proponent for greater gun control, I saw this article suggesting that the reason we have so many mass murders might be because of the insane number of guns people have in the US. Either way, I think any sane person can agree that we shouldn't be killing journalists! [SEP] Yea it is a sad world we live in, we need that mental health part too, but sadly it will still happen with this talk. Do you listen to much radio? [SEP] I don't really ever listen to the radio, unless you count Spotify (which I doubt is radio haha). But there's some cool stuff on radios now. There's a website that has thousands of old radio dramas that you can listen to for free! [SEP] I would love to hear that in my car. Sometimes a good drama on the way to work may motivate me to work better for the day. Did you hear about being able to hear jupiters storms on am radio? [SEP] I did! And there's some way to hear solar activity in the form of sounds, too! I think radio is so cool. It's actually possible to make simple radios from pencils and razorblades--they're called foxhole radios!",
+      "reference": "Foxhole radios are amazing, I wonder how they ever thought of doing that. I am going to check that out. It was so nice chatting with you!",
+      "prediction": "there s not a real reason for the storms on"
+    }
+  ],
+  "model": {
+    "path": "checkpoints/chatbert-imr-small/final",
+    "type": "iterative_mlm",
+    "params": 67305466
+  }
+}
